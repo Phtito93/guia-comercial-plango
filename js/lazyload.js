@@ -1,4 +1,3 @@
-console.log("✅ lazyload carregado");
 /*
 =====================================================
 LAZY LOAD

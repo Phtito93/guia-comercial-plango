@@ -15,13 +15,6 @@ Ano:
 =====================================================
 */
 
-console.log(`
-🚀 Guia Comercial Premium
-
-Desenvolvido por:
-Paulo Henrique Tito
-`);
-
 /*
 =====================================================
 INICIAR APP
@@ -62,22 +55,4 @@ if (
         "/service-worker.js"
 
     )
-
-    .then(() => {
-
-        console.log(
-            "✅ PWA ativo"
-        );
-
-    })
-
-    .catch((error) => {
-
-        console.log(
-            "❌ Erro PWA",
-            error
-        );
-
-    });
-
 }

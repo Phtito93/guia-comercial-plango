@@ -47,18 +47,6 @@ function registrarVisualizacao(id) {
 
     /*
     =====================================
-    LOG
-    =====================================
-    */
-
-    console.log(
-
-        `📊 ${empresa?.nome} recebeu ${visualizacoes[id]} clique(s).`
-
-    );
-
-    /*
-    =====================================
     STORAGE
     =====================================
     */
@@ -102,7 +90,5 @@ function logTopEmpresas() {
         return b.views - a.views;
 
     });
-
-    console.table(ranking);
 
 }
