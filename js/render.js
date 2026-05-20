@@ -427,22 +427,37 @@ function renderizarFiltros(lista) {
 
                 /*
                 =================================
-                FILTRO LOCAL
+                FAVORITOS
                 =================================
                 */
 
-                estado.filtroHome =
-                    categoria;
+                if (
+                    somenteFavoritos
+                ) {
 
-                paginaAtual = 1;
+                    estado.categoriaAtual =
+                        categoria;
+
+                    estado.filtroHome =
+                        categoria;
+
+                    atualizarInterface();
+
+                    return;
+
+                }
 
                 /*
                 =================================
-                UPDATE
+                CATEGORIA
                 =================================
                 */
 
-                atualizarInterface();
+                navegar(
+
+                    `/categoria/${encodeURIComponent(categoria)}`
+
+                );
 
             }
         );

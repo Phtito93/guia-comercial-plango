@@ -127,6 +127,8 @@ function aplicarRota() {
         estado.modo =
             "categoria";
 
+        estado.busca = "";
+
         estado.categoriaAtual =
             categoria;
 
