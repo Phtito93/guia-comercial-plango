@@ -61,7 +61,7 @@ function renderizarEmpresas(lista) {
         cardsHTML += `
             <div class="card">
                 <img
-                    src="${empresa.imagem || 'img/placeholder.jpg'}"
+                    src="${empresa.imagem || '/img/placeholder.jpg'}"
 
                     alt="Foto da empresa ${empresa.nome}"
 
