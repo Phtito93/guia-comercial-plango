@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <!--
+  =====================================================
+  META TAGS
+  =====================================================
+  -->
+
+  <meta charset="UTF-8">
+
+  <!-- Responsividade Mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#0f172a">
+
+  <!--
+  =====================================================
+  SEO
+  =====================================================
+  -->
+
+  <meta
+    name="description"
+    content="
+        Guia comercial de empresas
+        em Planaltina GO.
+    "
+>
+
+  <meta
+      name="keywords"
+      content="
+          empresas,
+          negócios,
+          serviços,
+          guia comercial,
+          comércio local
+      "
+  >
+
+  <meta
+      name="robots"
+      content="index, follow"
+  >
+
+  <meta
+      name="author"
+      content="Paulo Henrique Tito"
+  >
+
+  <!--
+  =====================================================
+  OPEN GRAPH
+  =====================================================
+  -->
+
+  <meta
+      property="og:title"
+      content="Guia Comercial de Planaltina GO"
+  >
+
+  <meta
+      property="og:description"
+      content="
+      Empresas, serviços e negócios locais.
+      "
+  >
+
+  <meta
+      property="og:image"
+      content="img/hero.webp"
+  >
+
+  <meta
+      property="og:type"
+      content="website"
+  >
+
+  <meta
+    property="og:url"
+    content="https://seudominio.com"
+  >
+  
+  <title>Guia Comercial - Planaltina-GO</title>
+
+  <!--
+  =====================================================
+  TWITTER CARD
+  =====================================================
+  -->
+
+  <meta
+      name="twitter:card"
+      content="summary_large_image"
+  >
+
+  <meta
+      name="twitter:title"
+      content="Guia Comercial"
+  >
+
+  <meta
+      name="twitter:description"
+      content="
+          Empresas e serviços locais
+          em um só lugar.
+      "
+  >
+
+  <meta
+      name="twitter:image"
+      content="img/preview.jpg"
+  >
+
+  <meta name="theme-color" content="#2563eb">
+
+   <!--
+  =====================================================
+  CSS
+  =====================================================
+  -->
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Font Awesome -->
+
+  <link
+    rel="preconnect"
+    href="https://cdnjs.cloudflare.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preload"
+    as="style"
+    href="
+  https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css
+  "
+      onload="
+          this.onload=null;
+          this.rel='stylesheet'
+      "
+  >
+
+  /*
+  =====================================================
+  FAVICONS
+  =====================================================
+  */
+
+  <link
+      rel="icon"
+      type="image/x-icon"
+      href="/img/favicon.ico"
+  >
+
+  <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/img/favicon-32x32.png"
+  >
+
+  <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/img/favicon-16x16.png"
+  >
+
+  <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/img/apple-touch-icon.png"
+  >
+
+  <link rel="manifest" href="manifest.json">
+
+  <!--<link rel="preload" as="image" href="img/hero.webp">-->
+
+
+</head>
+
+<body class="dark">
+
+  <!--
+  =====================================================
+  HEADER / NAVBAR
+  =====================================================
+  -->
+
+  <header class="navbar">
+    <!-- LOGO -->
+    <div class="logo-area">
+      <button class="home-btn" id="homeBtn">
+        <i class="fa-solid fa-house"></i>
+      </button>
+
+      <div class="logo">
+          Guia Comercial - PLAN-GO
+      </div>
+    </div>
+
+    <!-- AÇÕES HEADER -->
+    <div class="header-actions">
+
+      <!--DARK MODE-->
+      <button id="darkModeBtn" aria-label="Alternar tema">
+        <i class="fa-solid fa-sun"></i>
+      </button>
+
+      <!-- MENU MOBILE -->
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">
+
+        <span></span> <!-- <span></span> - Isso permite: animações, controle visual profissional-->
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!--
+  =====================================================
+  OVERLAY MENU
+  =====================================================
+  -->
+  <!--Escurece o fundo ao abrir menu.-->
+  <div class="overlay" id="overlay"></div> 
+
+  <!--
+  =====================================================
+  MENU MOBILE
+  =====================================================
+  -->
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
+
+    <!-- USUARIO -->
+    <div class="user-area">
+
+        <img src="img/usuario.png" alt="usuario">
+
+        <h3>Olá, Visitante</h3>
+    </div>
+
+    <!-- LINKS -->
+    <a href="#" id="mobileHomeBtn" aria-label="Ir para página inicial">
+      <i class="fa-solid fa-house"></i>
+      Home
+    </a>
+
+    <!-- SUBMENU -->
+    <div class="submenu">
+      <button class="submenu-btn">
+        <div class="submenu-left">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>
+            Categorias
+          </span>
+        </div>
+
+        <span class="arrow">
+          <i class="fa-solid fa-chevron-down"></i>
+        </span>
+      </button>
+        
+      <div class="submenu-content" id="submenuCategorias"></div>
+    </div>
+
+    <!-- CONTATOS -->
+    <div class="submenu">
+      <button class="submenu-btn">
+        <div class="submenu-left">
+          <i class="fa-solid fa-phone-volume"></i>
+          <span>
+            Contatos Úteis
+          </span>
+        </div>
+
+        <span class="arrow">
+          <i class="fa-solid fa-chevron-down"></i>
+        </span>
+      </button>
+
+      <div class="submenu-content" id="submenuContatos"></div>
+    </div>
+    
+    <!--
+    =====================================================
+    MENU FOOTER
+    =====================================================
+    -->
+
+    <div class="mobile-menu-footer">
+
+        <p>
+            🚀 Anuncie você também o
+            <br>
+            seu negócio
+        </p>
+
+        <div class="mobile-socials">
+            <a
+                href="https://wa.me/5561994243316"
+                target="_blank"
+                aria-label="WhatsApp"
+            >
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+
+            <a
+                href="https://instagram.com/seuinstagram"
+                target="_blank"
+                aria-label="Instagram"
+            >
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+        </div>
+    </div>
+  </nav>
+
+  <!--
+  =====================================================
+  MAIN
+  =====================================================
+  -->
+
+  <main>
+
+    <!--
+    =====================================================
+    HERO
+    =====================================================
+    -->
+
+    <section class="hero">
+      <h1>Encontre empresas, serviços
+        <br>
+        e profissionais locais</h1>
+
+      <p>O melhor guia comercial e profissional da cidade!</p>
+    </section>
+
+    <!--
+    =====================================================
+    CONTROLES SUPERIORES
+    =====================================================
+    -->
+    
+    <section class="top-controls">
+
+      <!-- BUSCA -->
+      <div class="search-area">
+        <input 
+          type="text"
+          id="searchInput" 
+          placeholder="Buscar empresas..." 
+          autocomplete="off"
+          aria-label="Pesquisar empresas"
+        >
+      </div>
+
+      <!-- FILTRO STATUS -->
+      <div class="ordenacao">
+
+        <label
+          for="ordenar"
+          class="ordenacao-label"
+        >
+
+          Ordenar:
+        </label>
+
+        <select id="ordenar">
+
+          <option value="populares">
+            🔥 Mais populares
+          </option>
+
+          <option value="views">
+            👁️ Mais acessados
+          </option>
+
+          <option value="abertos">
+            🟢 Abertos agora
+          </option>
+
+          <option value="az">
+            🔤 A-Z
+          </option>
+
+          <option value="za">
+            🔤 Z-A
+          </option>
+        </select>
+
+        <!-- FAVORITOS -->
+        <button
+          id="favoritosBtn"
+          class="favoritos-btn"
+          aria-label="Mostrar favoritos"
+        >
+
+          <i class="fa-solid fa-heart"></i>
+        </button>
+      </div>
+    </section>
+
+    <!--
+    =====================================================
+    FILTROS ATIVOS
+    =====================================================
+    -->
+
+    <section
+        class="active-filters"
+        id="activeFilters"
+    ></section>
+
+    <!--
+    =====================================================
+    FILTROS CATEGORIAS
+    =====================================================
+    -->
+
+    <section class="filtros-wrapper">
+      <div class="filtros" id="filtrosContainer"></div>
+    </section>
+    
+    <!--
+    =====================================================
+    GRID EMPRESAS
+    =====================================================
+    -->
+
+    <div class="section-header">
+      <h2 id="sectionTitle">
+          🔥 Negócios em destaque
+      </h2>
+    </div>
+
+    <section class="empresa-grid" id="empresaGrid"></section>
+
+    <!--
+    =====================================================
+    PAGINAÇÃO
+    =====================================================
+    -->
+
+    <nav class="pagination">
+
+      <!-- ANTERIOR -->
+      <button id="anterior">
+        <i class="fa-solid fa-chevron-left"></i>
+        Anterior
+      </button>
+
+      <!-- PAGINA -->
+      <span id="paginaInfo">
+        Página 1
+      </span>
+      
+      <!-- PROXIMO-->
+      <button id="proximo">
+        Próximo
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </nav>
+  </main>
+
+  <!--
+  =====================================================
+  CTA ANÚNCIO
+  =====================================================
+  -->
+
+  <section class="cta-anuncio">
+    <div class="cta-content">
+      <span class="cta-badge">
+        🚀 Destaque seu negócio
+      </span>
+
+      <h2>
+        ANUNCIE COM A GENTE 📢
+      </h2>
+
+      <p>
+        Coloque sua empresa em destaque e 
+        alcance mais clientes.
+      </p>
+
+      <div class="cta-buttons">
+        <a
+          href="https://wa.me/5561994243316"
+          target="_blank"
+          aria-label="WhatsApp"
+          >
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+
+        <a
+          href="https://instagram.com/seuinstagram"
+          target="_blank"
+          aria-label="Instagram"
+          >
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>
+        © 2026 Guia Comercial - Todos os direitos reservados.
+    </p>
+  </footer>
+
+  <!--
+  =====================================================
+  MODAL EMPRESA
+  =====================================================
+  -->
+
+  <div class="modal" id="empresaModal">
+
+      <div class="modal-overlay"></div>
+
+      <div class="modal-content">
+
+          <button
+              class="close-modal"
+              id="closeModalBtn"
+              aria-label="Fechar modal"
+          >
+
+              <i class="fa-solid fa-xmark"></i>
+
+          </button>
+
+          <div id="modalBody"></div>
+
+      </div>
+
+  </div>
+
+  <!--
+  =====================================================
+  TOAST CONTAINER
+  =====================================================
+  -->
+
+  <div id="toastContainer"></div>
+
+   <!--
+  =====================================================
+  JAVASCRIPT
+  =====================================================
+  -->
+  
+  <script defer src="js/config.js"></script>
+
+  <script defer src="js/state.js"></script>
+
+  <script defer src="js/dom.js"></script>
+
+  <script defer src="js/utils.js"></script>
+
+  <script defer src="js/status.js"></script>
+
+  <script defer src="js/contatos.js"></script>
+
+  <script defer src="js/loading.js"></script>
+
+  <script defer src="js/toast.js"></script>
+
+  <script defer src="js/favorites.js"></script>
+
+  <script defer src="js/analytics.js"></script>
+
+  <!-- <script defer src="js/lazyload.js"></script> -->
+
+  <script defer src="js/render.js"></script>
+  
+  <script defer src="js/filters.js"></script>
+
+  <script defer src="js/pagination.js"></script>
+
+  <script defer src="js/menu.js"></script>
+
+  <script defer src="js/darkmode.js"></script>
+
+  <script defer src="js/seo.js"></script>
+
+  <script defer src="js/api.js"></script>
+
+  <script defer src="js/router.js"></script>
+
+  <script defer src="js/events.js"></script>
+
+  <script defer src="js/app.js"></script>
+</body>
+</html>

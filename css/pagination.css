@@ -1,0 +1,44 @@
+/*
+=====================================================
+pagination.css
+PAGINAÇÃO
+=====================================================
+*/
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin: 40px 0;
+}
+
+.pagination button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--primary);
+    color: var(--text);
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.pagination button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.pagination button:disabled {
+    background: #cbd5e1;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#paginaInfo {
+    font-weight: bold;
+    color: #475569;
+}

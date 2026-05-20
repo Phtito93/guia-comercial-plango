@@ -1,0 +1,128 @@
+/*
+=====================================================
+cta.css
+CTA
+=====================================================
+*/
+
+.cta-anuncio {
+    /*margin: 10px 0;*/
+    padding: 30px 30px;
+    border-radius: 20px;
+    background:
+        linear-gradient(
+            200deg,
+            #1e293b
+        );
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/*EFEITO BACKGROUND*/
+.cta-anuncio::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(255,255,255,0.12),
+            transparent 80%
+        );
+}
+
+.cta-anuncio:hover {
+    transform:
+        translateY(-2px);
+}
+
+/*CONTENT*/
+.cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*BADGE*/
+.cta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    margin-bottom: 24px;
+    border-radius: 999px;
+    background:
+        rgba(255,255,255,0.12);
+
+    backdrop-filter: blur(10px);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/*TITLE*/
+.cta-anuncio h2 {
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 18px;
+}
+
+/*TEXT*/
+.cta-anuncio p {
+    max-width: 700px;
+    margin: 0 auto 36px;
+    font-size: 17px;
+    line-height: 1.7;
+    color:
+        rgba(255,255,255,0.82);
+    text-wrap: balance;
+}
+
+/*BUTTONS SOCIAIS*/
+.cta-buttons {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.cta-buttons > * {
+    flex-shrink: 0;
+}
+
+/*LINKS*/
+.cta-buttons a {
+    width: 46px;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: #0f172a;
+    color: white;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.cta-buttons a i {
+    font-size: 28px;
+    line-height: 1;
+}
+
+.cta-buttons::-webkit-scrollbar{
+    display: none;
+}
+
+/*HOVER*/
+.cta-buttons a:hover {
+    transform:
+        translateY(-3px);
+    background: var(--primary);
+    color: white;
+}

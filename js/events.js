@@ -1,0 +1,398 @@
+/*
+=====================================================
+EVENTOS - MENU MOBILE
+=====================================================
+*/
+
+if (menuBtn && mobileMenu && overlay) {
+
+    menuBtn.addEventListener("click", () => {
+
+        menuBtn.classList.toggle("active");
+
+        mobileMenu.classList.toggle("active");
+
+        overlay.classList.toggle("active");
+
+    });
+}
+
+/*
+=====================================================
+EVENTOS- SUBMENUS
+=====================================================
+*/
+
+document.addEventListener("click", (e) => {
+
+    const submenuBtn =
+        e.target.closest(
+            ".submenu-btn"
+        );
+
+    /*
+    =====================================
+    SEM BOTÃO
+    =====================================
+    */
+
+    if (!submenuBtn) return;
+
+    /*
+    =====================================
+    EVITAR PROPAGAÇÃO
+    =====================================
+    */
+
+    e.stopPropagation();
+
+    /*
+    =====================================
+    SUBMENU
+    =====================================
+    */
+
+    const submenuAtual =
+        submenuBtn.closest(
+            ".submenu"
+        );
+
+    /*
+    =====================================
+    FECHAR OUTROS
+    =====================================
+    */
+
+    document
+        .querySelectorAll(".submenu")
+        .forEach((submenu) => {
+
+            if (submenu !== submenuAtual) {
+
+                submenu.classList.remove(
+                    "active"
+                );
+
+            }
+
+        });
+
+    /*
+    =====================================
+    TOGGLE
+    =====================================
+    */
+
+    submenuAtual.classList.toggle(
+        "active"
+    );
+
+});
+
+/*
+=====================================================
+MENU CATEGORIAS
+=====================================================
+*/
+
+document.addEventListener("click", (e) => {
+
+    const categoriaBtn =
+        e.target.closest(
+            ".submenu-categoria-btn"
+        );
+
+    /*
+    =====================================
+    SEM BOTÃO
+    =====================================
+    */
+
+    if (!categoriaBtn) return;
+
+    /*
+    =====================================
+    IGNORAR LINKS
+    =====================================
+    */
+
+    if (
+        categoriaBtn.tagName === "A"
+    ) return;
+
+    /*
+    =====================================
+    CATEGORIA
+    =====================================
+    */
+
+    const categoria =
+        categoriaBtn.dataset.categoria;
+
+    estado.modo = "categoria";
+
+    estado.categoriaAtual =
+        categoria;
+
+    estado.busca = "";
+
+    searchInput.value = "";
+
+    navegar(
+        `/categoria/${encodeURIComponent(categoria)}`
+    );
+
+    fecharMenu();
+
+});
+
+/*
+=====================================================
+EVENTOS - OVERLAY
+=====================================================
+*/
+
+overlay.addEventListener("click", fecharMenu);
+
+/*
+=====================================================
+EVENTOS - BUSCA
+=====================================================
+*/
+
+searchInput.addEventListener("input", () => {
+
+    estado.busca =
+        normalizarTexto(
+            searchInput.value
+        );
+
+    /*
+    =====================================
+    HOME
+    =====================================
+    */
+
+    if (
+        estado.modo === "home"
+        &&
+        estado.busca
+    ) {
+
+        estado.modo = "busca";
+
+    }
+
+    /*
+    =====================================
+    LIMPOU
+    =====================================
+    */
+
+    if (!estado.busca) {
+
+        navegar("/");
+
+        return;
+
+    }
+
+    paginaAtual = 1;
+
+    navegar(
+        `/buscar/${encodeURIComponent(
+            estado.busca
+        )}`
+    );
+
+});
+
+/*
+=====================================================
+EVENTOS - FILTRO STATUS - ORDENAÇÃO
+=====================================================
+*/
+
+ordenar.addEventListener("change", () => {
+
+    estado.ordenacao = ordenar.value;
+
+    paginaAtual = 1;
+
+    atualizarInterface();
+
+});
+
+/*
+=====================================================
+FAVORITOS
+=====================================================
+*/
+
+favoritosBtn?.addEventListener(
+    "click",
+    () => {
+
+        somenteFavoritos =
+            !somenteFavoritos;
+
+        favoritosBtn.classList.toggle(
+            "active",
+            somenteFavoritos
+        );
+
+        paginaAtual = 1;
+
+        /*
+        =================================
+        NAVEGAÇÃO
+        =================================
+        */
+
+        if (somenteFavoritos) {
+
+            navegar("/favoritos");
+
+        } else {
+
+            navegar("/");
+
+        }
+
+    }
+);
+
+/*
+=====================================================
+EVENTOS - PAGINAÇÃO
+=====================================================
+*/
+
+btnAnterior.addEventListener("click", () => {
+
+    if (paginaAtual > 1) {
+
+        paginaAtual--;
+
+        atualizarInterface();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+});
+
+btnProximo.addEventListener("click", () => {
+
+    paginaAtual++;
+
+    atualizarInterface();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+
+/*
+=====================================================
+EVENTOS - DARK MODE
+=====================================================
+*/
+
+darkModeBtn.addEventListener("click", () => {
+
+    const darkAtivo =
+        document.body.classList.contains(
+            "dark"
+        );
+
+    aplicarTema(
+        darkAtivo
+            ? "light"
+            : "dark"
+    );
+
+});
+
+/*
+=====================================================
+EVENTOS - HOME
+=====================================================
+*/
+
+homeBtn.addEventListener("click", () => {navegar("/");});
+
+/*
+=====================================================
+EVENTOS - HOME MOBILE
+=====================================================
+*/
+
+mobileHomeBtn.addEventListener("click", () => {
+        navegar("/");
+
+        fecharMenu();
+    }
+);
+
+/*
+=====================================================
+EVENTOS - CONTACT MENU
+=====================================================
+*/
+
+document.addEventListener("click", (e) => {
+
+    const contactMenu =
+        e.target.closest(
+            ".contact-menu"
+        );
+
+    const allMenus =
+        document.querySelectorAll(
+            ".contact-menu"
+        );
+
+    allMenus.forEach((menu) => {
+
+        if (menu !== contactMenu) {
+
+            menu.classList.remove("active");
+
+        }
+
+    });
+
+    if (!contactMenu) return;
+
+    contactMenu.classList.toggle("active");
+
+});
+
+/*
+=====================================================
+EVENTOS - TOUCH MOBILE MENU
+=====================================================
+*/
+
+let startX = 0;
+
+mobileMenu.addEventListener("touchstart", (e) => {
+
+    startX = e.touches[0].clientX;
+
+});
+
+mobileMenu.addEventListener("touchend", (e) => {
+
+    let endX =
+        e.changedTouches[0].clientX;
+
+    if (startX - endX > 50) {
+
+        fecharMenu();
+
+    }
+});

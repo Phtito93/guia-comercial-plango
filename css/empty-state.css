@@ -1,0 +1,65 @@
+/*
+=====================================================
+empty-state.css
+EMPTY STATE
+=====================================================
+*/
+
+.empty-state {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-height: 420px;
+    display: grid;
+    place-content: center;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-state > * {
+    max-width: 600px;
+}
+
+.empty-icon {
+
+    font-size: 72px;
+
+    margin-bottom: 24px;
+
+    opacity: 0.8;
+
+}
+
+.empty-state h2 {
+
+    font-size: 32px;
+
+    margin-bottom: 16px;
+
+    color: var(--text);
+
+}
+
+.empty-state p {
+    max-width: 520px;
+    margin: 0 auto 32px;
+    line-height: 1.7;
+    color: var(--text-light);
+}
+
+.empty-btn {
+    height: 52px;
+    padding: 0 28px;
+    border: none;
+    border-radius: 16px;
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.empty-btn:hover {
+    transform: translateY(-2px);
+}

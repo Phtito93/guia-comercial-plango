@@ -1,0 +1,49 @@
+/*
+=====================================================
+TRANSIÇÕES GLOBAIS
+=====================================================
+*/
+
+body,
+.card,
+.navbar,
+.mobile-menu,
+.contact-dropdown,
+button,
+a {
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease,
+        background-color 0.25s ease;
+}
+
+button:hover,
+.cta-btn:hover,
+.contact-btn:hover {
+    transform: translateY(-2px);
+}
+
+.cta-btn,
+.contact-btn {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,  
+        background-color 0.25s ease;
+}
+
+button:active,
+a:active {
+
+    transform:
+        scale(0.96);
+
+}
+
+input,
+select {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}

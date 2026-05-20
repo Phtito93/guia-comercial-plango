@@ -1,0 +1,171 @@
+/*
+=====================================================
+skeleton.css
+SKELETON
+=====================================================
+*/
+
+/*
+=====================================================
+CARD
+=====================================================
+*/
+
+.skeleton-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: var(--card-bg);
+
+    border:
+        1px solid var(--border);
+
+    min-height: 340px;
+
+}
+
+/*
+=====================================================
+BASE
+=====================================================
+*/
+
+.skeleton {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+
+    background:
+        var(--skeleton-bg);
+
+}
+
+/*
+=====================================================
+SHIMMER
+=====================================================
+*/
+
+.skeleton::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    transform:
+        translateX(-100%);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--skeleton-highlight),
+            transparent
+        );
+
+    animation:
+        skeleton-loading 1.2s infinite linear;
+
+}
+
+/*
+=====================================================
+IMAGE
+=====================================================
+*/
+
+.skeleton-image {
+
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    border-radius:
+        20px 20px 0 0;
+
+}
+
+/*
+=====================================================
+CONTENT
+=====================================================
+*/
+
+.skeleton-content {
+
+    padding: 20px;
+
+}
+
+/*
+=====================================================
+TITLE
+=====================================================
+*/
+
+.skeleton-title {
+
+    width: 70%;
+
+    height: 26px;
+
+    margin-bottom: 18px;
+
+}
+
+/*
+=====================================================
+TEXT
+=====================================================
+*/
+
+.skeleton-text {
+
+    width: 100%;
+
+    height: 16px;
+
+    margin-bottom: 14px;
+
+}
+
+/*
+=====================================================
+CATEGORY
+=====================================================
+*/
+
+.skeleton-category {
+
+    width: 90px;
+
+    height: 24px;
+
+    margin-bottom: 20px;
+
+}
+
+/*
+=====================================================
+BUTTON
+=====================================================
+*/
+
+.skeleton-button {
+
+    width: 140px;
+
+    height: 42px;
+
+    margin-top: 24px;
+
+}

@@ -1,0 +1,65 @@
+/*
+=====================================================
+BODY
+=====================================================
+*/
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+main {
+    padding-top: 0;
+}
+
+/*
+=====================================================
+SCROLLBAR
+=====================================================
+*/
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 999px;
+}
+
+/*
+=====================================================
+FOCUS ACCESSIBILITY
+=====================================================
+*/
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+
+    outline:
+        3px solid var(--primary);
+
+    outline-offset: 3px;
+
+    border-radius: 12px;
+
+}
+
+/*
+=====================================================
+PERFORMANCE
+=====================================================
+*/
+
+img,
+.card,
+button {
+
+    will-change:
+        transform;
+
+}

@@ -1,0 +1,113 @@
+[
+    {
+        "id": 1,
+        "slug": "hamburgueria-do-ze",
+        "nome": "Hamburgueria do Zé",
+        "destaque": false,
+        "endereco":{
+            "rua": "Rua das Flores",
+            "numero": "123",
+            "bairro": "Setor Oeste",
+            "cidade": "Planaltina",
+            "estado": "GO",
+            "cep": "74000-000"
+        },
+        "local": "Setor Oeste", 
+        "horario": {
+            "domingo": {"abre": "18:00", "fecha": "23:00"},
+            "segunda": {"abre": "18:00", "fecha": "23:00"},
+            "terca": {"abre": "18:00", "fecha": "23:00"},
+            "quarta": {"abre": "18:00", "fecha": "23:00"},
+            "quinta": {"abre": "18:00", "fecha": "23:00"},
+            "sexta": {"abre": "18:00", "fecha": "23:00"},
+            "sabado": {"abre": "18:00", "fecha": "23:00"}
+        },
+        "categorias": ["Restaurante", "Hamburgueria", "Delivery"],
+        "nota": 4.8,
+        "descricao": "Burgues Artesanais",
+        "imagem": "/img/hamburgueria.webp",
+        "contatos": {
+            "whatsapp": "https://wa.me/5561994243316",
+            "telefone": "61999999999",
+            "instagram": "#",
+            "localizacao": "#"
+        },
+        "tags": ["hamburguer", "burguer", "sanduíche"],
+        "createdAt": "2026-05-15"
+    },
+
+    {
+        "id": 2,
+        "slug": "pizzaria-local",
+        "nome": "Pizzaria Local",
+        "destaque": true,
+        "endereco": {
+            "rua": "Avenida Central",
+            "numero": "456",
+            "bairro": "Setor Sul",
+            "cidade": "Planaltina",
+            "estado": "GO",
+            "cep": "74000-000"
+        },
+        "local": "Setor Sul",
+        "horario": {
+            "domingo": {"abre": "17:00", "fecha": "00:00"},
+            "segunda": {"abre": "17:00", "fecha": "00:00"},
+            "terca": {"abre": "17:00", "fecha": "00:00"},
+            "quarta": {"abre": "17:00", "fecha": "00:00"},
+            "quinta": {"abre": "17:00", "fecha": "00:00"},
+            "sexta": {"abre": "17:00", "fecha": "00:00"},
+            "sabado": {"abre": "17:00", "fecha": "00:00"}
+        },
+        "categorias": ["Restaurante", "Pizzaria", "Delivery"],
+        "nota": 4.6,
+        "descricao": "Pizzas Artesanais",
+        "imagem": "/img/pizzaria.webp",
+        "contatos": {
+            "whatsapp": "https://wa.me/5561994243316",
+            "telefone": "61999999999",
+            "localizacao": "#"
+        },
+        "tags": ["pizza", "calabresa", "borda"],
+        "createdAt": "2026-05-16"
+        
+    },
+
+    {
+        "id": 3,
+        "slug": "salgados-e-cia",
+        "nome": "Salgados e Cia",
+        "destaque": true,
+        "endereco": {
+            "rua": "Rua dos Pinheiros",
+            "numero": "789",
+            "bairro": "Setor Norte",
+            "cidade": "Planaltina",
+            "estado": "GO",
+            "cep": "74000-000"
+        }, 
+        "local": "Setor Norte",
+        "horario": {
+            "segunda": {"abre": "08:00", "fecha": "23:00"},
+            "terca": {"abre": "08:00", "fecha": "17:00"},
+            "quarta": {"abre": "08:00", "fecha": "23:00"},
+            "quinta": {"abre": "08:00", "fecha": "23:00"},
+            "sexta": {"abre": "08:00", "fecha": "23:00"},
+            "sabado": {"abre": "08:00", "fecha": "23:00"}
+        },
+        "categorias": ["Restaurante", "Salgados", "Lanches"],
+        "nota": 4.4,
+        "descricao": "Salgados Diversos",
+        "imagem": "/img/salgados.webp",
+        "contatos": {
+            "whatsapp": "https://wa.me/5561994243316",
+            "telefone": "61999999999",
+            "instagram": "#",
+            "localizacao": "#",
+            "site": "#"
+        },
+        "tags": ["coxinha", "misto", "suco"],
+        "createdAt": "2026-05-17"
+    }
+
+]

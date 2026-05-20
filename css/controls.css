@@ -1,0 +1,127 @@
+/*
+=====================================================
+controls.css
+BUSCA E CONTROLES
+=====================================================
+*/
+
+.top-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 20px 20px;
+}
+
+.active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 20px 10px;
+}
+
+.filter-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background:
+        rgba(37,99,235,0.08);
+
+    color:
+        var(--primary);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.filter-chip button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: inherit;
+    font-size: 14px;
+}
+
+.search-area {
+    padding: 20px 20px 20px;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid #ddd;
+    border-radius: 12px; /*Visual moderno.*/
+    font-size: 16px;
+    outline: none; /*Remove borda azul padrão.*/
+}
+
+#searchInput:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-highlight {
+    color: var(--primary);
+}
+
+.ordenacao {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ordenacao-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-medium);
+    white-space: nowrap;
+}
+
+#ordenar {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 12px;
+    background: white;
+    cursor: pointer;
+    outline: none;
+}
+
+#ordenar:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
+}
+
+.search-box input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    outline: none;
+    font-size: 16px;
+}
+
+.favoritos-btn {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--card-bg);
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.favoritos-btn.active {
+    background: #ef4444;
+    border-color: #ef4444;
+    color: white;
+}
+
+.favoritos-btn:hover {
+    transform:
+        translateY(-2px);
+}

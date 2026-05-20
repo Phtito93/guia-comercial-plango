@@ -1,0 +1,63 @@
+/*
+=====================================================
+TOAST CONTAINER
+=====================================================
+*/
+
+#toastContainer {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 9999;
+}
+
+/*
+=====================================================
+TOAST
+=====================================================
+*/
+
+.toast {
+    min-width: 280px;
+    max-width: 340px;
+    padding: 16px 18px;
+    border-radius: 16px;
+    background: var(--card-bg);
+    border:
+        1px solid var(--border);
+
+    color: var(--text);
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.12);
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation:
+        toastIn 0.35s ease;
+}
+
+/*
+=====================================================
+ICON
+=====================================================
+*/
+
+.toast i {
+    font-size: 18px;
+    color: var(--primary);
+}
+
+/*
+=====================================================
+EXIT
+=====================================================
+*/
+
+.toast.hide {
+    animation:
+        toastOut 0.3s ease forwards;
+}

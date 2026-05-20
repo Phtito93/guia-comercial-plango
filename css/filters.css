@@ -1,0 +1,82 @@
+/*
+=====================================================
+filters.css
+FILTROS
+=====================================================
+*/
+
+.filtros-wrapper {
+    position: relative;
+}
+
+.filtros-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 100%;
+    background: linear-gradient(to left, var(--scroll-fade), transparent);
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+.filtros {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto; /*Permite scroll horizontal*/
+    padding: 10px 20px;
+    scroll-behavior: smooth; /*Rolagem suave*/
+    -webkit-overflow-scrolling: touch; /*Scroll natural no iPhone.*/
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    white-space: nowrap;
+    scroll-snap-type: x proximity;
+    align-items: center;
+    cursor: grab;
+    scroll-padding: 20px;
+}
+
+.filtros:active {
+    cursor: grabbing;
+}
+
+.filtros::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.filtro-btn {
+    flex-shrink: 0;
+    border: none;
+    padding: 10px 16px;
+    background: var(--gray-light);
+    border-radius: var(--radius-full);
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    touch-action: manipulation;
+    scroll-snap-align: start;
+}
+
+.filtro-btn.active {
+    background: var(--primary);
+    color: var(--text);
+}
+
+.filtro-btn:hover {
+    transform: translateY(-2px);
+}
+
+/*
+=====================================================
+SECTION HEADER
+=====================================================
+*/
+
+.section-header h2 {
+    font-size: 20px;
+    padding: 15px;
+    font-weight: bold;
+    color: var(--text);
+}

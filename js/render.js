@@ -1,0 +1,747 @@
+/*
+=====================================================
+SKELETON LOADING
+=====================================================
+*/
+
+function renderizarSkeleton() {
+
+    let skeletonHTML = "";
+
+    for (let i = 0; i < 6; i++) {
+
+        skeletonHTML += `
+
+            <div class="card skeleton-card">
+
+                <div class="skeleton skeleton-image"></div>
+
+                <div class="card-content">
+
+                    <div class="skeleton skeleton-category"></div>
+
+                    <div class="skeleton skeleton-title"></div>
+
+                    <div class="skeleton skeleton-text"></div>
+
+                    <div class="skeleton skeleton-button"></div>
+
+                </div>
+
+            </div>
+        `;
+    }
+
+    empresaGrid.innerHTML = skeletonHTML;
+}
+
+/*
+=====================================================
+RENDERIZAR EMPRESAS
+=====================================================
+*/
+
+function renderizarEmpresas(lista) {
+
+    cardsHTML = "";
+
+    const inicio = (paginaAtual - 1) * EMPRESAS_POR_PAGINA;
+
+    const fim = inicio + EMPRESAS_POR_PAGINA;
+
+    const empresasPaginadas = lista.slice(inicio, fim);
+
+    empresasPaginadas.forEach((empresa) => {
+        const status = statusFuncionamento(empresa.horario);
+
+        const favorito = favoritos.includes(empresa.id);
+
+        const views = visualizacoes[empresa.id] || 0;
+
+        cardsHTML += `
+            <div class="card">
+                <img
+                    src="${empresa.imagem || 'img/placeholder.jpg'}"
+
+                    alt="Foto da empresa ${empresa.nome}"
+
+                    loading="lazy"
+
+                    class="lazy-image"
+                >
+
+                <div class="card-content">
+                    <div class="card-tags">
+
+                        <!-- CATEGORIAS -->
+                        <div class="categorias">
+
+                            ${empresa.categorias?.map((categoria) => `
+                                <span class="categoria">
+                                    ${categoria}
+                                </span>
+                            `).join("")}
+
+                        </div>
+
+                        ${views >= 50 ? `
+
+                            <span class="top-badge">
+                                👑 Top Empresa
+                            </span>
+
+                        ` : views >= 30 ? `
+
+                            <span class="high-badge">
+                                🚀 Em Alta
+                            </span>
+
+                        ` : views >= 10 ? `
+
+                            <span class="popular-badge">
+                                🔥 Popular
+                            </span>
+
+                        ` : ""}
+
+                    </div>
+
+                    <div class="card-title">
+
+                        <h3>
+                            ${empresa.nome}
+                        </h3>
+
+                        <button
+                            class="
+                                favorite-btn
+                                ${favorito ? "active" : ""}
+                            "
+                            data-id="${empresa.id}"
+                            aria-label="
+                                Favoritar empresa
+                            "
+                        >
+
+                            <i class="fa-solid fa-heart"></i>
+
+                        </button>
+
+                    </div>
+                      
+                    <div class="card-top-info">
+                        <span class="local">
+                            <i class="fa-solid fa-location-dot"></i>
+                            ${empresa.local || "Local não informado"}
+                        </span>
+
+                        <span class="status ${status.classe}">
+                            ${status.texto}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="card-actions">                  
+                    <div class="contact-menu">
+                        <button class="contact-btn">
+                            <i class="fa-solid fa-address-book"></i>
+                            Contatos
+                            <i class="fa-solid fa-chevron-up"></i>
+                        </button>
+
+                        <div class="contact-dropdown">
+                            ${empresa.contatos?.whatsapp ? `
+                                <a 
+                                    href="${empresa.contatos?.whatsapp}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onclick="registrarVisualizacao(${empresa.id})"
+                                    >
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                    WhatsApp
+                                </a>
+                            ` : ""}
+
+                            ${empresa.contatos?.instagram ? `
+                                <a 
+                                    href="${empresa.contatos?.instagram}"
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    onclick="registrarVisualizacao(${empresa.id})"
+                                    >
+                                    <i class="fa-brands fa-instagram"></i>
+                                    Instagram
+                                </a>
+                            ` : ""}
+
+                            ${empresa.contatos?.telefone ? `
+                                <a 
+                                    href="tel:${empresa.contatos?.telefone}"
+                                    onclick="registrarVisualizacao(${empresa.id})"
+                                    >
+                                    <i class="fa-solid fa-phone"></i>
+                                    Telefone
+                                </a>
+                            ` : ""}
+
+                            ${empresa.contatos?.localizacao ? `
+                                <a 
+                                    href="${empresa.contatos?.localizacao}" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    onclick="registrarVisualizacao(${empresa.id})"
+                                    > 
+                                    <i class="fa-solid fa-location-dot"></i> 
+                                    Localização
+                                </a>
+                            `: ""}
+                            
+                            ${empresa.contatos?.site ? `
+                                <a 
+                                    href="${empresa.contatos?.site}" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    onclick="registrarVisualizacao(${empresa.id})"
+                                    > 
+                                    <i class="fa-solid fa-globe"></i>   
+                                    Site
+                                </a>
+                            `: ""}
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        `;
+    });
+
+    empresaGrid.innerHTML = cardsHTML;
+
+    /*
+    =====================================
+    FAVORITOS
+    =====================================
+    */
+
+    document
+        .querySelectorAll(
+            ".favorite-btn"
+        )
+        .forEach((btn) => {
+
+            btn.addEventListener(
+                "click",
+                (event) => {
+
+                    /*
+                    =====================
+                    EVITA PROPAGAÇÃO
+                    =====================
+                    */
+
+                    event.stopPropagation();
+
+                    /*
+                    =====================
+                    ID
+                    =====================
+                    */
+
+                    const id =
+                        Number(
+                            btn.dataset.id
+                        );
+
+                    /*
+                    =====================
+                    TOGGLE
+                    =====================
+                    */
+
+                    toggleFavorito(id, btn);
+                }
+            );
+        });
+
+    atualizarPaginacao(lista);
+}
+
+/*
+=====================================================
+RENDERIZAR FILTROS
+=====================================================
+*/
+
+function renderizarFiltros(lista) {
+
+    /*
+    =====================================
+    CATEGORIAS
+    =====================================
+    */
+
+    const categorias =
+        lista.flatMap((empresa) => {
+
+            return empresa.categorias || [];
+
+        });
+
+    /*
+    =====================================
+    REMOVE DUPLICADAS
+    =====================================
+    */
+
+    const categoriasUnicas =
+        [...new Set(categorias)]
+            .sort();
+
+    /*
+    =====================================
+    LIMPA
+    =====================================
+    */
+
+    filtrosContainer.innerHTML = "";
+
+    /*
+    =====================================
+    BOTÃO TODOS
+    =====================================
+    */
+
+    filtrosContainer.innerHTML = `
+        <button
+            class="
+                filtro-btn
+                ${estado.filtroHome === null ? "active" : ""}
+            "
+
+            data-categoria="todos"
+
+            aria-label="
+                Selecionar todos os filtros
+            "
+
+            aria-pressed="
+                ${estado.filtroHome === null ? "true" : "false"}
+            "
+        >
+
+            Todos
+
+        </button>
+    `;
+
+    /*
+    =====================================
+    RENDER BOTÕES
+    =====================================
+    */
+
+    categoriasUnicas.forEach((categoria) => {
+
+        filtrosContainer.innerHTML += `
+            <button
+                class="
+                    filtro-btn
+                    ${
+                        estado.filtroHome === categoria
+                            ? "active"
+                            : ""
+                    }
+                "
+
+                data-categoria="${categoria}"
+
+                aria-pressed="
+                    ${
+                        estado.filtroHome === categoria
+                            ? "true"
+                            : "false"
+                    }
+                "
+            >
+
+                ${categoria}
+
+            </button>
+        `;
+
+    });
+
+    /*
+    =====================================
+    EVENTOS
+    =====================================
+    */
+
+    const filtroBtns =
+        document.querySelectorAll(
+            ".filtro-btn"
+        );
+
+    filtroBtns.forEach((btn) => {
+
+        btn.addEventListener(
+            "click",
+            () => {
+
+                const categoria =
+                    btn.dataset.categoria;
+
+                /*
+                =================================
+                TODOS
+                =================================
+                */
+
+                if (
+                    categoria === "todos"
+                ) {
+
+                    /*
+                    =============================
+                    RESET FAVORITOS
+                    =============================
+                    */
+
+                    somenteFavoritos =
+                        false;
+
+                    favoritosBtn?.classList.remove(
+                        "active"
+                    );
+
+                    /*
+                    =============================
+                    HOME
+                    =============================
+                    */
+
+                    navegar("/");
+
+                    return;
+
+                }
+
+                /*
+                =================================
+                FILTRO LOCAL
+                =================================
+                */
+
+                estado.filtroHome =
+                    categoria;
+
+                paginaAtual = 1;
+
+                /*
+                =================================
+                UPDATE
+                =================================
+                */
+
+                atualizarInterface();
+
+            }
+        );
+
+    });
+
+}
+
+/*
+=====================================================
+RENDERIZAR MENU CATEGORIAS
+=====================================================
+*/
+
+function renderizarMenuCategorias(lista) {
+
+    /*
+    =====================================
+    CATEGORIAS ÚNICAS
+    =====================================
+    */
+
+    const categorias = [
+
+        ...new Set(
+
+            lista.flatMap((empresa) => {
+
+                return empresa.categorias || [];
+
+            })
+
+        )
+
+    ];
+
+    /*
+    =====================================
+    ORDENAÇÃO
+    =====================================
+    */
+
+    categorias.sort();
+
+    /*
+    =====================================
+    LIMPAR
+    =====================================
+    */
+
+    submenuCategorias.innerHTML = "";
+
+    /*
+    =====================================
+    RENDER
+    =====================================
+    */
+
+    categorias.forEach((categoria) => {
+
+        submenuCategorias.innerHTML += `
+
+            <button class="submenu-categoria-btn ${estado.categoriaAtual === categoria? "active" : ""}"
+                data-categoria="${categoria}"
+            >
+                <i class="fa-solid fa-tag"></i>
+                ${categoria}
+            </button>
+        `;
+    });
+}
+
+/*
+=====================================================
+RENDERIZAR CONTATOS ÚTEIS
+=====================================================
+*/
+
+function renderizarContatosUteis() {
+
+    const submenuContatos =
+        document.getElementById(
+            "submenuContatos"
+        );
+
+    /*
+    =====================================
+    SEM ELEMENTO
+    =====================================
+    */
+
+    if (!submenuContatos) return;
+
+    /*
+    =====================================
+    LIMPAR
+    =====================================
+    */
+
+    submenuContatos.innerHTML = "";
+
+    /*
+    =====================================
+    RENDER
+    =====================================
+    */
+
+    contatosUteis.forEach((contato) => {
+
+        submenuContatos.innerHTML += `
+
+            <a
+                href="${contato.link}"
+                class="submenu-categoria-btn"
+                target="_blank"
+            >
+
+                <i class="fa-solid ${contato.icone}"></i>
+
+                ${contato.nome}
+
+            </a>
+
+        `;
+
+    });
+
+}
+
+/*
+=====================================================
+EMPTY STATE
+=====================================================
+*/
+
+function renderizarEmptyState() {
+    empresaGrid.innerHTML = `
+        <div class="empty-state">
+            <div class="empty-icon">
+                🔍
+            </div>
+
+            <h2>
+                Nenhuma empresa encontrada
+            </h2>
+
+            <p>
+                Tente pesquisar outro termo
+                <br>
+                ou volte para a página inicial.
+            </p>
+
+            <button
+                class="empty-btn"
+                id="emptyHomeBtn"
+            >
+                Voltar para Home
+            </button>
+        </div>
+    `;
+
+    /*
+    =====================================
+    BOTÃO HOME
+    =====================================
+    */
+
+    document
+        .getElementById("emptyHomeBtn")
+        .addEventListener("click", () => {
+            estado.modo = "home";
+            estado.categoriaAtual = null;
+            estado.filtroHome = null;
+            estado.busca = "";
+            searchInput.value = "";
+            paginaAtual = 1;
+            favoritosBtn?.classList.remove("active");
+            atualizarInterface();
+        });
+}
+
+/*
+=====================================================
+ATUALIZAR TÍTULO SEÇÃO
+=====================================================
+*/
+
+function atualizarTituloSecao() {
+
+    /*
+    =====================================
+    FAVORITOS
+    =====================================
+    */
+
+    if (somenteFavoritos) {
+
+        /*
+        =================================
+        HOME
+        =================================
+        */
+
+        if (estado.modo === "home") {
+
+            sectionTitle.innerHTML = `
+                ❤️ Meus Favoritos
+            `;
+
+            return;
+
+        }
+
+        /*
+        =================================
+        CATEGORIA
+        =================================
+        */
+
+        if (estado.modo === "categoria") {
+
+            sectionTitle.innerHTML = `
+                ❤️ Favoritos em
+                <span class="category-highlight">
+                    ${estado.categoriaAtual}
+                </span>
+            `;
+
+            return;
+
+        }
+
+        /*
+        =================================
+        BUSCA
+        =================================
+        */
+
+        if (estado.modo === "busca") {
+
+            sectionTitle.innerHTML = `
+                ❤️ Favoritos da busca:
+                <span class="category-highlight">
+                    "${searchInput.value}"
+                </span>
+            `;
+
+            return;
+
+        }
+
+    }
+
+    /*
+    =====================================
+    HOME
+    =====================================
+    */
+
+    if (estado.modo === "home") {
+
+        sectionTitle.innerHTML = `
+            🔥 Negócios em destaque
+        `;
+
+    }
+
+    /*
+    =====================================
+    BUSCA
+    =====================================
+    */
+
+    if (estado.modo === "busca") {
+
+        sectionTitle.innerHTML = `
+            🔎 Resultado da busca:
+            <span class="category-highlight">
+                "${searchInput.value}"
+            </span>
+        `;
+
+    }
+
+    /*
+    =====================================
+    CATEGORIA
+    =====================================
+    */
+
+    if (estado.modo === "categoria") {
+
+        sectionTitle.innerHTML = `
+            📂
+            <span class="category-highlight">
+                ${estado.categoriaAtual}
+            </span>
+        `;
+
+    }
+
+}

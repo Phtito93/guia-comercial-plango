@@ -1,0 +1,34 @@
+/*
+=====================================================
+darkmode.css
+DARK MODE
+=====================================================
+*/
+
+body.dark {
+    --bg: #0f172a;
+    --scroll-fade: rgba(15,23,42,1);
+    --bg-secondary: #1e293b;
+    --text: #f8fafc;
+    --text-light: #cbd5e1;
+    --border: #334155;
+    --card-bg: #1e293b;
+    --shadow: 0 4px 20px rgba(0,0,0,0.35);
+    --hover-bg: rgba(255,255,255,0.08);
+    background: var(--bg-dark);
+    color: var(--text-dark);
+    --skeleton-bg:
+        rgba(255,255,255,0.05);
+
+    --skeleton-highlight:
+        rgba(255,255,255,0.08);
+}
+
+body.dark .navbar {
+    background: #020617;
+}
+
+body.dark .card {
+    background: var(--card-dark);
+    color: var(--text-dark);
+}

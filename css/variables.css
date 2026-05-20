@@ -1,0 +1,65 @@
+/*
+=====================================================
+VARIÁVEIS GLOBAIS
+=====================================================
+*/
+
+:root {
+
+    /* CORES */
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+
+    --bg: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-light: #f5f5f5;
+    --bg-dark: #0f172a;
+
+    --card-bg: #ffffff;
+    --card-light: #ffffff;
+    --card-dark: #1e293b;
+
+    --text: #0f172a;
+    --text-light: #64748b;
+    --text-dark: #ffffff;
+
+    --gray-light: #e2e8f0;
+    --gray-medium: #64748b;
+
+    --success-bg: #dcfce7;
+    --success-text: #15803d;
+
+    --warning-bg: #fef3c7;
+    --warning-text: #b45309;
+
+    --danger-bg: #fee2e2;
+    --danger-text: #b91c1c;
+
+    --hover-bg: rgba(0,0,0,0.05);
+
+    /*BORDER*/
+    --border: #e2e8f0;
+    
+    /* BORDER RADIUS */
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 20px;
+    --radius-full: 999px;
+
+    /* SOMBRAS */
+    --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+    /* TRANSIÇÕES */
+    --transition: 0.3s ease;
+
+    /*SCROLL FADE*/
+    --scroll-fade: rgba(248,250,252,1);
+
+    /*SKELETON*/
+    --skeleton-bg:
+        rgba(0,0,0,0.05);
+
+    --skeleton-highlight:
+        rgba(255,255,255,0.7);
+}

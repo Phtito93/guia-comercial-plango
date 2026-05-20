@@ -1,0 +1,75 @@
+/*
+=====================================================
+contact-menu.css
+MENU CONTATOS
+=====================================================
+*/
+
+.contact-menu {
+    position: relative;
+}
+
+.contact-btn {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--primary);
+    color: var(--text);
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.contact-btn:hover {
+    background: var(--primary-dark);
+}
+
+.contact-btn i:last-child {
+    transition: var(--transition);
+}
+
+.contact-menu.active .fa-chevron-up {
+    transform: rotate(180deg);
+}
+
+.contact-dropdown {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 10px);
+    display: none;
+    flex-direction: column;
+    min-width: 220px;
+    background: var(--text);
+    border-radius: 12px;
+    overflow: visible;
+    box-shadow: var(--shadow-lg);
+    z-index: 10;
+}
+
+.contact-menu.active .contact-dropdown {
+    display: flex;
+}
+
+.contact-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: var(--bg-secondary);
+    transition: var(--transition);
+}
+
+.contact-dropdown a:hover {
+    background: #f1f5f9;
+}
+
+.contact-dropdown i {
+    width: 20px;
+    text-align: center;
+}
