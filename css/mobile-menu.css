@@ -53,11 +53,8 @@ MENU MOBILE
 .mobile-menu > .submenu {
 
     padding-inline: 4px;
-    /*border-bottom: 1px solid var(--border);*/
-
 }
 
-/*OVERLAY*/
 .overlay {
     position: fixed;
     inset: 0;
@@ -74,7 +71,6 @@ MENU MOBILE
     visibility: visible;
 }
 
-/*USER AREA*/
 .user-area {
     text-align: center;
     margin-bottom: 20px;
@@ -97,7 +93,6 @@ MENU MOBILE
     margin-bottom: 10px;
 }
 
-/* SUBMENU */
 .submenu-btn {
     width: 100%;
     display: flex;
@@ -229,7 +224,6 @@ MENU MOBILE
     color: white;
 }
 
-/*FOOTER*/
 .mobile-menu-footer {
     margin-top: auto;
     padding-top: 10px;
@@ -245,7 +239,6 @@ MENU MOBILE
     margin-bottom: 18px;
 }
 
-/*MIDIAS SOCIAIS*/
 .mobile-socials {
     display: flex;
     justify-content: center;

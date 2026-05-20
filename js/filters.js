@@ -421,152 +421,152 @@ function atualizarInterface() {
     }
 
     /*
-=====================================
-ORDENAÇÃO
-=====================================
-*/
-
-lista.sort((a, b) => {
-
-    /*
-    =================================
-    POPULARES
-    =================================
+    =====================================
+    ORDENAÇÃO
+    =====================================
     */
 
-    if (
-        estado.ordenacao ===
-        "populares"
-    ) {
-
-        const viewsA =
-            visualizacoes[a.id] || 0;
-
-        const viewsB =
-            visualizacoes[b.id] || 0;
+    lista.sort((a, b) => {
 
         /*
-        =============================
-        MAIS ACESSADOS
-        =============================
+        =================================
+        POPULARES
+        =================================
         */
 
-        if (viewsB !== viewsA) {
-
-            return viewsB - viewsA;
-
-        }
-
-    }
-
-    /*
-    =================================
-    VIEWS
-    =================================
-    */
-
-    if (
-        estado.ordenacao ===
-        "views"
-    ) {
-
-        return (
-            (visualizacoes[b.id] || 0)
-            -
-            (visualizacoes[a.id] || 0)
-        );
-
-    }
-
-    /*
-    =================================
-    ABERTOS
-    =================================
-    */
-
-    if (
-        estado.ordenacao ===
-        "abertos"
-    ) {
-
-        const abertoA =
-            statusFuncionamento(
-                a.horario
-            ).aberto;
-
-        const abertoB =
-            statusFuncionamento(
-                b.horario
-            ).aberto;
-
         if (
-            abertoA
-            &&
-            !abertoB
+            estado.ordenacao ===
+            "populares"
         ) {
 
-            return -1;
+            const viewsA =
+                visualizacoes[a.id] || 0;
+
+            const viewsB =
+                visualizacoes[b.id] || 0;
+
+            /*
+            =============================
+            MAIS ACESSADOS
+            =============================
+            */
+
+            if (viewsB !== viewsA) {
+
+                return viewsB - viewsA;
+
+            }
 
         }
+
+        /*
+        =================================
+        VIEWS
+        =================================
+        */
 
         if (
-            !abertoA
-            &&
-            abertoB
+            estado.ordenacao ===
+            "views"
         ) {
 
-            return 1;
+            return (
+                (visualizacoes[b.id] || 0)
+                -
+                (visualizacoes[a.id] || 0)
+            );
 
         }
 
-    }
+        /*
+        =================================
+        ABERTOS
+        =================================
+        */
 
-    /*
-    =================================
-    A-Z
-    =================================
-    */
+        if (
+            estado.ordenacao ===
+            "abertos"
+        ) {
 
-    if (
-        estado.ordenacao ===
-        "az"
-    ) {
+            const abertoA =
+                statusFuncionamento(
+                    a.horario
+                ).aberto;
+
+            const abertoB =
+                statusFuncionamento(
+                    b.horario
+                ).aberto;
+
+            if (
+                abertoA
+                &&
+                !abertoB
+            ) {
+
+                return -1;
+
+            }
+
+            if (
+                !abertoA
+                &&
+                abertoB
+            ) {
+
+                return 1;
+
+            }
+
+        }
+
+        /*
+        =================================
+        A-Z
+        =================================
+        */
+
+        if (
+            estado.ordenacao ===
+            "az"
+        ) {
+
+            return a.nome.localeCompare(
+                b.nome
+            );
+
+        }
+
+        /*
+        =================================
+        Z-A
+        =================================
+        */
+
+        if (
+            estado.ordenacao ===
+            "za"
+        ) {
+
+            return b.nome.localeCompare(
+                a.nome
+            );
+
+        }
+
+
+        /*
+        =================================
+        FALLBACK
+        =================================
+        */
 
         return a.nome.localeCompare(
             b.nome
         );
 
-    }
-
-    /*
-    =================================
-    Z-A
-    =================================
-    */
-
-    if (
-        estado.ordenacao ===
-        "za"
-    ) {
-
-        return b.nome.localeCompare(
-            a.nome
-        );
-
-    }
-
-
-    /*
-    =================================
-    FALLBACK
-    =================================
-    */
-
-    return a.nome.localeCompare(
-        b.nome
-    );
-
-});
+    });
 
     
 

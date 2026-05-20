@@ -24,10 +24,10 @@ FILTROS
 .filtros {
     display: flex;
     gap: 12px;
-    overflow-x: auto; /*Permite scroll horizontal*/
+    overflow-x: auto; 
     padding: 10px 20px;
-    scroll-behavior: smooth; /*Rolagem suave*/
-    -webkit-overflow-scrolling: touch; /*Scroll natural no iPhone.*/
+    scroll-behavior: smooth; 
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
     white-space: nowrap;

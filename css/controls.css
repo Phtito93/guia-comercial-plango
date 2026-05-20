@@ -50,9 +50,9 @@ BUSCA E CONTROLES
     width: 100%;
     padding: 14px 18px;
     border: 1px solid #ddd;
-    border-radius: 12px; /*Visual moderno.*/
+    border-radius: 12px; 
     font-size: 16px;
-    outline: none; /*Remove borda azul padrão.*/
+    outline: none; 
 }
 
 #searchInput:focus {

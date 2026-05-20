@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://SEUDOMINIO.com/sitemap.xml
+Sitemap: https://guiaplango.com.br/sitemap.xml
