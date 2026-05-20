@@ -40,6 +40,8 @@ ROUTER
 
 function aplicarRota() {
 
+    console.log(window.location.pathname);
+    
     /*
     =====================================
     PATH
