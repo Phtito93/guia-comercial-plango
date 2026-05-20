@@ -130,6 +130,9 @@ function aplicarRota() {
         estado.categoriaAtual =
             categoria;
 
+        estado.filtroHome =
+            categoria;
+
         atualizarInterface();
 
         return;
