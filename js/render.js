@@ -298,6 +298,20 @@ function renderizarFiltros(lista) {
 
     /*
     =====================================
+    FILTRO ATIVO
+    =====================================
+    */
+
+    const filtroAtivo =
+
+        estado.modo === "categoria"
+
+            ? estado.categoriaAtual
+
+            : estado.filtroHome;
+
+    /*
+    =====================================
     LIMPA
     =====================================
     */
@@ -314,7 +328,7 @@ function renderizarFiltros(lista) {
         <button
             class="
                 filtro-btn
-                ${estado.filtroHome === null ? "active" : ""}
+                ${filtroAtivo === null ? "active" : ""}
             "
 
             data-categoria="todos"
@@ -324,7 +338,7 @@ function renderizarFiltros(lista) {
             "
 
             aria-pressed="
-                ${estado.filtroHome === null ? "true" : "false"}
+                ${filtroAtivo === null ? "true" : "false"}
             "
         >
 
@@ -346,7 +360,7 @@ function renderizarFiltros(lista) {
                 class="
                     filtro-btn
                     ${
-                        estado.filtroHome === categoria
+                        filtroAtivo === categoria
                             ? "active"
                             : ""
                     }
@@ -356,7 +370,7 @@ function renderizarFiltros(lista) {
 
                 aria-pressed="
                     ${
-                        estado.filtroHome === categoria
+                        filtroAtivo === categoria
                             ? "true"
                             : "false"
                     }
@@ -400,48 +414,7 @@ function renderizarFiltros(lista) {
                     categoria === "todos"
                 ) {
 
-                    /*
-                    =============================
-                    RESET FAVORITOS
-                    =============================
-                    */
-
-                    somenteFavoritos =
-                        false;
-
-                    favoritosBtn?.classList.remove(
-                        "active"
-                    );
-
-                    /*
-                    =============================
-                    HOME
-                    =============================
-                    */
-
                     navegar("/");
-
-                    return;
-
-                }
-
-                /*
-                =================================
-                FAVORITOS
-                =================================
-                */
-
-                if (
-                    somenteFavoritos
-                ) {
-
-                    estado.categoriaAtual =
-                        categoria;
-
-                    estado.filtroHome =
-                        categoria;
-
-                    atualizarInterface();
 
                     return;
 

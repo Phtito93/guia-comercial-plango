@@ -39,8 +39,6 @@ ROUTER
 */
 
 function aplicarRota() {
-
-    console.log(window.location.pathname);
     
     /*
     =====================================
@@ -135,7 +133,7 @@ function aplicarRota() {
             categoria;
 
         estado.filtroHome =
-            categoria;
+            null;
 
         atualizarInterface();
 
