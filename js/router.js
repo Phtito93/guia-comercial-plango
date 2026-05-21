@@ -132,6 +132,11 @@ function aplicarRota() {
         estado.categoriaAtual =
             categoria;
 
+        console.log(
+            "categoriaAtual:",
+            estado.categoriaAtual
+        );
+
         estado.filtroHome =
             null;
 

@@ -220,59 +220,63 @@ function atualizarInterface() {
 
     let lista = [...empresas];
 
+    /*
+    =====================================================
+    HOME
+    =====================================================
+    */
+
+    if (
+        estado.modo === "home"
+    ) {
+
         /*
-        =====================================
-        HOME
-        =====================================
+        =================================
+        FAVORITOS HOME
+        =================================
         */
 
-        if (estado.modo === "home") {
+        if (
+            somenteFavoritos
+        ) {
 
-            /*
-            =================================
-            FAVORITOS
-            =================================
-            */
+            lista = lista.filter((empresa) => {
 
-            if (somenteFavoritos) {
-
-                lista = empresas.filter(
-                    (empresa) =>
-                        favoritos.includes(
-                            empresa.id
-                        )
+                return favoritos.includes(
+                    empresa.id
                 );
 
-            }
+            });
+
+        }
+
+        /*
+        =================================
+        HOME NORMAL
+        =================================
+        */
+
+        else {
 
             /*
-            =================================
-            HOME NORMAL
-            =================================
+            =============================
+            APENAS DESTAQUES
+            =============================
             */
 
-            else {
+            lista = lista.filter((empresa) => {
 
-                /*
-                =============================
-                APENAS DESTAQUES
-                =============================
-                */
+                return empresa.destaque === true;
 
-                lista = lista.filter(
-                    (empresa) =>
-                        empresa.destaque === true
-                );
+            });
 
-                /*
-                =============================
-                LIMITA
-                =============================
-                */
+            /*
+            =============================
+            LIMITA
+            =============================
+            */
 
-                lista = lista.slice(0, 10);
-
-            }
+            lista = lista.slice(0, 10);
 
         }
 
@@ -283,92 +287,130 @@ function atualizarInterface() {
         */
 
         if (
-            estado.modo === "home"
-            &&
             estado.filtroHome
         ) {
 
             lista = lista.filter((empresa) => {
 
                 return empresa.categorias?.includes(
+
                     estado.filtroHome
+
                 );
 
             });
 
         }
 
-        /*
-        =====================================
-        CATEGORIA
-        =====================================
-        */
-
-        if (
-            estado.modo === "categoria"
-            &&
-            estado.categoriaAtual
-        ) {
-
-            lista = lista.filter((empresa) => {
-
-                return empresa.categorias?.includes(
-                    estado.categoriaAtual
-                );
-            });
-        }
-
-        /*
-        =================================
-        BUSCA GLOBAL
-        =================================
-        */
-
-        if (
-            estado.modo === "busca"
-            &&
-            estado.busca
-        ) {
-
-            lista = empresas.filter((empresa) => {
-
-                return empresaMatchBusca(
-                    empresa,
-                    estado.busca
-                );
-
-            });
-        }
-
-        /*
-        =================================
-        BUSCA CATEGORIA
-        =================================
-        */
-
-        if (
-            estado.modo === "categoria"
-            &&
-            estado.busca
-        ) {
-
-            lista = lista.filter((empresa) => {
-
-                return empresaMatchBusca(
-                    empresa,
-                    estado.busca
-                );
-
-            });
-        }
+    }
 
     /*
-    =====================================
-    STATUS
-    =====================================
+    =====================================================
+    CATEGORIA
+    =====================================================
     */
 
-    if (estado.status === "abertos") {
+    if (
+        estado.modo === "categoria"
+    ) {
+
+        /*
+        =================================
+        FILTRA CATEGORIA
+        =================================
+        */
+
+        lista = lista.filter((empresa) => {
+
+            return empresa.categorias?.includes(
+
+                estado.categoriaAtual
+
+            );
+
+        });
+
+        /*
+        =================================
+        FAVORITOS CATEGORIA
+        =================================
+        */
+
+        if (
+            somenteFavoritos
+        ) {
+
+            lista = lista.filter((empresa) => {
+
+                return favoritos.includes(
+                    empresa.id
+                );
+
+            });
+
+        }
+
+    }
+
+    /*
+    =====================================================
+    BUSCA
+    =====================================================
+    */
+
+    if (
+        estado.modo === "busca"
+    ) {
+
+        /*
+        =================================
+        BUSCA
+        =================================
+        */
+
+        lista = lista.filter((empresa) => {
+
+            return empresaMatchBusca(
+
+                empresa,
+
+                estado.busca
+
+            );
+
+        });
+
+        /*
+        =================================
+        FAVORITOS BUSCA
+        =================================
+        */
+
+        if (
+            somenteFavoritos
+        ) {
+
+            lista = lista.filter((empresa) => {
+
+                return favoritos.includes(
+                    empresa.id
+                );
+
+            });
+
+        }
+
+    }
+
+    /*
+    =====================================================
+    STATUS
+    =====================================================
+    */
+
+    if (
+        estado.status === "abertos"
+    ) {
 
         lista = lista.filter((empresa) => {
 
@@ -381,12 +423,14 @@ function atualizarInterface() {
     }
 
     /*
-    =====================================
+    =====================================================
     FECHADOS
-    =====================================
+    =====================================================
     */
 
-    if (estado.status === "fechados") {
+    if (
+        estado.status === "fechados"
+    ) {
 
         lista = lista.filter((empresa) => {
 
@@ -399,31 +443,9 @@ function atualizarInterface() {
     }
 
     /*
-    =====================================
-    FAVORITOS
-    =====================================
-    */
-
-    if (
-        somenteFavoritos
-        &&
-        estado.modo !== "home"
-    ) {
-
-        lista = lista.filter((empresa) => {
-
-            return favoritos.includes(
-                empresa.id
-            );
-
-        });
-
-    }
-
-    /*
-    =====================================
+    =====================================================
     ORDENAÇÃO
-    =====================================
+    =====================================================
     */
 
     lista.sort((a, b) => {
@@ -445,13 +467,9 @@ function atualizarInterface() {
             const viewsB =
                 visualizacoes[b.id] || 0;
 
-            /*
-            =============================
-            MAIS ACESSADOS
-            =============================
-            */
-
-            if (viewsB !== viewsA) {
+            if (
+                viewsB !== viewsA
+            ) {
 
                 return viewsB - viewsA;
 
@@ -555,7 +573,6 @@ function atualizarInterface() {
 
         }
 
-
         /*
         =================================
         FALLBACK
@@ -568,12 +585,10 @@ function atualizarInterface() {
 
     });
 
-    
-
     /*
-    =====================================
+    =====================================================
     RENDER
-    =====================================
+    =====================================================
     */
 
     atualizarTituloSecao();
@@ -589,12 +604,14 @@ function atualizarInterface() {
     renderizarFiltrosAtivos();
 
     /*
-    =====================================
-    EMPTY
-    =====================================
+    =====================================================
+    EMPTY STATE
+    =====================================================
     */
 
-    if (lista.length === 0) {
+    if (
+        lista.length === 0
+    ) {
 
         renderizarEmptyState();
 
@@ -603,9 +620,9 @@ function atualizarInterface() {
     }
 
     /*
-    =====================================
+    =====================================================
     RENDER EMPRESAS
-    =====================================
+    =====================================================
     */
 
     setTimeout(() => {
@@ -615,9 +632,9 @@ function atualizarInterface() {
     }, SKELETON_DELAY);
 
     /*
-    =====================================
+    =====================================================
     SAVE STATE
-    =====================================
+    =====================================================
     */
 
     salvarEstado();
