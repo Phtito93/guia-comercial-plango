@@ -601,14 +601,7 @@ function renderizarEmptyState() {
     document
         .getElementById("emptyHomeBtn")
         .addEventListener("click", () => {
-            estado.modo = "home";
-            estado.categoriaAtual = null;
-            estado.filtroHome = null;
-            estado.busca = "";
-            searchInput.value = "";
-            paginaAtual = 1;
-            favoritosBtn?.classList.remove("active");
-            atualizarInterface();
+            navegar("/");
         });
 }
 
