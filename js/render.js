@@ -1,3 +1,4 @@
+/*render.js*/
 /*
 =====================================================
 SKELETON LOADING
@@ -302,13 +303,52 @@ function renderizarFiltros(lista) {
     =====================================
     */
 
-    const filtroAtivo =
+    let filtroAtivo = null;
 
+    /*
+    =====================================
+    HOME
+    =====================================
+    */
+
+    if (
+        estado.modo === "home"
+    ) {
+
+        filtroAtivo =
+            estado.filtroHome;
+
+    }
+
+    /*
+    =====================================
+    CATEGORIA
+    =====================================
+    */
+
+    if (
         estado.modo === "categoria"
+    ) {
 
-            ? estado.categoriaAtual
+        filtroAtivo =
+            estado.categoriaAtual;
 
-            : estado.filtroHome;
+    }
+
+    /*
+    =====================================
+    BUSCA
+    =====================================
+    */
+
+    if (
+        estado.modo === "busca"
+    ) {
+
+        filtroAtivo =
+            estado.filtroHome;
+
+    }
 
     /*
     =====================================
@@ -349,7 +389,7 @@ function renderizarFiltros(lista) {
 
     /*
     =====================================
-    RENDER BOTÕES
+    BOTÕES CATEGORIAS
     =====================================
     */
 
@@ -422,15 +462,65 @@ function renderizarFiltros(lista) {
 
                 /*
                 =================================
+                HOME
+                =================================
+                */
+
+                if (
+                    estado.modo === "home"
+                ) {
+
+                    estado.filtroHome =
+                        categoria;
+
+                    paginaAtual = 1;
+
+                    atualizarInterface();
+
+                    return;
+
+                }
+
+                /*
+                =================================
+                BUSCA
+                =================================
+                */
+
+                if (
+                    estado.modo === "busca"
+                ) {
+
+                    estado.filtroHome =
+                        categoria;
+
+                    paginaAtual = 1;
+
+                    atualizarInterface();
+
+                    return;
+
+                }
+
+                /*
+                =================================
                 CATEGORIA
                 =================================
                 */
 
-                navegar(
+                if (
+                    estado.modo === "categoria"
+                ) {
 
-                    `/categoria/${encodeURIComponent(categoria)}`
+                    navegar(
 
-                );
+                        `/categoria/${encodeURIComponent(categoria)}`
+
+                    );
+
+                    return;
+
+                }
 
             }
         );

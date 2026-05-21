@@ -1,3 +1,4 @@
+/*filters.js*/
 /*
 =====================================================
 BUSCA EMPRESA
@@ -379,6 +380,28 @@ function atualizarInterface() {
             );
 
         });
+
+        /*
+        =====================================
+        FILTRO BUSCA
+        =====================================
+        */
+
+        if (
+            estado.filtroHome
+        ) {
+
+            lista = lista.filter((empresa) => {
+
+                return empresa.categorias?.includes(
+
+                    estado.filtroHome
+
+                );
+
+            });
+
+        }
 
         /*
         =================================
