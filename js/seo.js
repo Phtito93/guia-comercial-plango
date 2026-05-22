@@ -292,4 +292,65 @@ function atualizarSEO() {
 
     }
 
+    /*
+    =====================================================
+    META URL
+    =====================================================
+    */
+
+    const metaOgUrl =
+        document.getElementById(
+            "metaOgUrl"
+        );
+
+    if (metaOgUrl) {
+
+        metaOgUrl.content =
+
+            SITE_CONFIG.url
+            +
+            window.location.pathname;
+
+    }
+
+    /*
+    =====================================================
+    TWITTER IMAGE
+    =====================================================
+    */
+
+    const metaTwitterImage =
+        document.getElementById(
+            "metaTwitterImage"
+        );
+
+    if (metaTwitterImage) {
+
+        metaTwitterImage.content =
+
+            `${SITE_CONFIG.url}/img/preview.jpg`;
+
+    }
+
+    /*
+    =====================================================
+    CANONICAL LINK
+    =====================================================
+    */
+
+    const canonicalLink =
+        document.getElementById(
+            "canonicalLink"
+        );
+
+    if (canonicalLink) {
+
+        canonicalLink.href =
+
+            SITE_CONFIG.url
+            +
+            window.location.pathname;
+
+    }
+
 }

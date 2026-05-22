@@ -54,3 +54,34 @@ const SITE_CONFIG = {
         "https://www.guiaplango.com.br",
 
 };
+
+/*
+=====================================================
+SOCIAL LINKS
+=====================================================
+*/
+
+const instagramLink =
+    document.getElementById(
+        "instagramLink"
+    );
+
+if (instagramLink) {
+
+    instagramLink.href =
+        SITE_CONFIG.instagram;
+
+}
+
+const whatsappLink =
+    document.getElementById(
+        "whatsappLink"
+    );
+
+if (whatsappLink) {
+
+    whatsappLink.href =
+
+        `https://wa.me/${SITE_CONFIG.whatsapp}`;
+
+}

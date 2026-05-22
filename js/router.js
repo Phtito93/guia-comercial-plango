@@ -78,6 +78,18 @@ function aplicarRota() {
 
     }
 
+    const path = window.location.pathname;
+
+    if (
+        !somenteFavoritos
+    ) {
+
+        favoritosBtn?.classList.remove(
+            "active"
+        );
+
+    }
+
     /*
     =====================================
     FAVORITOS
@@ -93,6 +105,11 @@ function aplicarRota() {
         favoritosBtn?.classList.add(
             "active"
         );
+
+        estado.filtroHome =
+            null;
+
+        paginaAtual = 1;
 
         /*
         =================================
@@ -195,6 +212,9 @@ function aplicarRota() {
 
         estado.busca =
             busca;
+
+        estado.filtroHome =
+            null;  
 
         searchInput.value =
             busca;

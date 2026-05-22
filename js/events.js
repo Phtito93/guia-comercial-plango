@@ -230,36 +230,93 @@ FAVORITOS
 */
 
 favoritosBtn?.addEventListener(
+
     "click",
+
     () => {
 
-        somenteFavoritos =
-            !somenteFavoritos;
-
-        favoritosBtn.classList.toggle(
-            "active",
+        if (
             somenteFavoritos
-        );
+        ) {
 
-        paginaAtual = 1;
+            somenteFavoritos = false;
 
-        /*
-        =================================
-        NAVEGAÇÃO
-        =================================
-        */
+            favoritosBtn?.classList.remove(
+                "active"
+            );
 
-        if (somenteFavoritos) {
+            /*
+            =============================
+            HOME
+            =============================
+            */
 
-            navegar("/favoritos");
+            if (
+                estado.modo === "home"
+            ) {
 
-        } else {
+                navegar("/");
 
-            navegar("/");
+                return;
+
+            }
+
+            /*
+            =============================
+            CATEGORIA
+            =============================
+            */
+
+            if (
+                estado.modo === "categoria"
+            ) {
+
+                navegar(
+
+                    `/categoria/${encodeURIComponent(
+                        estado.categoriaAtual
+                    )}`
+
+                );
+
+                return;
+
+            }
+
+            /*
+            =============================
+            BUSCA
+            =============================
+            */
+
+            if (
+                estado.modo === "busca"
+            ) {
+
+                navegar(
+
+                    `/buscar/${encodeURIComponent(
+                        estado.busca
+                    )}`
+
+                );
+
+                return;
+
+            }
 
         }
 
+        /*
+        =================================
+        ATIVAR FAVORITOS
+        =================================
+        */
+
+        navegar("/favoritos");
+
     }
+
 );
 
 /*
