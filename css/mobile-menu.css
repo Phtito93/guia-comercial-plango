@@ -55,6 +55,25 @@ MENU MOBILE
     padding-inline: 4px;
 }
 
+.mobile-menu button {
+    all: unset;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    padding: 14px 18px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.mobile-menu button:hover {
+
+    background:
+        rgba(255,255,255,.08);
+
+}
+
 .overlay {
     position: fixed;
     inset: 0;
