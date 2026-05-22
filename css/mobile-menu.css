@@ -71,7 +71,7 @@ MENU MOBILE
 
     background:
         rgba(255,255,255,.08);
-
+    color: var(--primary);
 }
 
 .overlay {

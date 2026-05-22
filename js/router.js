@@ -78,10 +78,14 @@ function aplicarRota() {
 
     }
 
-    const path = window.location.pathname;
+    /*
+    =====================================
+    FAVORITOS
+    =====================================
+    */
 
     if (
-        !somenteFavoritos
+        path !== "/favoritos"
     ) {
 
         favoritosBtn?.classList.remove(
@@ -89,12 +93,6 @@ function aplicarRota() {
         );
 
     }
-
-    /*
-    =====================================
-    FAVORITOS
-    =====================================
-    */
 
     if (
         path === "/favoritos"
@@ -175,6 +173,11 @@ function aplicarRota() {
 
         paginaAtual = 1;
 
+        favoritosBtn?.classList.toggle(
+            "active",
+            somenteFavoritos
+        );
+
         atualizarInterface();
 
         return;
@@ -218,6 +221,11 @@ function aplicarRota() {
 
         searchInput.value =
             busca;
+
+        favoritosBtn?.classList.toggle(
+            "active",
+            somenteFavoritos
+        );
 
         atualizarInterface();
 
