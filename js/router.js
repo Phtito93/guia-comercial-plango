@@ -88,13 +88,31 @@ function aplicarRota() {
         path === "/favoritos"
     ) {
 
-        estado.modo = "home";
-
         somenteFavoritos = true;
 
         favoritosBtn?.classList.add(
             "active"
         );
+
+        /*
+        =================================
+        DEFINE HOME APENAS
+        SE NÃO EXISTIR CONTEXTO
+        =================================
+        */
+
+        if (
+
+            estado.modo !== "categoria"
+            &&
+            estado.modo !== "busca"
+
+        ) {
+
+            estado.modo =
+                "home";
+
+        }
 
         atualizarInterface();
 
