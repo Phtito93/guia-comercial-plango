@@ -82,6 +82,6 @@ if (whatsappLink) {
 
     whatsappLink.href =
 
-        `https://wa.me/${SITE_CONFIG.whatsapp}`;
+        `https://wa.me/5561994243316?text=Olá%20acessei%20o%20seu%20guia%20e%20gostaria%20de%20mais%20informações.`;
 
 }
