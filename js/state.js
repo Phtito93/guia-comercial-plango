@@ -67,27 +67,13 @@ if (ESTADO_SALVO) {
 
         ...estado,
 
-        ...ESTADO_SALVO.estado
+        status:
+            ESTADO_SALVO.estado?.status || "todos",
+
+        ordenacao:
+            ESTADO_SALVO.estado?.ordenacao || "populares"
 
     };
-
-    /*
-    =====================================
-    FAVORITOS
-    =====================================
-    */
-
-    somenteFavoritos =
-        ESTADO_SALVO.somenteFavoritos || false;
-
-    /*
-    =====================================
-    PAGINA
-    =====================================
-    */
-
-    paginaAtual =
-        ESTADO_SALVO.paginaAtual || 1;
 
 }
 
@@ -105,29 +91,14 @@ function salvarEstado() {
 
         JSON.stringify({
 
-            /*
-            =================================
-            ESTADO
-            =================================
-            */
+            estado: {
 
-            estado,
+                status:
+                    estado.status,
 
-            /*
-            =================================
-            FAVORITOS
-            =================================
-            */
-
-            somenteFavoritos,
-
-            /*
-            =================================
-            PAGINA
-            =================================
-            */
-
-            paginaAtual
+                ordenacao:
+                    estado.ordenacao
+            }
 
         })
 

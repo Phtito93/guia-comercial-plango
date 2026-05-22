@@ -51,18 +51,6 @@ function aplicarRota() {
 
     /*
     =====================================
-    RESET FAVORITOS
-    =====================================
-    */
-
-    somenteFavoritos = false;
-
-    favoritosBtn?.classList.remove(
-        "active"
-    );
-
-    /*
-    =====================================
     HOME
     =====================================
     */
@@ -88,6 +76,8 @@ function aplicarRota() {
     if (
         path === "/favoritos"
     ) {
+
+        estado.modo = "home";
 
         somenteFavoritos = true;
 
