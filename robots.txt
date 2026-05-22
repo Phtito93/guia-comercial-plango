@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://guiaplango.com.br/sitemap.xml
+Sitemap: https://www.guiaplango.com.br/sitemap.xml

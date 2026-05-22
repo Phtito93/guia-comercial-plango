@@ -48,6 +48,9 @@ const SITE_CONFIG = {
         "5561994243316",
 
     instagram:
-        "https://instagram.com/seuinstagram"
+        "https://instagram.com/guiaplango",
+
+    url:
+        "https://www.guiaplango.com.br",
 
 };
