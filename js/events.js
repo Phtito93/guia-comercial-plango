@@ -255,7 +255,7 @@ favoritosBtn?.addEventListener(
                 estado.modo === "home"
             ) {
 
-                navegar("/");
+                voltarHome();
 
                 return;
 
