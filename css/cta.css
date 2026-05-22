@@ -6,7 +6,6 @@ CTA
 */
 
 .cta-anuncio {
-    /*margin: 10px 0;*/
     padding: 30px 30px;
     border-radius: 20px;
     background:
@@ -20,7 +19,6 @@ CTA
     position: relative;
 }
 
-/*EFEITO BACKGROUND*/
 .cta-anuncio::before {
     content: "";
     position: absolute;
@@ -38,7 +36,6 @@ CTA
         translateY(-2px);
 }
 
-/*CONTENT*/
 .cta-content {
     position: relative;
     z-index: 2;
@@ -49,7 +46,6 @@ CTA
     align-items: center;
 }
 
-/*BADGE*/
 .cta-badge {
     display: inline-flex;
     align-items: center;
@@ -65,14 +61,12 @@ CTA
     font-weight: 700;
 }
 
-/*TITLE*/
 .cta-anuncio h2 {
     font-size: 20px;
     font-weight: 900;
     margin-bottom: 18px;
 }
 
-/*TEXT*/
 .cta-anuncio p {
     max-width: 700px;
     margin: 0 auto 36px;
@@ -83,7 +77,6 @@ CTA
     text-wrap: balance;
 }
 
-/*BUTTONS SOCIAIS*/
 .cta-buttons {
     display: grid;
     grid-auto-flow: column;
@@ -97,7 +90,6 @@ CTA
     flex-shrink: 0;
 }
 
-/*LINKS*/
 .cta-buttons a {
     width: 46px;
     aspect-ratio: 1;
@@ -119,7 +111,6 @@ CTA
     display: none;
 }
 
-/*HOVER*/
 .cta-buttons a:hover {
     transform:
         translateY(-3px);

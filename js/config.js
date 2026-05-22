@@ -4,7 +4,7 @@ API
 =====================================================
 */
 
-const API_EMPRESAS = "data/empresas.json";
+const API_EMPRESAS = "/data/empresas.json";
 
 /*
 =====================================================

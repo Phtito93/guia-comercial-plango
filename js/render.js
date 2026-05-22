@@ -1,3 +1,4 @@
+/*render.js*/
 /*
 =====================================================
 SKELETON LOADING
@@ -61,7 +62,7 @@ function renderizarEmpresas(lista) {
         cardsHTML += `
             <div class="card">
                 <img
-                    src="${empresa.imagem || 'img/placeholder.jpg'}"
+                    src="${empresa.imagem || '/img/placeholder.jpg'}"
 
                     alt="Foto da empresa ${empresa.nome}"
 
@@ -298,6 +299,59 @@ function renderizarFiltros(lista) {
 
     /*
     =====================================
+    FILTRO ATIVO
+    =====================================
+    */
+
+    let filtroAtivo = null;
+
+    /*
+    =====================================
+    HOME
+    =====================================
+    */
+
+    if (
+        estado.modo === "home"
+    ) {
+
+        filtroAtivo =
+            estado.filtroHome;
+
+    }
+
+    /*
+    =====================================
+    CATEGORIA
+    =====================================
+    */
+
+    if (
+        estado.modo === "categoria"
+    ) {
+
+        filtroAtivo =
+            estado.categoriaAtual;
+
+    }
+
+    /*
+    =====================================
+    BUSCA
+    =====================================
+    */
+
+    if (
+        estado.modo === "busca"
+    ) {
+
+        filtroAtivo =
+            estado.filtroHome;
+
+    }
+
+    /*
+    =====================================
     LIMPA
     =====================================
     */
@@ -314,7 +368,7 @@ function renderizarFiltros(lista) {
         <button
             class="
                 filtro-btn
-                ${estado.filtroHome === null ? "active" : ""}
+                ${filtroAtivo === null ? "active" : ""}
             "
 
             data-categoria="todos"
@@ -324,7 +378,7 @@ function renderizarFiltros(lista) {
             "
 
             aria-pressed="
-                ${estado.filtroHome === null ? "true" : "false"}
+                ${filtroAtivo === null ? "true" : "false"}
             "
         >
 
@@ -335,7 +389,7 @@ function renderizarFiltros(lista) {
 
     /*
     =====================================
-    RENDER BOTÕES
+    BOTÕES CATEGORIAS
     =====================================
     */
 
@@ -346,7 +400,7 @@ function renderizarFiltros(lista) {
                 class="
                     filtro-btn
                     ${
-                        estado.filtroHome === categoria
+                        filtroAtivo === categoria
                             ? "active"
                             : ""
                     }
@@ -356,7 +410,7 @@ function renderizarFiltros(lista) {
 
                 aria-pressed="
                     ${
-                        estado.filtroHome === categoria
+                        filtroAtivo === categoria
                             ? "true"
                             : "false"
                     }
@@ -400,25 +454,6 @@ function renderizarFiltros(lista) {
                     categoria === "todos"
                 ) {
 
-                    /*
-                    =============================
-                    RESET FAVORITOS
-                    =============================
-                    */
-
-                    somenteFavoritos =
-                        false;
-
-                    favoritosBtn?.classList.remove(
-                        "active"
-                    );
-
-                    /*
-                    =============================
-                    HOME
-                    =============================
-                    */
-
                     navegar("/");
 
                     return;
@@ -427,22 +462,65 @@ function renderizarFiltros(lista) {
 
                 /*
                 =================================
-                FILTRO LOCAL
+                HOME
                 =================================
                 */
 
-                estado.filtroHome =
-                    categoria;
+                if (
+                    estado.modo === "home"
+                ) {
 
-                paginaAtual = 1;
+                    estado.filtroHome =
+                        categoria;
+
+                    paginaAtual = 1;
+
+                    atualizarInterface();
+
+                    return;
+
+                }
 
                 /*
                 =================================
-                UPDATE
+                BUSCA
                 =================================
                 */
 
-                atualizarInterface();
+                if (
+                    estado.modo === "busca"
+                ) {
+
+                    estado.filtroHome =
+                        categoria;
+
+                    paginaAtual = 1;
+
+                    atualizarInterface();
+
+                    return;
+
+                }
+
+                /*
+                =================================
+                CATEGORIA
+                =================================
+                */
+
+                if (
+                    estado.modo === "categoria"
+                ) {
+
+                    navegar(
+
+                        `/categoria/${encodeURIComponent(categoria)}`
+
+                    );
+
+                    return;
+
+                }
 
             }
         );
@@ -613,14 +691,7 @@ function renderizarEmptyState() {
     document
         .getElementById("emptyHomeBtn")
         .addEventListener("click", () => {
-            estado.modo = "home";
-            estado.categoriaAtual = null;
-            estado.filtroHome = null;
-            estado.busca = "";
-            searchInput.value = "";
-            paginaAtual = 1;
-            favoritosBtn?.classList.remove("active");
-            atualizarInterface();
+            navegar("/");
         });
 }
 

@@ -1,3 +1,4 @@
+/*router.js*/
 /*
 =====================================================
 NAVEGAR
@@ -39,7 +40,7 @@ ROUTER
 */
 
 function aplicarRota() {
-
+    
     /*
     =====================================
     PATH
@@ -61,7 +62,17 @@ function aplicarRota() {
         path === "/index.html"
     ) {
 
-        voltarHome();
+        if (
+            estado.modo !== "home"
+            ||
+            estado.filtroHome
+            ||
+            somenteFavoritos
+        ) {
+
+            voltarHome();
+
+        }
 
         return;
 
@@ -117,8 +128,17 @@ function aplicarRota() {
         estado.modo =
             "categoria";
 
+        estado.busca = "";
+        
+        searchInput.value = "";
+
         estado.categoriaAtual =
             categoria;
+
+        estado.filtroHome =
+            null;
+
+        paginaAtual = 1;
 
         atualizarInterface();
 
@@ -151,6 +171,9 @@ function aplicarRota() {
 
         estado.modo =
             "busca";
+
+        estado.categoriaAtual =
+            null;
 
         estado.busca =
             busca;

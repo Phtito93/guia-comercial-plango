@@ -47,14 +47,6 @@ const overlay =
 const darkModeBtn =
     document.getElementById("darkModeBtn");
 
-    /*
-const submenu =
-    document.querySelector(".submenu");
-
-const submenuBtn =
-    document.querySelector(".submenu-btn");
-*/
-
 const submenuCategorias =
     document.getElementById("submenuCategorias");
 

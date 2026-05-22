@@ -238,14 +238,3 @@ TITLE
     transition:
         opacity 0.4s ease;
 }
-
-/*
-.lazy-image {
-    opacity: 0;
-    transition:
-        opacity 0.4s ease;
-}
-
-.lazy-image.loaded {
-    opacity: 1;
-}*/

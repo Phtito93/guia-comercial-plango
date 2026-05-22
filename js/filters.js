@@ -1,3 +1,4 @@
+/*filters.js*/
 /*
 =====================================================
 BUSCA EMPRESA
@@ -220,59 +221,63 @@ function atualizarInterface() {
 
     let lista = [...empresas];
 
+    /*
+    =====================================================
+    HOME
+    =====================================================
+    */
+
+    if (
+        estado.modo === "home"
+    ) {
+
         /*
-        =====================================
-        HOME
-        =====================================
+        =================================
+        FAVORITOS HOME
+        =================================
         */
 
-        if (estado.modo === "home") {
+        if (
+            somenteFavoritos
+        ) {
 
-            /*
-            =================================
-            FAVORITOS
-            =================================
-            */
+            lista = lista.filter((empresa) => {
 
-            if (somenteFavoritos) {
-
-                lista = empresas.filter(
-                    (empresa) =>
-                        favoritos.includes(
-                            empresa.id
-                        )
+                return favoritos.includes(
+                    empresa.id
                 );
 
-            }
+            });
+
+        }
+
+        /*
+        =================================
+        HOME NORMAL
+        =================================
+        */
+
+        else {
 
             /*
-            =================================
-            HOME NORMAL
-            =================================
+            =============================
+            APENAS DESTAQUES
+            =============================
             */
 
-            else {
+            lista = lista.filter((empresa) => {
 
-                /*
-                =============================
-                APENAS DESTAQUES
-                =============================
-                */
+                return empresa.destaque === true;
 
-                lista = lista.filter(
-                    (empresa) =>
-                        empresa.destaque === true
-                );
+            });
 
-                /*
-                =============================
-                LIMITA
-                =============================
-                */
+            /*
+            =============================
+            LIMITA
+            =============================
+            */
 
-                lista = lista.slice(0, 10);
-
-            }
+            lista = lista.slice(0, 10);
 
         }
 
@@ -283,92 +288,152 @@ function atualizarInterface() {
         */
 
         if (
-            estado.modo === "home"
-            &&
             estado.filtroHome
         ) {
 
             lista = lista.filter((empresa) => {
 
                 return empresa.categorias?.includes(
+
                     estado.filtroHome
+
                 );
 
             });
 
         }
 
+    }
+
+    /*
+    =====================================================
+    CATEGORIA
+    =====================================================
+    */
+
+    if (
+        estado.modo === "categoria"
+    ) {
+
+        /*
+        =================================
+        FILTRA CATEGORIA
+        =================================
+        */
+
+        lista = lista.filter((empresa) => {
+
+            return empresa.categorias?.includes(
+
+                estado.categoriaAtual
+
+            );
+
+        });
+
+        /*
+        =================================
+        FAVORITOS CATEGORIA
+        =================================
+        */
+
+        if (
+            somenteFavoritos
+        ) {
+
+            lista = lista.filter((empresa) => {
+
+                return favoritos.includes(
+                    empresa.id
+                );
+
+            });
+
+        }
+
+    }
+
+    /*
+    =====================================================
+    BUSCA
+    =====================================================
+    */
+
+    if (
+        estado.modo === "busca"
+    ) {
+
+        /*
+        =================================
+        BUSCA
+        =================================
+        */
+
+        lista = lista.filter((empresa) => {
+
+            return empresaMatchBusca(
+
+                empresa,
+
+                estado.busca
+
+            );
+
+        });
+
         /*
         =====================================
-        CATEGORIA
+        FILTRO BUSCA
         =====================================
         */
 
         if (
-            estado.modo === "categoria"
-            &&
-            estado.categoriaAtual
+            estado.filtroHome
         ) {
 
             lista = lista.filter((empresa) => {
 
                 return empresa.categorias?.includes(
-                    estado.categoriaAtual
+
+                    estado.filtroHome
+
                 );
+
             });
+
         }
 
         /*
         =================================
-        BUSCA GLOBAL
+        FAVORITOS BUSCA
         =================================
         */
 
         if (
-            estado.modo === "busca"
-            &&
-            estado.busca
-        ) {
-
-            lista = empresas.filter((empresa) => {
-
-                return empresaMatchBusca(
-                    empresa,
-                    estado.busca
-                );
-
-            });
-        }
-
-        /*
-        =================================
-        BUSCA CATEGORIA
-        =================================
-        */
-
-        if (
-            estado.modo === "categoria"
-            &&
-            estado.busca
+            somenteFavoritos
         ) {
 
             lista = lista.filter((empresa) => {
 
-                return empresaMatchBusca(
-                    empresa,
-                    estado.busca
+                return favoritos.includes(
+                    empresa.id
                 );
 
             });
+
         }
 
+    }
+
     /*
-    =====================================
+    =====================================================
     STATUS
-    =====================================
+    =====================================================
     */
 
-    if (estado.status === "abertos") {
+    if (
+        estado.status === "abertos"
+    ) {
 
         lista = lista.filter((empresa) => {
 
@@ -381,12 +446,14 @@ function atualizarInterface() {
     }
 
     /*
-    =====================================
+    =====================================================
     FECHADOS
-    =====================================
+    =====================================================
     */
 
-    if (estado.status === "fechados") {
+    if (
+        estado.status === "fechados"
+    ) {
 
         lista = lista.filter((empresa) => {
 
@@ -399,181 +466,152 @@ function atualizarInterface() {
     }
 
     /*
-    =====================================
-    FAVORITOS
-    =====================================
+    =====================================================
+    ORDENAÇÃO
+    =====================================================
     */
 
-    if (
-        somenteFavoritos
-        &&
-        estado.modo !== "home"
-    ) {
-
-        lista = lista.filter((empresa) => {
-
-            return favoritos.includes(
-                empresa.id
-            );
-
-        });
-
-    }
-
-    /*
-=====================================
-ORDENAÇÃO
-=====================================
-*/
-
-lista.sort((a, b) => {
-
-    /*
-    =================================
-    POPULARES
-    =================================
-    */
-
-    if (
-        estado.ordenacao ===
-        "populares"
-    ) {
-
-        const viewsA =
-            visualizacoes[a.id] || 0;
-
-        const viewsB =
-            visualizacoes[b.id] || 0;
+    lista.sort((a, b) => {
 
         /*
-        =============================
-        MAIS ACESSADOS
-        =============================
+        =================================
+        POPULARES
+        =================================
         */
 
-        if (viewsB !== viewsA) {
-
-            return viewsB - viewsA;
-
-        }
-
-    }
-
-    /*
-    =================================
-    VIEWS
-    =================================
-    */
-
-    if (
-        estado.ordenacao ===
-        "views"
-    ) {
-
-        return (
-            (visualizacoes[b.id] || 0)
-            -
-            (visualizacoes[a.id] || 0)
-        );
-
-    }
-
-    /*
-    =================================
-    ABERTOS
-    =================================
-    */
-
-    if (
-        estado.ordenacao ===
-        "abertos"
-    ) {
-
-        const abertoA =
-            statusFuncionamento(
-                a.horario
-            ).aberto;
-
-        const abertoB =
-            statusFuncionamento(
-                b.horario
-            ).aberto;
-
         if (
-            abertoA
-            &&
-            !abertoB
+            estado.ordenacao ===
+            "populares"
         ) {
 
-            return -1;
+            const viewsA =
+                visualizacoes[a.id] || 0;
+
+            const viewsB =
+                visualizacoes[b.id] || 0;
+
+            if (
+                viewsB !== viewsA
+            ) {
+
+                return viewsB - viewsA;
+
+            }
 
         }
+
+        /*
+        =================================
+        VIEWS
+        =================================
+        */
 
         if (
-            !abertoA
-            &&
-            abertoB
+            estado.ordenacao ===
+            "views"
         ) {
 
-            return 1;
+            return (
+                (visualizacoes[b.id] || 0)
+                -
+                (visualizacoes[a.id] || 0)
+            );
 
         }
 
-    }
+        /*
+        =================================
+        ABERTOS
+        =================================
+        */
 
-    /*
-    =================================
-    A-Z
-    =================================
-    */
+        if (
+            estado.ordenacao ===
+            "abertos"
+        ) {
 
-    if (
-        estado.ordenacao ===
-        "az"
-    ) {
+            const abertoA =
+                statusFuncionamento(
+                    a.horario
+                ).aberto;
+
+            const abertoB =
+                statusFuncionamento(
+                    b.horario
+                ).aberto;
+
+            if (
+                abertoA
+                &&
+                !abertoB
+            ) {
+
+                return -1;
+
+            }
+
+            if (
+                !abertoA
+                &&
+                abertoB
+            ) {
+
+                return 1;
+
+            }
+
+        }
+
+        /*
+        =================================
+        A-Z
+        =================================
+        */
+
+        if (
+            estado.ordenacao ===
+            "az"
+        ) {
+
+            return a.nome.localeCompare(
+                b.nome
+            );
+
+        }
+
+        /*
+        =================================
+        Z-A
+        =================================
+        */
+
+        if (
+            estado.ordenacao ===
+            "za"
+        ) {
+
+            return b.nome.localeCompare(
+                a.nome
+            );
+
+        }
+
+        /*
+        =================================
+        FALLBACK
+        =================================
+        */
 
         return a.nome.localeCompare(
             b.nome
         );
 
-    }
+    });
 
     /*
-    =================================
-    Z-A
-    =================================
-    */
-
-    if (
-        estado.ordenacao ===
-        "za"
-    ) {
-
-        return b.nome.localeCompare(
-            a.nome
-        );
-
-    }
-
-
-    /*
-    =================================
-    FALLBACK
-    =================================
-    */
-
-    return a.nome.localeCompare(
-        b.nome
-    );
-
-});
-
-    
-
-    /*
-    =====================================
+    =====================================================
     RENDER
-    =====================================
+    =====================================================
     */
 
     atualizarTituloSecao();
@@ -589,12 +627,14 @@ lista.sort((a, b) => {
     renderizarFiltrosAtivos();
 
     /*
-    =====================================
-    EMPTY
-    =====================================
+    =====================================================
+    EMPTY STATE
+    =====================================================
     */
 
-    if (lista.length === 0) {
+    if (
+        lista.length === 0
+    ) {
 
         renderizarEmptyState();
 
@@ -603,9 +643,9 @@ lista.sort((a, b) => {
     }
 
     /*
-    =====================================
+    =====================================================
     RENDER EMPRESAS
-    =====================================
+    =====================================================
     */
 
     setTimeout(() => {
@@ -615,9 +655,9 @@ lista.sort((a, b) => {
     }, SKELETON_DELAY);
 
     /*
-    =====================================
+    =====================================================
     SAVE STATE
-    =====================================
+    =====================================================
     */
 
     salvarEstado();

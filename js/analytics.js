@@ -4,24 +4,12 @@ ANALYTICS
 =====================================================
 */
 
-/*
-=====================================
-VISUALIZAÇÕES
-=====================================
-*/
-
 let visualizacoes =
     JSON.parse(
         localStorage.getItem(
             "visualizacoes"
         )
     ) || {};
-
-/*
-=====================================================
-REGISTRAR VISUALIZAÇÃO
-=====================================================
-*/
 
 function registrarVisualizacao(id) {
 
@@ -62,12 +50,6 @@ function registrarVisualizacao(id) {
     );
 
 }
-
-/*
-=====================================================
-TOP EMPRESAS
-=====================================================
-*/
 
 function logTopEmpresas() {
 
