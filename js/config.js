@@ -116,5 +116,18 @@ document.addEventListener(
                 `https://wa.me/5561994243316?text=Olá%20acessei%20o%20seu%20guia%20e%20gostaria%20de%20mais%20informações.`;
 
         }
+        /*
+        const anuncieBtn =
+            document.getElementById(
+                "anuncieBtn"
+            );
+
+        if (anuncieBtn) {
+
+            anuncieBtn.href =
+
+                `https://wa.me/5561994243316?text=Olá%20acessei%20o%20seu%20guia%20e%20gostaria%20de%20mais%20informações.`;
+
+        }*/
     }
 ); 

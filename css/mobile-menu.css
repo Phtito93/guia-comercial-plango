@@ -114,7 +114,8 @@ MENU MOBILE
     margin-bottom: 10px;
 }
 
-#mobileHomeBtn {
+#mobileHomeBtn,
+#mobileAnuncieBtn {
     width: 100%;
     display: flex;
     align-items: center;
@@ -136,12 +137,15 @@ MENU MOBILE
 }
 
 #mobileHomeBtn:focus,
-#mobileHomeBtn:active {
+#mobileHomeBtn:active,
+#mobileAnuncieBtn:focus,
+#mobileAnuncieBtn:active {
     outline: none;
     box-shadow: none;
 }
 
-#mobileHomeBtn:hover {
+#mobileHomeBtn:hover,
+#mobileAnuncieBtn:hover {
     transform:
         translateX(2px);
 

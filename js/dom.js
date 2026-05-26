@@ -53,6 +53,9 @@ const submenuCategorias =
 const mobileHomeBtn =
     document.getElementById("mobileHomeBtn");
 
+const mobileAnuncieBtn =
+    document.getElementById("mobileAnuncieBtn");
+
 /* MODAL */
 
 const modal =
