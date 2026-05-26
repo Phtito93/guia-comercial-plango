@@ -470,6 +470,8 @@ mobileAnuncieBtn?.addEventListener(
 
         event.preventDefault();
 
+        fecharMenu();
+
         navegar("/anuncie");
 
     }
@@ -484,6 +486,8 @@ anuncieBtn?.addEventListener(
 
         event.preventDefault();
 
+        fecharMenu();
+        
         navegar("/anuncie");
 
     }

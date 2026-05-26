@@ -289,7 +289,7 @@ function renderizarEmpresas(lista) {
                 <div class="normal-header">
 
                     <span>
-                        🔥 Outros Negócios
+                        🏪 Outros Negócios
                     </span>
 
                 </div>
