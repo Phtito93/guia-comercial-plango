@@ -38,6 +38,174 @@ function renderizarSkeleton() {
 
 /*
 =====================================================
+RENDERIZAR CARD
+=====================================================
+*/
+
+function renderizarCard(empresa) {
+    const status = statusFuncionamento(empresa.horario);
+
+    const favorito = favoritos.includes(empresa.id);
+
+    const views = empresa.views || 0;
+
+    return `
+        <div class="
+            card ${empresa.plano === "destaque"
+            ? "card-destaque"
+            : ""}
+        ">
+            <img
+                src="${empresa.imagem || '/img/placeholder.jpg'}"
+    
+                alt="Foto da empresa ${empresa.nome}"
+
+                loading="lazy"
+
+                class="lazy-image"
+            >
+
+            <div class="card-content">
+                <div class="card-tags">
+
+                    <!-- CATEGORIAS -->
+                    <div class="categorias">
+
+                        ${empresa.categorias?.map((categoria) => `
+                            <span class="categoria">
+                                ${categoria}
+                            </span>
+                        `).join("")}
+
+                    </div>
+
+                    ${empresa.plano === "destaque" ? `
+
+                        <span class="premium-badge">
+                            ⭐
+                        </span>
+
+                    ` : ""}
+
+                    ${empresa.views >= 50 ? `
+
+                        <span class="top-badge">
+                            👑 Top Empresa
+                        </span>
+
+                    ` : empresa.views >= 30 ? `
+
+                        <span class="high-badge">
+                            🚀 Em Alta
+                        </span>
+
+                    ` : empresa.views >= 10 ? `
+
+                        <span class="popular-badge">
+                            🔥 Popular
+                        </span>
+
+                    ` : ""}
+
+                </div>
+
+                <div class="card-title">
+
+                    <h3>
+                        ${empresa.nome}
+                    </h3>
+
+                    <button
+                        class="favorite-btn ${favorito ? "active" : ""}"
+                        data-id="${empresa.id}"
+                        aria-label="Favoritar empresa">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+
+                </div>
+                      
+                <div class="card-top-info">
+                    <span class="local">
+                        <i class="fa-solid fa-location-dot"></i>
+                        ${empresa.local || "Local não informado"}
+                    </span>
+
+                    <span class="status ${status.classe}">
+                        ${status.texto}
+                    </span>
+                </div>
+            </div>
+
+            <div class="card-actions">                  
+                <div class="contact-menu">
+                    <button class="contact-btn">
+                        <i class="fa-solid fa-address-book"></i>
+                        Contatos
+                        <i class="fa-solid fa-chevron-up"></i>
+                    </button>
+
+                    <div class="contact-dropdown">
+                        ${empresa.contatos?.whatsapp ? `
+                            <a 
+                                href="${empresa.contatos?.whatsapp}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >
+                                <i class="fa-brands fa-whatsapp"></i>
+                                WhatsApp
+                            </a>
+                        ` : ""}
+
+                        ${empresa.contatos?.instagram ? `
+                            <a 
+                                href="${empresa.contatos?.instagram}"
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                >
+                                <i class="fa-brands fa-instagram"></i>
+                                Instagram
+                            </a>
+                        ` : ""}
+
+                        ${empresa.contatos?.telefone ? `
+                            <a 
+                                href="tel:${empresa.contatos?.telefone}"
+                                >
+                                <i class="fa-solid fa-phone"></i>
+                                Telefone
+                            </a>
+                        ` : ""}
+
+                        ${empresa.contatos?.localizacao ? `
+                            <a 
+                                href="${empresa.contatos?.localizacao}" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                > 
+                                <i class="fa-solid fa-location-dot"></i> 
+                                Localização
+                            </a>
+                        `: ""}
+                            
+                        ${empresa.contatos?.site ? `
+                            <a 
+                                href="${empresa.contatos?.site}" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                > 
+                                <i class="fa-solid fa-globe"></i>   
+                                Site
+                            </a>
+                        `: ""}
+                    </div>
+                </div>
+            </div> 
+        </div>
+    `;
+}
+
+/*
+=====================================================
 RENDERIZAR EMPRESAS
 =====================================================
 */
@@ -52,175 +220,98 @@ function renderizarEmpresas(lista) {
 
     const empresasPaginadas = lista.slice(inicio, fim);
 
-    empresasPaginadas.forEach((empresa) => {
-        const status = statusFuncionamento(empresa.horario);
+    const empresasDestaque =
+        empresasPaginadas.filter(
+            (empresa) => {
 
-        const favorito = favoritos.includes(empresa.id);
+                return (
+                    empresa.plano ===
+                    "destaque"
+                );
+            }
+        );
 
-        const views = empresa.views || 0;
+    const empresasNormais =
+        empresasPaginadas.filter(
+            (empresa) => {
+
+                return (
+                    empresa.plano !==
+                    "destaque"
+                );
+            }
+        );
+
+    if (
+        empresasDestaque.length
+    ) {
 
         cardsHTML += `
-            <div class="
-                card ${empresa.plano === "destaque"
-                ? "card-destaque"
-                : ""}
-            ">
-                <img
-                    src="${empresa.imagem || '/img/placeholder.jpg'}"
 
-                    alt="Foto da empresa ${empresa.nome}"
+            <section class="premium-section">
 
-                    loading="lazy"
+                <div class="premium-header">
 
-                    class="lazy-image"
-                >
+                    <span>
+                        ⭐ Empresas em Destaque
+                    </span>
 
-                <div class="card-content">
-                    <div class="card-tags">
-
-                        <!-- CATEGORIAS -->
-                        <div class="categorias">
-
-                            ${empresa.categorias?.map((categoria) => `
-                                <span class="categoria">
-                                    ${categoria}
-                                </span>
-                            `).join("")}
-
-                        </div>
-
-                        ${empresa.plano === "destaque" ? `
-
-                            <span class="premium-badge">
-                                ⭐
-                            </span>
-
-                        ` : ""}
-
-                        ${empresa.views >= 50 ? `
-
-                            <span class="top-badge">
-                                👑 Top Empresa
-                            </span>
-
-                        ` : empresa.views >= 30 ? `
-
-                            <span class="high-badge">
-                                🚀 Em Alta
-                            </span>
-
-                        ` : empresa.views >= 10 ? `
-
-                            <span class="popular-badge">
-                                🔥 Popular
-                            </span>
-
-                        ` : ""}
-
-                    </div>
-
-                    <div class="card-title">
-
-                        <h3>
-                            ${empresa.nome}
-                        </h3>
-
-                        <button
-                            class="
-                                favorite-btn
-                                ${favorito ? "active" : ""}
-                            "
-                            data-id="${empresa.id}"
-                            aria-label="
-                                Favoritar empresa
-                            "
-                        >
-
-                            <i class="fa-solid fa-heart"></i>
-
-                        </button>
-
-                    </div>
-                      
-                    <div class="card-top-info">
-                        <span class="local">
-                            <i class="fa-solid fa-location-dot"></i>
-                            ${empresa.local || "Local não informado"}
-                        </span>
-
-                        <span class="status ${status.classe}">
-                            ${status.texto}
-                        </span>
-                    </div>
                 </div>
 
-                <div class="card-actions">                  
-                    <div class="contact-menu">
-                        <button class="contact-btn">
-                            <i class="fa-solid fa-address-book"></i>
-                            Contatos
-                            <i class="fa-solid fa-chevron-up"></i>
-                        </button>
-
-                        <div class="contact-dropdown">
-                            ${empresa.contatos?.whatsapp ? `
-                                <a 
-                                    href="${empresa.contatos?.whatsapp}"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    >
-                                    <i class="fa-brands fa-whatsapp"></i>
-                                    WhatsApp
-                                </a>
-                            ` : ""}
-
-                            ${empresa.contatos?.instagram ? `
-                                <a 
-                                    href="${empresa.contatos?.instagram}"
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    >
-                                    <i class="fa-brands fa-instagram"></i>
-                                    Instagram
-                                </a>
-                            ` : ""}
-
-                            ${empresa.contatos?.telefone ? `
-                                <a 
-                                    href="tel:${empresa.contatos?.telefone}"
-                                    >
-                                    <i class="fa-solid fa-phone"></i>
-                                    Telefone
-                                </a>
-                            ` : ""}
-
-                            ${empresa.contatos?.localizacao ? `
-                                <a 
-                                    href="${empresa.contatos?.localizacao}" 
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
-                                    > 
-                                    <i class="fa-solid fa-location-dot"></i> 
-                                    Localização
-                                </a>
-                            `: ""}
-                            
-                            ${empresa.contatos?.site ? `
-                                <a 
-                                    href="${empresa.contatos?.site}" 
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
-                                    > 
-                                    <i class="fa-solid fa-globe"></i>   
-                                    Site
-                                </a>
-                            `: ""}
-                        </div>
-                    </div>
-                </div> 
-            </div>
+                <div class="premium-grid">
         `;
-    });
+
+        empresasDestaque.forEach((empresa) => {
+
+            cardsHTML +=
+                renderizarCard(
+                    empresa
+                );
+        });
+
+        cardsHTML += `
+
+                </div>
+
+            </section>
+
+        `;
+    }
+
+    if (
+        empresasNormais.length
+    ) {
+
+        cardsHTML += `
+
+            <section class="normal-section">
+
+                <div class="normal-header">
+
+                    <span>
+                        🔥 Outros Negócios
+                    </span>
+
+                </div>
+
+                <div class="normal-grid">
+        `;
+
+        empresasNormais.forEach((empresa) => {
+
+            cardsHTML +=
+                renderizarCard(
+                    empresa
+                );
+        });
+
+        cardsHTML += `
+
+                </div>
+
+            </section>
+        `;
+    }
 
     empresaGrid.innerHTML = cardsHTML;
 

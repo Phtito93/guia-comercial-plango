@@ -54,6 +54,13 @@ RESPONSIVIDADE
     .cta-btn {
         width: 100%;
     }
+
+    .premium-grid,
+    .normal-grid {
+
+        grid-template-columns:
+            1fr;
+    }
 }
 
 @media (min-width: 1024px) {
