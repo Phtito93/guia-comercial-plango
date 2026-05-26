@@ -267,7 +267,7 @@ function atualizarInterface() {
 
             lista = lista.filter((empresa) => {
 
-                return empresa.destaque === true;
+                return empresa.plano === "destaque";
 
             });
 
