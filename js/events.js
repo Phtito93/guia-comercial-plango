@@ -455,3 +455,37 @@ mobileMenu.addEventListener("touchend", (e) => {
 
     }
 });
+
+/*
+=====================================================
+ANUNCIE
+=====================================================
+*/
+
+mobileAnuncieBtn?.addEventListener(
+
+    "click",
+
+    (event) => {
+
+        event.preventDefault();
+
+        navegar("/anuncie");
+
+    }
+
+);
+
+anuncieBtn?.addEventListener(
+
+    "click",
+
+    (event) => {
+
+        event.preventDefault();
+
+        navegar("/anuncie");
+
+    }
+
+);

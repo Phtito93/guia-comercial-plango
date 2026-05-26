@@ -248,3 +248,21 @@ window.addEventListener(
     aplicarRota
 
 );
+
+/*
+=====================================
+ANUNCIE
+=====================================
+*/
+
+if (
+    path === "/anuncie"
+) {
+
+    estado.modo =
+        "anuncie";
+
+    renderizarPaginaAnuncie();
+
+    return;
+}

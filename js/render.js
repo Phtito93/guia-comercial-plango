@@ -750,6 +750,237 @@ function renderizarContatosUteis() {
 
 /*
 =====================================================
+PÁGINA ANUNCIE
+=====================================================
+*/
+
+function renderizarPaginaAnuncie() {
+
+    empresaGrid.innerHTML = `
+
+        <section class="anuncie-page">
+
+            <!-- HERO -->
+            <section class="anuncie-hero">
+
+                <span class="hero-badge">
+                    🚀 Destaque seu negócio
+                </span>
+
+                <h1>
+                    Coloque sua empresa
+                    no Guia Plango
+                </h1>
+
+                <p>
+                    Apareça para milhares de pessoas
+                    em Planaltina-GO e aumente
+                    suas vendas locais.
+                </p>
+
+                <a
+                    href="https://wa.me/${SITE_CONFIG.whatsapp}?text=Olá,%20quero%20anunciar%20no%20Guia%20Plango"
+                    target="_blank"
+                    class="anuncie-cta"
+                >
+                    📲 Quero anunciar agora
+                </a>
+
+            </section>
+
+            <!-- BENEFÍCIOS -->
+            <section class="beneficios-section">
+
+                <div class="section-title">
+                    <h2>
+                        Por que anunciar?
+                    </h2>
+                </div>
+
+                <div class="beneficios-grid">
+
+                    <div class="beneficio-card">
+                        <i class="fa-solid fa-eye"></i>
+                        <h3>
+                            Mais Visibilidade
+                        </h3>
+                        <p>
+                            Sua empresa encontrada
+                            por mais pessoas.
+                        </p>
+                    </div>
+
+                    <div class="beneficio-card">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <h3>
+                            Clientes Locais
+                        </h3>
+                        <p>
+                            Alcance clientes próximos
+                            da sua região.
+                        </p>
+                    </div>
+
+                    <div class="beneficio-card">
+                        <i class="fa-solid fa-crown"></i>
+                        <h3>
+                            Destaque Premium
+                        </h3>
+                        <p>
+                            Fique no topo das buscas
+                            e categorias.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+            
+            <!-- COMO FUNCIONA -->
+            <section class="como-funciona-section">
+
+                <div class="section-title">
+                    <h2>
+                        Como funciona
+                    </h2>
+                </div>
+
+                <div class="steps-grid">
+
+                    <div class="step-card">
+                        <span>
+                            1
+                        </span>
+
+                        <h3>
+                            Envie seus dados
+                        </h3>
+                    </div>
+
+                    <div class="step-card">
+                        <span>
+                            2
+                        </span>
+
+                        <h3>
+                            Criamos seu anúncio
+                        </h3>
+                    </div>
+
+                    <div class="step-card">
+                        <span>
+                            3
+                        </span>
+
+                        <h3>
+                            Sua empresa entra no ar
+                        </h3>
+                    </div>
+
+                </div>
+
+            </section>
+            
+            <!-- PLANOS -->
+            <section class="planos-section">
+
+                <div class="section-title">
+                    <h2>
+                        Planos
+                    </h2>
+                </div>
+
+                <div class="planos-grid">
+
+                    <!-- PRESENÇA -->
+                    <div class="plano-card">
+
+                        <span class="plano-badge">
+                            Plano Presença
+                        </span>
+
+                        <h3>
+                            R$ 35/mês
+                        </h3>
+
+                        <ul>
+                            <li>
+                                ✔ Empresa listada
+                            </li>
+
+                            <li>
+                                ✔ WhatsApp
+                            </li>
+
+                            <li>
+                                ✔ Instagram
+                            </li>
+
+                            <li>
+                                ✔ Busca
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <!-- DESTAQUE -->
+                    <div class="plano-card destaque">
+
+                        <span class="plano-badge premium">
+                            ⭐ Plano Destaque
+                        </span>
+
+                        <h3>
+                            R$ 50/mês
+                        </h3>
+
+                        <ul>
+                            <li>
+                                ⭐ Card Premium
+                            </li>
+
+                            <li>
+                                ⭐ Topo categorias
+                            </li>
+
+                            <li>
+                                ⭐ Destaque Home
+                            </li>
+
+                            <li>
+                                ⭐ Prioridade busca
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </section>
+            
+            <!-- CTA FINAL -->
+            <section class="cta-final">
+
+                <h2>
+                    Quer destacar sua empresa?
+                </h2>
+
+                <a
+                    href="https://wa.me/${SITE_CONFIG.whatsapp}?text=Olá,%20quero%20destacar%20minha%20empresa"
+                    target="_blank"
+                    class="anuncie-cta"
+                >
+                    🚀 Quero anunciar agora
+                </a>
+
+            </section>
+
+        </section>
+    `;
+}            
+
+/*
+=====================================================
 EMPTY STATE
 =====================================================
 */
