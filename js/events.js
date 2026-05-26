@@ -387,7 +387,9 @@ EVENTOS - HOME MOBILE
 =====================================================
 */
 
-mobileHomeBtn.addEventListener("click", () => {
+mobileHomeBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        
         navegar("/");
 
         fecharMenu();

@@ -208,7 +208,7 @@ TITLE
 
 .premium-section {
 
-    margin-bottom: 48px;
+    margin-bottom: 20px;
 
 }
 
@@ -327,25 +327,12 @@ TITLE
 
     border:
         2px solid #FFD700;
-
-    box-shadow:
-        0 10px 30px rgba(255,215,0,.18);
 }
 
 .card-destaque::before {
     content: "";
     position: absolute;
     inset: 0;
-    background:
-        linear-gradient(
-
-            135deg,
-
-            rgba(255,215,0,.08),
-
-            transparent
-
-        );
     pointer-events: none;
 }
 
