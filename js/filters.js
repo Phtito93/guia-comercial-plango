@@ -474,6 +474,33 @@ function atualizarInterface() {
     lista.sort((a, b) => {
 
         /*
+        =====================================
+        DESTAQUE PRIMEIRO
+        =====================================
+        */
+
+        if (
+            a.plano === "destaque"
+            &&
+            b.plano !== "destaque"
+        ) {
+
+            return -1;
+
+        }
+
+        if (
+            b.plano === "destaque"
+            &&
+            a.plano !== "destaque"
+        ) {
+
+            return 1;
+
+        }
+
+
+        /*
         =================================
         POPULARES
         =================================
@@ -485,10 +512,10 @@ function atualizarInterface() {
         ) {
 
             const viewsA =
-                visualizacoes[a.id] || 0;
+                a.views || 0;
 
             const viewsB =
-                visualizacoes[b.id] || 0;
+                b.views || 0;
 
             if (
                 viewsB !== viewsA
@@ -512,9 +539,9 @@ function atualizarInterface() {
         ) {
 
             return (
-                (visualizacoes[b.id] || 0)
+                (b.views || 0)
                 -
-                (visualizacoes[a.id] || 0)
+                (a.views || 0)
             );
 
         }

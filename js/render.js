@@ -57,10 +57,14 @@ function renderizarEmpresas(lista) {
 
         const favorito = favoritos.includes(empresa.id);
 
-        const views = visualizacoes[empresa.id] || 0;
+        const views = empresa.views || 0;
 
         cardsHTML += `
-            <div class="card">
+            <div class="
+                card ${empresa.plano === "destaque"
+                ? "card-destaque"
+                : ""}
+            ">
                 <img
                     src="${empresa.imagem || '/img/placeholder.jpg'}"
 
@@ -85,19 +89,27 @@ function renderizarEmpresas(lista) {
 
                         </div>
 
-                        ${views >= 50 ? `
+                        ${empresa.plano === "destaque" ? `
+
+                            <span class="premium-badge">
+                                ⭐ Premium
+                            </span>
+
+                        ` : ""}
+
+                        ${empresa.views >= 50 ? `
 
                             <span class="top-badge">
                                 👑 Top Empresa
                             </span>
 
-                        ` : views >= 30 ? `
+                        ` : empresa.views >= 30 ? `
 
                             <span class="high-badge">
                                 🚀 Em Alta
                             </span>
 
-                        ` : views >= 10 ? `
+                        ` : empresa.views >= 10 ? `
 
                             <span class="popular-badge">
                                 🔥 Popular
@@ -156,7 +168,6 @@ function renderizarEmpresas(lista) {
                                     href="${empresa.contatos?.whatsapp}"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    onclick="registrarVisualizacao(${empresa.id})"
                                     >
                                     <i class="fa-brands fa-whatsapp"></i>
                                     WhatsApp
@@ -168,7 +179,6 @@ function renderizarEmpresas(lista) {
                                     href="${empresa.contatos?.instagram}"
                                     target="_blank" 
                                     rel="noopener noreferrer"
-                                    onclick="registrarVisualizacao(${empresa.id})"
                                     >
                                     <i class="fa-brands fa-instagram"></i>
                                     Instagram
@@ -178,7 +188,6 @@ function renderizarEmpresas(lista) {
                             ${empresa.contatos?.telefone ? `
                                 <a 
                                     href="tel:${empresa.contatos?.telefone}"
-                                    onclick="registrarVisualizacao(${empresa.id})"
                                     >
                                     <i class="fa-solid fa-phone"></i>
                                     Telefone
@@ -190,7 +199,6 @@ function renderizarEmpresas(lista) {
                                     href="${empresa.contatos?.localizacao}" 
                                     target="_blank" 
                                     rel="noopener noreferrer" 
-                                    onclick="registrarVisualizacao(${empresa.id})"
                                     > 
                                     <i class="fa-solid fa-location-dot"></i> 
                                     Localização
@@ -202,7 +210,6 @@ function renderizarEmpresas(lista) {
                                     href="${empresa.contatos?.site}" 
                                     target="_blank" 
                                     rel="noopener noreferrer" 
-                                    onclick="registrarVisualizacao(${empresa.id})"
                                     > 
                                     <i class="fa-solid fa-globe"></i>   
                                     Site

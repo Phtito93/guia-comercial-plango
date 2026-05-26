@@ -154,6 +154,25 @@ TITLE
     margin-bottom: 12px;
 }
 
+.card-destaque {
+    border:
+        2px solid #FFD700;
+    box-shadow:
+        0 10px 30px rgba(255, 215, 0, .18);
+}
+
+.premium-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #FFD700;
+    color: #111;
+    font-size: 12px;
+    font-weight: 700;
+}
+
 .popular-badge {
     padding: 6px 12px;
     border-radius: 20px;
@@ -164,7 +183,6 @@ TITLE
     margin-left: auto;
     align-items: center;
     gap: 4px;
-    animation: pulse 2s infinite;
 }
 
 .high-badge {
@@ -174,7 +192,6 @@ TITLE
     color: #2563eb;
     font-size: 12px;
     font-weight: 700;
-    animation: pulse 2s infinite;
 }
 
 .top-badge {
@@ -184,7 +201,6 @@ TITLE
     color: #7c3aed;
     font-size: 12px;
     font-weight: 700;
-    animation: pulse 2s infinite;
 }
 
 .local {
