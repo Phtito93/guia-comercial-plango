@@ -23,7 +23,7 @@
             "sexta": {"abre": "18:00", "fecha": "23:00"},
             "sabado": {"abre": "18:00", "fecha": "23:00"}
         },
-        "categorias": ["Restaurante", "Hamburgueria", "Delivery"],
+        "categorias": ["Restaurante", "Hamburgueria"],
         "nota": 4.8,
         "descricao": "Burgues Artesanais",
         "imagem": "/img/hamburgueria.webp",
@@ -61,7 +61,7 @@
             "sexta": {"abre": "17:00", "fecha": "00:00"},
             "sabado": {"abre": "17:00", "fecha": "00:00"}
         },
-        "categorias": ["Restaurante", "Pizzaria", "Delivery"],
+        "categorias": ["Restaurante", "Pizzaria"],
         "nota": 4.6,
         "descricao": "Pizzas Artesanais",
         "imagem": "/img/pizzaria.webp",
@@ -98,7 +98,7 @@
             "sexta": {"abre": "08:00", "fecha": "23:00"},
             "sabado": {"abre": "08:00", "fecha": "23:00"}
         },
-        "categorias": ["Restaurante", "Salgados", "Lanches"],
+        "categorias": ["Restaurante", "Lanchonete"],
         "nota": 4.4,
         "descricao": "Salgados Diversos",
         "imagem": "/img/salgados.webp",

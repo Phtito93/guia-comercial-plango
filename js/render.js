@@ -92,7 +92,7 @@ function renderizarEmpresas(lista) {
                         ${empresa.plano === "destaque" ? `
 
                             <span class="premium-badge">
-                                ⭐ Premium
+                                ⭐
                             </span>
 
                         ` : ""}
