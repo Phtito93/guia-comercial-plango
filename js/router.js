@@ -233,36 +233,37 @@ function aplicarRota() {
 
     }
 
+    /*
+    =====================================================
+    BACK / FORWARD
+    =====================================================
+    */
+
+    window.addEventListener(
+
+        "popstate",
+
+        aplicarRota
+
+    );
+
+    /*
+    =====================================
+    ANUNCIE
+    =====================================
+    */
+
+    if (
+        path === "/anuncie"
+    ) {
+
+        estado.modo =
+            "anuncie";
+
+        renderizarPaginaAnuncie();
+
+        return;
+    }
+
 }
 
-/*
-=====================================================
-BACK / FORWARD
-=====================================================
-*/
-
-window.addEventListener(
-
-    "popstate",
-
-    aplicarRota
-
-);
-
-/*
-=====================================
-ANUNCIE
-=====================================
-*/
-
-if (
-    path === "/anuncie"
-) {
-
-    estado.modo =
-        "anuncie";
-
-    renderizarPaginaAnuncie();
-
-    return;
-}

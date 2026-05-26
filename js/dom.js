@@ -56,6 +56,9 @@ const mobileHomeBtn =
 const mobileAnuncieBtn =
     document.getElementById("mobileAnuncieBtn");
 
+const anuncieBtn = 
+    document.getElementById("anuncieBtn");
+
 /* MODAL */
 
 const modal =
