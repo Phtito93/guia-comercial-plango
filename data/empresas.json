@@ -28,10 +28,10 @@
         "descricao": "Burgues Artesanais",
         "imagem": "/img/hamburgueria.webp",
         "contatos": {
-            "whatsapp": "https://wa.me/5561994243316",
-            "telefone": "61999999999",
-            "instagram": "#",
-            "localizacao": "#"
+            "whatsapp": "https://wa.me/5561994243316?text=Olá,%20encontrei%20sua%20empresa%20no%20guia%20comercial%20e%20gostaria%20de%20mais%20informações.",
+            "telefone": "61994243316",
+            "instagram": "https://instagram.com/guiaplango",
+            "localizacao": "https://maps.app.goo.gl/AgKXKsNas4KHeSmS7"
         },
         "tags": ["hamburguer", "burguer", "sanduíche"],
         "createdAt": "2026-05-15"
@@ -66,9 +66,9 @@
         "descricao": "Pizzas Artesanais",
         "imagem": "/img/pizzaria.webp",
         "contatos": {
-            "whatsapp": "https://wa.me/5561994243316",
-            "telefone": "61999999999",
-            "localizacao": "#"
+            "whatsapp": "https://wa.me/5561994243316?text=Olá,%20encontrei%20sua%20empresa%20no%20guia%20comercial%20e%20gostaria%20de%20mais%20informações.",
+            "telefone": "61994243316",
+            "localizacao": "https://maps.app.goo.gl/AgKXKsNas4KHeSmS7"
         },
         "tags": ["pizza", "calabresa", "borda"],
         "createdAt": "2026-05-16"
@@ -103,11 +103,11 @@
         "descricao": "Salgados Diversos",
         "imagem": "/img/salgados.webp",
         "contatos": {
-            "whatsapp": "https://wa.me/5561994243316",
-            "telefone": "61999999999",
-            "instagram": "#",
-            "localizacao": "#",
-            "site": "#"
+            "whatsapp": "https://wa.me/5561994243316?text=Olá,%20encontrei%20sua%20empresa%20no%20guia%20comercial%20e%20gostaria%20de%20mais%20informações.",
+            "telefone": "61994243316",
+            "instagram": "https://instagram.com/guiaplango",
+            "localizacao": "https://maps.app.goo.gl/AgKXKsNas4KHeSmS7",
+            "site": "https://www.metropoles.com/"
         },
         "tags": ["coxinha", "misto", "suco"],
         "createdAt": "2026-05-17"

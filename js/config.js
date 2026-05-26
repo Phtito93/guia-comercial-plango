@@ -12,7 +12,7 @@ PAGINAÇÃO
 =====================================================
 */
 
-const EMPRESAS_POR_PAGINA = 6;
+const EMPRESAS_POR_PAGINA = 10;
 
 /*
 =====================================================
@@ -61,52 +61,60 @@ SOCIAL LINKS
 =====================================================
 */
 
-const instagramLink =
-    document.getElementById(
-        "instagramLink"
-    );
+document.addEventListener(
 
-if (instagramLink) {
+    "DOMContentLoaded",
 
-    instagramLink.href =
-        SITE_CONFIG.instagram;
+    () => {
 
-}
+        const instagramLink =
+            document.getElementById(
+                "instagramLink"
+            );
 
-const whatsappLink =
-    document.getElementById(
-        "whatsappLink"
-    );
+        if (instagramLink) {
 
-if (whatsappLink) {
+            instagramLink.href =
+                SITE_CONFIG.instagram;
 
-    whatsappLink.href =
+        }
 
-        `https://wa.me/5561994243316?text=Olá%20acessei%20o%20seu%20guia%20e%20gostaria%20de%20mais%20informações.`;
+        const whatsappLink =
+            document.getElementById(
+                "whatsappLink"
+            );
 
-}
+        if (whatsappLink) {
 
-const footerInstagramLink =
-    document.getElementById(
-        "footerInstagramLink"
-    );
+            whatsappLink.href =
 
-if (footerInstagramLink) {
+                `https://wa.me/5561994243316?text=Olá%20acessei%20o%20seu%20guia%20e%20gostaria%20de%20mais%20informações.`;
 
-    footerInstagramLink.href =
-        SITE_CONFIG.instagram;
+        }
 
-}
+        const footerInstagramLink =
+            document.getElementById(
+                "footerInstagramLink"
+            );
 
-const footerWhatsappLink =
-    document.getElementById(
-        "footerWhatsappLink"
-    );
+        if (footerInstagramLink) {
 
-if (footerWhatsappLink) {
+            footerInstagramLink.href =
+                SITE_CONFIG.instagram;
 
-    footerWhatsappLink.href =
+        }
 
-        `https://wa.me/5561994243316?text=Olá%20acessei%20o%20seu%20guia%20e%20gostaria%20de%20mais%20informações.`;
+        const footerWhatsappLink =
+            document.getElementById(
+                "footerWhatsappLink"
+            );
 
-}
+        if (footerWhatsappLink) {
+
+            footerWhatsappLink.href =
+
+                `https://wa.me/5561994243316?text=Olá%20acessei%20o%20seu%20guia%20e%20gostaria%20de%20mais%20informações.`;
+
+        }
+    }
+); 
