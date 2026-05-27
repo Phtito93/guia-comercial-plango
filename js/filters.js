@@ -205,6 +205,14 @@ ATUALIZAR INTERFACE
 
 function atualizarInterface() {
 
+    if (
+        estado.modo !== "anuncie"
+    ) {
+
+        resetarLayoutPadrao();
+
+    }
+
     /*
     =====================================
     LOADING
@@ -743,4 +751,51 @@ function voltarHome() {
 
     atualizarInterface();
 
+}
+
+/*
+=====================================================
+MODO LANDING PAGE
+=====================================================
+*/
+
+function aplicarModoLandingPage() {
+
+    /*
+    =====================================
+    OCULTAR
+    =====================================
+    */
+
+    heroSection?.style.setProperty("display", "none");
+    topControls?.style.setProperty("display", "none");
+    activeFilters?.style.setProperty("display", "none");
+    filtrosWrapper?.style.setProperty("display", "none");
+    sectionTitle?.style.setProperty("display", "none");
+    pagination?.style.setProperty("display", "none");
+    ctaAnuncio?.style.setProperty("display", "none");
+
+}
+
+/*
+=====================================================
+RESET LAYOUT
+=====================================================
+*/
+
+function resetarLayoutPadrao() {
+
+    /*
+    =====================================
+    MOSTRAR
+    =====================================
+    */
+
+    heroSection?.style.removeProperty("display");
+    topControls?.style.removeProperty("display");
+    activeFilters?.style.removeProperty("display");
+    filtrosWrapper?.style.removeProperty("display");
+    sectionTitle?.style.removeProperty("display");
+    pagination?.style.removeProperty("display");
+    ctaAnuncio?.style.removeProperty("display");
 }

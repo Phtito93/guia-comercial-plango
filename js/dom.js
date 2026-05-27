@@ -71,3 +71,15 @@ const closeModal =
 
 const ordenar =
     document.getElementById("ordenar");
+
+/* LANDING PAGE*/
+const heroSection =
+    document.getElementById("heroSection");
+const topControls =
+    document.getElementById("topControls");
+const filtrosWrapper =
+    document.getElementById("filtrosWrapper");
+const pagination =
+    document.getElementById("pagination");
+const ctaAnuncio =
+    document.getElementById("ctaAnuncio");

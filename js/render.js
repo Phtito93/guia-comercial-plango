@@ -756,6 +756,8 @@ PÁGINA ANUNCIE
 
 function renderizarPaginaAnuncie() {
 
+    aplicarModoLandingPage();
+
     empresaGrid.innerHTML = `
 
         <section class="anuncie-page">
