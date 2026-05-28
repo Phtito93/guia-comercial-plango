@@ -9,7 +9,7 @@ function renderizarSkeleton() {
 
     let skeletonHTML = "";
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 10; i++) {
 
         skeletonHTML += `
 
@@ -47,14 +47,16 @@ function renderizarCard(empresa) {
 
     const favorito = favoritos.includes(empresa.id);
 
-    const views = empresa.views || 0;
-
     return `
         <div class="
             card ${empresa.plano === "destaque"
             ? "card-destaque"
-            : ""}
-        ">
+            : ""}"
+            data-id="${empresa.id}"
+            data-slug="${empresa.slug}"
+            role="button"
+            tabindex="0"
+        >
             <img
                 src="${empresa.imagem || '/img/placeholder.jpg'}"
     
@@ -82,24 +84,24 @@ function renderizarCard(empresa) {
                     ${empresa.plano === "destaque" ? `
 
                         <span class="premium-badge">
-                            ⭐
+                            ⭐ Premium
                         </span>
 
                     ` : ""}
 
-                    ${empresa.views >= 50 ? `
+                    ${(empresa.views || 0) >= 50 ? `
 
                         <span class="top-badge">
                             👑 Top Empresa
                         </span>
 
-                    ` : empresa.views >= 30 ? `
+                    ` : (empresa.views || 0) >= 30 ? `
 
                         <span class="high-badge">
                             🚀 Em Alta
                         </span>
 
-                    ` : empresa.views >= 10 ? `
+                    ` : (empresa.views || 0) >= 10 ? `
 
                         <span class="popular-badge">
                             🔥 Popular

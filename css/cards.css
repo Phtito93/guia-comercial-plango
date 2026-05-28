@@ -337,12 +337,29 @@ TITLE
 }
 
 .premium-badge {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 4px;
-    font-size: 20px;
-    font-weight: 700;
-    margin-left: auto;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background:
+        linear-gradient(
+            135deg,
+            #ffa600,
+            #ffd900
+        );
+    color: #615d00;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    border:
+        1px solid rgba(
+            255,
+            255,
+            255,
+            0.4
+        );
 }
 
 .popular-badge {

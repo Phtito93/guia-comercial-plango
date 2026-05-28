@@ -493,3 +493,73 @@ anuncieBtn?.addEventListener(
     }
 
 );
+
+/*
+=====================================================
+TRACKING VIEWS
+=====================================================
+*/
+
+empresaGrid?.addEventListener(
+
+    "click",
+
+    (event) => {
+
+        /*
+        =====================================
+        CARD
+        =====================================
+        */
+
+        const card =
+
+            event.target.closest(
+                ".card"
+            );
+
+        if (
+            !card
+        ) {
+
+            return;
+
+        }
+
+        /*
+        =====================================
+        IGNORA BOTÕES
+        =====================================
+        */
+
+        if (
+
+            event.target.closest(
+
+                ".favorite-btn, .contact-btn, .contact-dropdown, .contact-dropdown *"
+
+            )
+
+        ) {
+
+            return;
+
+        }
+
+        /*
+        =====================================
+        VIEW
+        =====================================
+        */
+
+        registrarView(
+
+            Number(
+                card.dataset.id
+            )
+
+        );
+
+    }
+
+);
