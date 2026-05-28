@@ -218,3 +218,118 @@ function registrarView(
     );
 
 }
+
+/*
+=====================================================
+INCREMENTAR WHATSAPP
+=====================================================
+*/
+
+async function incrementarWhatsappClicks(
+
+    empresaId
+
+) {
+
+    try {
+
+        /*
+        =====================================
+        BUSCA VALOR ATUAL
+        =====================================
+        */
+
+        const {
+
+            data,
+
+            error: erroBusca
+
+        } = await supabaseClient
+
+            .from("empresas")
+
+            .select("whatsapp_clicks")
+
+            .eq(
+                "id",
+                empresaId
+            )
+
+            .single();
+
+        /*
+        =====================================
+        ERROR
+        =====================================
+        */
+
+        if (
+            erroBusca
+        ) {
+
+            console.error(
+                erroBusca
+            );
+
+            return;
+
+        }
+
+        /*
+        =====================================
+        NOVO TOTAL
+        =====================================
+        */
+
+        const novoTotal =
+
+            (data.whatsapp_clicks || 0) + 1;
+
+        /*
+        =====================================
+        UPDATE
+        =====================================
+        */
+
+        const {
+
+            error
+
+        } = await supabaseClient
+
+            .from("empresas")
+
+            .update({
+
+                whatsapp_clicks:
+                    novoTotal
+
+            })
+
+            .eq(
+                "id",
+                empresaId
+            );
+
+        /*
+        =====================================
+        ERROR UPDATE
+        =====================================
+        */
+
+        if (
+            error
+        ) {
+
+            console.error(error);
+
+        }
+
+    } catch (erro) {
+
+        console.error(erro);
+
+    }
+
+}

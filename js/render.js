@@ -152,6 +152,7 @@ function renderizarCard(empresa) {
                                 href="${empresa.contatos?.whatsapp}"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                onclick="incrementarWhatsappClicks(${empresa.id})"
                                 >
                                 <i class="fa-brands fa-whatsapp"></i>
                                 WhatsApp
