@@ -614,7 +614,7 @@ function mostrarTooltipBadge(
     =====================================
     */
 
-    event.stopPropagation();
+    event.preventDefault();
 
     /*
     =====================================
@@ -628,7 +628,7 @@ function mostrarTooltipBadge(
 
     /*
     =====================================
-    POSIÇÃO
+    POSIÇÃO BASE
     =====================================
     */
 
@@ -636,13 +636,84 @@ function mostrarTooltipBadge(
 
         badge.getBoundingClientRect();
 
+    let left =
+
+        rect.left + rect.width / 2;
+
+    /*
+    =====================================
+    LIMITES VIEWPORT
+    =====================================
+    */
+
+    const tooltipWidth = 140;
+
+    const margin = 16;
+
+    /*
+    =====================================
+    LIMITE ESQUERDA
+    =====================================
+    */
+
+    if (
+        left < tooltipWidth / 2 + margin
+    ) {
+
+        left =
+            tooltipWidth / 2 + margin;
+
+    }
+
+    /*
+    =====================================
+    LIMITE DIREITA
+    =====================================
+    */
+
+    if (
+
+        left >
+
+        window.innerWidth -
+
+        tooltipWidth / 2 -
+
+        margin
+
+    ) {
+
+        left =
+
+            window.innerWidth -
+
+            tooltipWidth / 2 -
+
+            margin;
+
+    }
+
+    /*
+    =====================================
+    APLICA POSIÇÃO
+    =====================================
+    */
+
     badgeTooltip.style.left =
 
-        `${rect.left + rect.width / 2}px`;
+        `${left}px`;
+
+    const top =
+
+        rect.top - 45 < 16
+
+            ? rect.bottom + 12
+
+            : rect.top - 45;
 
     badgeTooltip.style.top =
 
-        `${rect.top - 45}px`;
+        `${top}px`;
 
     /*
     =====================================
@@ -688,7 +759,7 @@ CLICK DESKTOP
 =====================================================
 */
 
-document.addEventListener(
+empresaGrid?.addEventListener(
 
     "click",
 
@@ -702,7 +773,7 @@ TOUCH MOBILE
 =====================================================
 */
 
-document.addEventListener(
+empresaGrid?.addEventListener(
 
     "touchstart",
 

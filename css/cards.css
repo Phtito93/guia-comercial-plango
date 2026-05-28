@@ -346,6 +346,7 @@ BADGE TOOLTIP
     position: fixed;
     z-index: 9999;
     padding: 8px 14px;
+    max-width: 140px;
     border-radius: 10px;
     background: rgba(
         20,
@@ -356,6 +357,7 @@ BADGE TOOLTIP
     color: #fff;
     font-size: 13px;
     font-weight: 600;
+    text-align: center;
     pointer-events: none;
     opacity: 0;
     transform:
