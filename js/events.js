@@ -563,3 +563,114 @@ empresaGrid?.addEventListener(
     }
 
 );
+
+/*
+=====================================================
+BADGE TOOLTIP
+=====================================================
+*/
+
+const badgeTooltip =
+    document.getElementById(
+        "badgeTooltip"
+    );
+
+document.addEventListener(
+
+    "click",
+
+    (event) => {
+
+        const badge =
+
+            event.target.closest(
+                ".badge-icon"
+            );
+
+        if (
+            !badge
+        ) {
+
+            return;
+
+        }
+
+        /*
+        =====================================
+        TEXTO
+        =====================================
+        */
+
+        badgeTooltip.textContent =
+
+            badge.dataset.tooltip;
+
+        const rect = badge.getBoundingClientRect();
+
+        /*
+        =====================================
+        POSIÇÃO
+        =====================================
+        */
+
+        badgeTooltip.style.left =
+
+            `${rect.left + rect.width / 2}px`;
+
+        badgeTooltip.style.top =
+
+            `${rect.top - 45}px`;
+
+        /*
+        =====================================
+        SHOW
+        =====================================
+        */
+
+        badgeTooltip.classList.add(
+            "show"
+        );
+
+        /*
+        =====================================
+        HIDE
+        =====================================
+        */
+
+        clearTimeout(
+            window.badgeTooltipTimeout
+        );
+
+        window.badgeTooltipTimeout =
+
+            setTimeout(() => {
+
+                badgeTooltip.classList.remove(
+                    "show"
+                );
+
+            }, 1800);
+
+    }
+
+);
+
+/*
+=====================================================
+OCULTAR TOOLTIP NO SCROLL
+=====================================================
+*/
+
+window.addEventListener(
+
+    "scroll",
+
+    () => {
+
+        badgeTooltip.classList.remove(
+            "show"
+        );
+
+    }
+
+);

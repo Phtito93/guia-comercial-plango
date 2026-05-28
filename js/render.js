@@ -81,33 +81,48 @@ function renderizarCard(empresa) {
 
                     </div>
 
-                    ${empresa.plano === "destaque" ? `
+                    <div class="badges-wrapper">
 
-                        <span class="premium-badge">
-                            ⭐ Premium
-                        </span>
+                        ${empresa.plano === "destaque" ? `
 
-                    ` : ""}
+                            <span
+                                class="premium-badge badge-icon"
+                                data-tooltip="Empresa Premium"
+                            >
+                                ⭐
+                            </span>
 
-                    ${(empresa.views || 0) >= 50 ? `
+                        ` : ""}
 
-                        <span class="top-badge">
-                            👑 Top Empresa
-                        </span>
+                        ${(empresa.views || 0) >= 50 ? `
 
-                    ` : (empresa.views || 0) >= 30 ? `
+                            <span
+                                class="top-badge badge-icon"
+                                data-tooltip="Top Empresa"
+                            >
+                                👑
+                            </span>
 
-                        <span class="high-badge">
-                            🚀 Em Alta
-                        </span>
+                        ` : (empresa.views || 0) >= 30 ? `
 
-                    ` : (empresa.views || 0) >= 10 ? `
+                            <span
+                                class="high-badge badge-icon"
+                                data-tooltip="Em Alta"
+                            >
+                                🚀
+                            </span>
 
-                        <span class="popular-badge">
-                            🔥 Popular
-                        </span>
+                        ` : (empresa.views || 0) >= 10 ? `
 
-                    ` : ""}
+                            <span
+                                class="popular-badge badge-icon"
+                                data-tooltip="Popular"
+                            >
+                                🔥
+                            </span>
+
+                         ` : ""}
+                    </div>
 
                 </div>
 
