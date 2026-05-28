@@ -571,86 +571,145 @@ BADGE TOOLTIP
 */
 
 const badgeTooltip =
+
     document.getElementById(
         "badgeTooltip"
     );
+
+/*
+=====================================================
+MOSTRAR TOOLTIP
+=====================================================
+*/
+
+function mostrarTooltipBadge(
+
+    event
+
+) {
+
+    /*
+    =====================================
+    BADGE
+    =====================================
+    */
+
+    const badge =
+
+        event.target.closest(
+            ".badge-icon"
+        );
+
+    if (
+        !badge
+    ) {
+
+        return;
+
+    }
+
+    /*
+    =====================================
+    EVITA DUPLO TOUCH
+    =====================================
+    */
+
+    event.stopPropagation();
+
+    /*
+    =====================================
+    TEXTO
+    =====================================
+    */
+
+    badgeTooltip.textContent =
+
+        badge.dataset.tooltip;
+
+    /*
+    =====================================
+    POSIÇÃO
+    =====================================
+    */
+
+    const rect =
+
+        badge.getBoundingClientRect();
+
+    badgeTooltip.style.left =
+
+        `${rect.left + rect.width / 2}px`;
+
+    badgeTooltip.style.top =
+
+        `${rect.top - 45}px`;
+
+    /*
+    =====================================
+    SHOW
+    =====================================
+    */
+
+    badgeTooltip.classList.add(
+        "show"
+    );
+
+    /*
+    =====================================
+    RESET TIMER
+    =====================================
+    */
+
+    clearTimeout(
+        window.badgeTooltipTimeout
+    );
+
+    /*
+    =====================================
+    AUTO HIDE
+    =====================================
+    */
+
+    window.badgeTooltipTimeout =
+
+        setTimeout(() => {
+
+            badgeTooltip.classList.remove(
+                "show"
+            );
+
+        }, 1800);
+
+}
+
+/*
+=====================================================
+CLICK DESKTOP
+=====================================================
+*/
 
 document.addEventListener(
 
     "click",
 
-    (event) => {
+    mostrarTooltipBadge
 
-        const badge =
+);
 
-            event.target.closest(
-                ".badge-icon"
-            );
+/*
+=====================================================
+TOUCH MOBILE
+=====================================================
+*/
 
-        if (
-            !badge
-        ) {
+document.addEventListener(
 
-            return;
+    "touchstart",
 
-        }
+    mostrarTooltipBadge,
 
-        /*
-        =====================================
-        TEXTO
-        =====================================
-        */
-
-        badgeTooltip.textContent =
-
-            badge.dataset.tooltip;
-
-        const rect = badge.getBoundingClientRect();
-
-        /*
-        =====================================
-        POSIÇÃO
-        =====================================
-        */
-
-        badgeTooltip.style.left =
-
-            `${rect.left + rect.width / 2}px`;
-
-        badgeTooltip.style.top =
-
-            `${rect.top - 45}px`;
-
-        /*
-        =====================================
-        SHOW
-        =====================================
-        */
-
-        badgeTooltip.classList.add(
-            "show"
-        );
-
-        /*
-        =====================================
-        HIDE
-        =====================================
-        */
-
-        clearTimeout(
-            window.badgeTooltipTimeout
-        );
-
-        window.badgeTooltipTimeout =
-
-            setTimeout(() => {
-
-                badgeTooltip.classList.remove(
-                    "show"
-                );
-
-            }, 1800);
-
+    {
+        passive: true
     }
 
 );
@@ -670,6 +729,36 @@ window.addEventListener(
         badgeTooltip.classList.remove(
             "show"
         );
+
+    }
+
+);
+
+/*
+=====================================================
+OCULTAR AO CLICAR FORA
+=====================================================
+*/
+
+document.addEventListener(
+
+    "click",
+
+    (event) => {
+
+        if (
+
+            !event.target.closest(
+                ".badge-icon"
+            )
+
+        ) {
+
+            badgeTooltip.classList.remove(
+                "show"
+            );
+
+        }
 
     }
 

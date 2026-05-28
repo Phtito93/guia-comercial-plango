@@ -351,7 +351,7 @@ BADGE TOOLTIP
         20,
         20,
         20,
-        0.95
+        0.96
     );
     color: #fff;
     font-size: 13px;
@@ -373,15 +373,20 @@ BADGE TOOLTIP
             0,
             0.2
         );
-
+    white-space: nowrap;
 }
+
+/*
+=====================================================
+SHOW
+=====================================================
+*/
 
 #badgeTooltip.show {
     opacity: 1;
     transform:
         translateX(-50%)
         translateY(0);
-
 }
 
 /*
@@ -392,6 +397,7 @@ BADGE ICON
 
 .badge-icon {
     cursor: pointer;
+    touch-action: manipulation;
     transition:
         transform 0.2s ease;
 }
