@@ -18,17 +18,49 @@ async function carregarEmpresas() {
 
         /*
         =====================================
-        FETCH
+        SUPABASE
         =====================================
         */
 
-        const response = await fetch(API_EMPRESAS);
+        const {
 
-        await new Promise((resolve) => {
-            setTimeout(resolve, 1200);
-        }); 
+            data,
 
-        empresas = await response.json();
+            error
+
+        } = await supabaseClient
+
+            .from("empresas")
+
+            .select("*");
+
+        /*
+        =====================================
+        ERROR
+        =====================================
+        */
+
+        if (
+            error
+        ) {
+
+            console.error(error);
+
+            mostrarToast(
+                "Erro ao carregar empresas"
+            );
+
+            return;
+
+        }
+
+        /*
+        =====================================
+        DATA
+        =====================================
+        */
+
+        empresas = data || [];
 
         /*
         =====================================
