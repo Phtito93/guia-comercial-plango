@@ -6,10 +6,15 @@ CARDS
 */
 
 .empresa-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-    gap: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 30px;
+
     padding: 20px;
+
 }
 
 .card {
@@ -25,6 +30,9 @@ CARDS
     opacity: 0;
     animation:
         fadeUp 0.5s ease forwards;
+    max-width: 480px;
+    width: 100%;
+    margin:0 auto;
 }
 
 .card:hover {
@@ -208,20 +216,16 @@ TITLE
 
 .premium-section {
 
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
 }
 
-.premium-header {
-
+.premium-header,
+.normal-header {
     display: flex;
-
+    justify-content: center;
     align-items: center;
-
-    justify-content: space-between;
-
     margin-bottom: 20px;
-
 }
 
 .premium-header span {
@@ -250,14 +254,15 @@ TITLE
 
 }
 
-.premium-grid {
+.premium-grid,
+.normal-grid {
 
     display: grid;
 
     grid-template-columns:
         repeat(
             auto-fit,
-            minmax(320px, 1fr)
+            minmax(340px, 1fr)
         );
 
     gap: 20px;
@@ -267,16 +272,6 @@ TITLE
 .normal-section {
 
     margin-top: 20px;
-
-}
-
-.normal-header {
-
-    display: flex;
-
-    align-items: center;
-
-    margin-bottom: 20px;
 
 }
 
@@ -303,20 +298,6 @@ TITLE
     font-size: 14px;
 
     font-weight: 700;
-
-}
-
-.normal-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(320px, 1fr)
-        );
-
-    gap: 20px;
 
 }
 

@@ -18,10 +18,6 @@ RESPONSIVIDADE
 
 @media (min-width: 768px) {
 
-    .empresa-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
     .top-controls {
         flex-direction: row;
         align-items: center;
@@ -55,12 +51,6 @@ RESPONSIVIDADE
         width: 100%;
     }
 
-    .premium-grid,
-    .normal-grid {
-
-        grid-template-columns:
-            1fr;
-    }
 }
 
 @media (min-width: 1024px) {
