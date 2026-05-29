@@ -39,7 +39,15 @@ ROUTER
 =====================================================
 */
 
-function aplicarRota() {
+async function aplicarRota() {
+
+    /*
+    =====================================
+    REFRESH DADOS
+    =====================================
+    */
+
+    await atualizarEmpresas();
     
     /*
     =====================================
@@ -87,6 +95,8 @@ function aplicarRota() {
     if (
         path !== "/favoritos"
     ) {
+
+        somenteFavoritos = false;
 
         favoritosBtn?.classList.remove(
             "active"
@@ -234,20 +244,6 @@ function aplicarRota() {
     }
 
     /*
-    =====================================================
-    BACK / FORWARD
-    =====================================================
-    */
-
-    window.addEventListener(
-
-        "popstate",
-
-        aplicarRota
-
-    );
-
-    /*
     =====================================
     ANUNCIE
     =====================================
@@ -267,3 +263,14 @@ function aplicarRota() {
 
 }
 
+/*
+=====================================================
+BACK / FORWARD
+=====================================================
+*/
+
+window.addEventListener(
+
+    "popstate",
+        aplicarRota
+);

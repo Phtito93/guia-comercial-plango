@@ -333,3 +333,63 @@ async function incrementarWhatsappClicks(
     }
 
 }
+
+/*
+=====================================================
+ATUALIZAR EMPRESAS
+=====================================================
+*/
+
+async function atualizarEmpresas() {
+
+    try {
+
+        /*
+        =====================================
+        SUPABASE
+        =====================================
+        */
+
+        const {
+
+            data,
+
+            error
+
+        } = await supabaseClient
+
+            .from("empresas")
+
+            .select("*");
+
+        /*
+        =====================================
+        ERROR
+        =====================================
+        */
+
+        if (
+            error
+        ) {
+
+            console.error(error);
+
+            return;
+
+        }
+
+        /*
+        =====================================
+        UPDATE MEMORY
+        =====================================
+        */
+
+        empresas = data || [];
+
+    } catch (erro) {
+
+        console.error(erro);
+
+    }
+
+}
