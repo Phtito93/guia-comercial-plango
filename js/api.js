@@ -74,11 +74,11 @@ async function carregarEmpresas() {
         =====================================
         HOME INICIAL
         =====================================
-        */
+    
 
         estado.modo = "home";
 
-        atualizarInterface();
+        atualizarInterface();*/
 
     } catch (erro) {
 
