@@ -45,7 +45,7 @@ async function iniciarApp() {
     =====================================
     */
 
-    aplicarRota();
+    await aplicarRota();
 
     /*
     =====================================

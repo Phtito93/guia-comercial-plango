@@ -23,6 +23,11 @@ function navegar(url) {
 
     );
 
+    window.scrollTo(
+        0,
+        0
+    );
+
     /*
     =====================================
     APPLY
@@ -238,6 +243,25 @@ async function aplicarRota() {
         );
 
         atualizarInterface();
+
+        return;
+
+    }
+
+    /*
+    =====================================
+    ADMIN
+    =====================================
+    */
+
+    if (
+        path === "/admin"
+    ) {
+
+        estado.modo =
+            "admin";
+
+        renderizarDashboardAdmin();
 
         return;
 

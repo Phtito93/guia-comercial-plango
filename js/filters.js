@@ -206,7 +206,11 @@ ATUALIZAR INTERFACE
 function atualizarInterface() {
 
     if (
-        estado.modo !== "anuncie"
+
+        !["anuncie", "admin"].includes(
+            estado.modo
+        )
+
     ) {
 
         resetarLayoutPadrao();

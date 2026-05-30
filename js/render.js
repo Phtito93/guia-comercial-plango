@@ -770,6 +770,94 @@ function renderizarContatosUteis() {
 
 /*
 =====================================================
+DASHBOARD ADMIN
+=====================================================
+*/
+
+function renderizarDashboardAdmin() {
+
+    aplicarModoLandingPage();
+
+    const topEmpresas =
+
+        [...empresas]
+
+            .sort(
+
+                (a, b) =>
+
+                    calcularScore(b)
+
+                    -
+
+                    calcularScore(a)
+
+            )
+
+            .slice(0, 10);
+
+    empresaGrid.innerHTML = `
+
+        <section class="admin-dashboard">
+
+            <h2>
+                📊 Dashboard Admin
+            </h2>
+
+            <div class="admin-cards">
+
+                <div class="admin-stat">
+
+                    <span>
+                        Empresas
+                    </span>
+
+                    <strong>
+                        ${empresas.length}
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <div class="admin-ranking">
+
+                ${topEmpresas.map(
+
+                    (empresa, index) => `
+
+                        <div class="admin-item">
+
+                            <span>
+
+                                #${index + 1}
+
+                                ${empresa.nome}
+
+                            </span>
+
+                            <strong>
+
+                                ${calcularScore(
+                                    empresa
+                                )}
+
+                            </strong>
+
+                        </div>
+
+                    `
+
+                ).join("")}
+
+            </div>
+
+        </section>
+    `;
+}
+
+/*
+=====================================================
 PÁGINA ANUNCIE
 =====================================================
 */

@@ -456,6 +456,22 @@ mobileMenu.addEventListener("touchend", (e) => {
     }
 });
 
+mobileAdminBtn?.addEventListener(
+
+    "click",
+
+    (event) => {
+
+        event.preventDefault();
+
+        fecharMenu();
+
+        navegar("/admin");
+
+    }
+
+);
+
 /*
 =====================================================
 ANUNCIE

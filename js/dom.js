@@ -53,6 +53,9 @@ const submenuCategorias =
 const mobileHomeBtn =
     document.getElementById("mobileHomeBtn");
 
+const mobileAdminBtn =  
+    document.getElementById("mobileAdminBtn");
+
 const mobileAnuncieBtn =
     document.getElementById("mobileAnuncieBtn");
 

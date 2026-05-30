@@ -125,3 +125,71 @@ BUSCA E CONTROLES
     transform:
         translateY(-2px);
 }
+
+.admin-dashboard {
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 20px;
+
+}
+
+.admin-cards {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(
+                200px,
+                1fr
+            )
+        );
+
+    gap: 20px;
+
+    margin: 20px 0;
+
+}
+
+.admin-stat {
+
+    background:
+        var(--card-bg);
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+    text-align: center;
+
+}
+
+.admin-ranking {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+.admin-item {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    padding: 12px;
+
+    background:
+        var(--card-bg);
+
+    border-radius: 10px;
+
+}
