@@ -51,7 +51,7 @@ EMPRESA NOVA
 function empresaNova(empresa) {
 
     if (
-        !empresa.createdAt
+        !empresa.created_at
     ) {
 
         return false;
@@ -61,7 +61,7 @@ function empresaNova(empresa) {
     const dataCadastro =
 
         new Date(
-            empresa.createdAt
+            empresa.created_at
         );
 
     const hoje =
