@@ -572,7 +572,7 @@ function renderizarFiltros(lista) {
                     categoria === "todos"
                 ) {
 
-                    navegar("/");
+                    voltarHome();
 
                     return;
 
