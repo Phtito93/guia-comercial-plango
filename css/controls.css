@@ -128,7 +128,7 @@ BUSCA E CONTROLES
 
 .admin-dashboard {
 
-    max-width: 1200px;
+    max-width: 1400px;
 
     margin: 0 auto;
 
@@ -195,7 +195,7 @@ BUSCA E CONTROLES
         repeat(
             auto-fit,
             minmax(
-                280px,
+                320px,
                 1fr
             )
         );
