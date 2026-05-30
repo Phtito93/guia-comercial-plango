@@ -223,7 +223,8 @@ function atualizarInterface() {
     =====================================
     */
 
-    mostrarSkeleton();
+    /*mostrarSkeleton();*/
+    renderizarSkeleton();
 
     /*
     =====================================

@@ -9,31 +9,71 @@ function renderizarSkeleton() {
 
     let skeletonHTML = "";
 
-    for (let i = 0; i < 10; i++) {
+    for (
+        let i = 0;
+        i < 10;
+        i++
+    ) {
 
         skeletonHTML += `
 
             <div class="card skeleton-card">
 
-                <div class="skeleton skeleton-image"></div>
+                <div
+                    class="
+                        skeleton
+                        skeleton-image
+                    "
+                ></div>
 
                 <div class="card-content">
 
-                    <div class="skeleton skeleton-category"></div>
+                    <div
+                        class="
+                            skeleton
+                            skeleton-category
+                        "
+                    ></div>
 
-                    <div class="skeleton skeleton-title"></div>
+                    <div
+                        class="
+                            skeleton
+                            skeleton-title
+                        "
+                    ></div>
 
-                    <div class="skeleton skeleton-text"></div>
+                    <div
+                        class="
+                            skeleton
+                            skeleton-text
+                        "
+                    ></div>
 
-                    <div class="skeleton skeleton-button"></div>
+                    <div
+                        class="
+                            skeleton
+                            skeleton-button
+                        "
+                    ></div>
 
                 </div>
 
             </div>
+
         `;
+
     }
 
-    empresaGrid.innerHTML = skeletonHTML;
+    empresaGrid.innerHTML = `
+
+        <div class="normal-grid">
+
+            ${skeletonHTML}
+
+        </div>
+
+    `;
+
 }
 
 /*
