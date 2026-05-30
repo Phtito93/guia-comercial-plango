@@ -728,6 +728,12 @@ VOLTAR HOME
 
 function voltarHome() {
 
+    history.pushState(
+        {},
+        "",
+        "/"
+    );
+
     /*
     =====================================
     RESET ESTADO
