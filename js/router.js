@@ -46,6 +46,11 @@ ROUTER
 
 async function aplicarRota() {
 
+    console.log(
+        "PATH:",
+        window.location.pathname
+    );
+
     /*
     =====================================
     REFRESH DADOS
@@ -258,6 +263,10 @@ async function aplicarRota() {
         path === "/admin"
     ) {
 
+        console.log(
+            "ENTROU ADMIN"
+        );
+
         estado.modo =
             "admin";
 
@@ -276,6 +285,10 @@ async function aplicarRota() {
     if (
         path === "/anuncie"
     ) {
+
+        console.log(
+            "ENTROU ANUNCIE"
+        );
 
         estado.modo =
             "anuncie";
