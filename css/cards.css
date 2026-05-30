@@ -378,7 +378,7 @@ BADGE ICON
 =====================================================
 */
 
-.badge-icon {
+.-icon {
     cursor: pointer;
     touch-action: manipulation;
     transition:
@@ -407,7 +407,8 @@ BADGES WRAPPER
 .premium-badge,
 .popular-badge,
 .high-badge,
-.top-badge {
+.top-badge,
+.new-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -437,4 +438,8 @@ BADGES WRAPPER
 
 .top-badge {
     background: #ede9fe;
+}
+
+.new-badge {
+    background: #dcfce7;
 }

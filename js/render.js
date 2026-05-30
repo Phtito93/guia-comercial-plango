@@ -89,6 +89,8 @@ function renderizarCard(empresa) {
 
     const score = calcularScore(empresa);
 
+    const nova = empresaNova(empresa);
+
     return `
         <div class="
             card ${empresa.plano === "destaque"
@@ -161,6 +163,19 @@ function renderizarCard(empresa) {
                                 data-tooltip="Empresa Popular"
                             >
                                 🔥
+                            </span>
+
+                        ` : ""}
+
+                        ${nova ? `
+
+                            <span
+                                class="new-badge badge-icon"
+                                data-tooltip="
+                                    Empresa cadastrada recentemente
+                                "
+                            >
+                                🆕
                             </span>
 
                         ` : ""}
