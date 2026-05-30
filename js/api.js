@@ -60,7 +60,23 @@ async function carregarEmpresas() {
         =====================================
         */
 
-        empresas = data || [];
+        empresas =
+
+            (data || []).map(
+
+                (empresa) => ({
+
+                    ...empresa,
+
+                    createdAt:
+                        empresa.created_at,
+
+                    whatsappClicks:
+                        empresa.whatsapp_clicks
+
+                })
+
+            );
 
         /*
         =====================================
@@ -384,7 +400,23 @@ async function atualizarEmpresas() {
         =====================================
         */
 
-        empresas = data || [];
+        empresas =
+
+            (data || []).map(
+
+                (empresa) => ({
+
+                    ...empresa,
+
+                    createdAt:
+                        empresa.created_at,
+
+                    whatsappClicks:
+                        empresa.whatsapp_clicks
+
+                })
+
+            );
 
     } catch (erro) {
 

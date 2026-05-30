@@ -33,7 +33,7 @@ function calcularScore(
 
         (
 
-            (empresa.whatsapp_clicks || 0)
+            (empresa.whatsappClicks || 0)
 
             * 5
 
@@ -51,7 +51,7 @@ EMPRESA NOVA
 function empresaNova(empresa) {
 
     if (
-        !empresa.created_at
+        !empresa.createdAt
     ) {
 
         return false;
@@ -61,7 +61,7 @@ function empresaNova(empresa) {
     const dataCadastro =
 
         new Date(
-            empresa.created_at
+            empresa.createdAt
         );
 
     const hoje =

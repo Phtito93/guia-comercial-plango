@@ -873,7 +873,7 @@ function renderizarDashboardAdmin() {
 
                 (
 
-                    empresa.whatsapp_clicks
+                    empresa.whatsappClicks
 
                     ||
 
@@ -982,7 +982,7 @@ function renderizarDashboardAdmin() {
                             <p>
 
                                 📲 WhatsApp:
-                                ${empresa.whatsapp_clicks || 0}
+                                ${empresa.whatsappClicks || 0}
 
                             </p>
 
