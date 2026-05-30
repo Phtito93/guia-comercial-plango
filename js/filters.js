@@ -532,11 +532,11 @@ function atualizarInterface() {
 
             return (
 
-                (b.views || 0)
+                calcularScore(b)
 
                 -
 
-                (a.views || 0)
+                calcularScore(a)
 
             );
 

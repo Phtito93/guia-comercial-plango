@@ -47,6 +47,8 @@ function renderizarCard(empresa) {
 
     const favorito = favoritos.includes(empresa.id);
 
+    const score = calcularScore(empresa);
+
     return `
         <div class="
             card ${empresa.plano === "destaque"
@@ -94,34 +96,34 @@ function renderizarCard(empresa) {
 
                         ` : ""}
 
-                        ${(empresa.views || 0) >= 50 ? `
+                        ${score >= 150 ? `
 
                             <span
                                 class="top-badge badge-icon"
-                                data-tooltip="Top Empresa"
+                                data-tooltip="Top Empresa do Guia"
                             >
                                 👑
                             </span>
 
-                        ` : (empresa.views || 0) >= 30 ? `
+                        ` : score >= 80 ? `
 
                             <span
                                 class="high-badge badge-icon"
-                                data-tooltip="Em Alta"
+                                data-tooltip="Empresa em Alta"
                             >
                                 🚀
                             </span>
 
-                        ` : (empresa.views || 0) >= 10 ? `
+                        ` : score >= 30 ? `
 
                             <span
                                 class="popular-badge badge-icon"
-                                data-tooltip="Popular"
+                                data-tooltip="Empresa Popular"
                             >
                                 🔥
                             </span>
 
-                         ` : ""}
+                        ` : ""}
                     </div>
 
                 </div>
