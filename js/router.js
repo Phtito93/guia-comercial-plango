@@ -80,17 +80,10 @@ async function aplicarRota() {
         path === "/index.html"
     ) {
 
-        if (
-            estado.modo !== "home"
-            ||
-            estado.filtroHome
-            ||
-            somenteFavoritos
-        ) {
+        estado.modo =
+            "home";
 
-            voltarHome();
-
-        }
+        atualizarInterface();
 
         return;
 
