@@ -909,25 +909,45 @@ function renderizarDashboardAdmin() {
 
                     (empresa, index) => `
 
-                        <div class="admin-item">
+                        <div class="admin-ranking-card">
 
-                            <span>
+                            <h3>
 
-                                #${index + 1}
+                                🏆 #${index + 1}
 
                                 ${empresa.nome}
 
-                            </span>
+                            </h3>
 
-                            <strong>
+                            <p>
+
+                                👁️ Views:
+                                ${empresa.views || 0}
+
+                            </p>
+
+                            <p>
+
+                                📲 WhatsApp:
+                                ${empresa.whatsapp_clicks || 0}
+
+                            </p>
+
+                            <p>
+
+                                ⭐ Plano:
+                                ${empresa.plano}
+
+                            </p>
+
+                            <div class="admin-score">
 
                                 Score:
-
                                 ${calcularScore(
                                     empresa
                                 )}
 
-                            </strong>
+                            </div>
 
                         </div>
 
