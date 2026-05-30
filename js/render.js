@@ -171,9 +171,7 @@ function renderizarCard(empresa) {
 
                             <span
                                 class="new-badge badge-icon"
-                                data-tooltip="
-                                    Empresa cadastrada recentemente
-                                "
+                                data-tooltip="Nova no Guia"
                             >
                                 🆕
                             </span>
