@@ -796,6 +796,53 @@ function renderizarDashboardAdmin() {
 
             .slice(0, 10);
 
+    const totalViews =
+
+        empresas.reduce(
+
+            (total, empresa) =>
+
+                total +
+
+                (empresa.views || 0),
+
+            0
+
+        );
+
+    const totalWhatsapp =
+
+        empresas.reduce(
+
+            (total, empresa) =>
+
+                total +
+
+                (
+
+                    empresa.whatsapp_clicks
+
+                    ||
+
+                    0
+
+                ),
+
+            0
+
+        );
+
+    const totalPremium =
+
+        empresas.filter(
+
+            (empresa) =>
+
+                empresa.plano ===
+                "destaque"
+
+        ).length;
+
     empresaGrid.innerHTML = `
 
         <section class="admin-dashboard">
@@ -809,7 +856,43 @@ function renderizarDashboardAdmin() {
                 <div class="admin-stat">
 
                     <span>
-                        Empresas
+                        👁️ Views
+                    </span>
+
+                    <strong>
+                        ${totalViews}
+                    </strong>
+
+                </div>
+
+                <div class="admin-stat">
+
+                    <span>
+                        📲 WhatsApp
+                    </span>
+
+                    <strong>
+                        ${totalWhatsapp}
+                    </strong>
+
+                </div>
+
+                <div class="admin-stat">
+
+                    <span>
+                        ⭐ Premium
+                    </span>
+
+                    <strong>
+                        ${totalPremium}
+                    </strong>
+
+                </div>
+
+                <div class="admin-stat">
+
+                    <span>
+                        🏢 Empresas
                     </span>
 
                     <strong>
@@ -837,6 +920,8 @@ function renderizarDashboardAdmin() {
                             </span>
 
                             <strong>
+
+                                Score:
 
                                 ${calcularScore(
                                     empresa

@@ -168,6 +168,25 @@ BUSCA E CONTROLES
 
 }
 
+.admin-stat strong {
+
+    display: block;
+
+    margin-top: 10px;
+
+    font-size: 18px;
+
+}
+
+.admin-stat span {
+
+    color:
+        var(--gray-medium);
+
+    font-size: 16px;
+
+}
+
 .admin-ranking {
 
     display: flex;
