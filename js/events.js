@@ -379,7 +379,11 @@ EVENTOS - HOME
 =====================================================
 */
 
-homeBtn.addEventListener("click", () => {navegar("/");});
+homeBtn.addEventListener("click", () => {
+    
+    voltarHome();
+    /*navegar("/");*/
+});
 
 /*
 =====================================================
@@ -390,7 +394,9 @@ EVENTOS - HOME MOBILE
 mobileHomeBtn.addEventListener("click", (event) => {
         event.preventDefault();
         
-        navegar("/");
+
+        voltarHome();
+        /*navegar("/");*/
 
         fecharMenu();
     }

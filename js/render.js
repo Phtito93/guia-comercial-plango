@@ -1235,7 +1235,8 @@ function renderizarEmptyState() {
     document
         .getElementById("emptyHomeBtn")
         .addEventListener("click", () => {
-            navegar("/");
+            voltarHome();
+            /*navegar("/");*/
         });
 }
 
