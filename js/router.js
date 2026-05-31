@@ -248,6 +248,44 @@ async function aplicarRota() {
 
     /*
     =====================================
+    POLÍTICA DE PRIVACIDADE
+    =====================================
+    */
+
+    if (
+        path === "/politica-de-privacidade"
+    ) {
+
+        estado.modo =
+            "privacidade";
+
+        renderizarPoliticaPrivacidade();
+
+        return;
+
+    }
+
+    /*
+    =====================================
+    TERMOS DE USO
+    =====================================
+    */
+
+    if (
+        path === "/termos-de-uso"
+    ) {
+
+        estado.modo =
+            "termos";
+
+        renderizarTermosUso();
+
+        return;
+
+    }
+
+    /*
+    =====================================
     ADMIN
     =====================================
     */
