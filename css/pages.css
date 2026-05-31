@@ -6,6 +6,10 @@
 
     padding: 30px 20px;
 
+    font-size: 16px;
+
+    line-height: 1.8;
+
 }
 
 .legal-page h1 {
@@ -16,16 +20,45 @@
 
 .legal-page h2 {
 
-    margin-top: 30px;
+    margin-top: 36px;
 
-    margin-bottom: 10px;
+    margin-bottom: 16px;
+
+    border-bottom:
+        1px solid rgba(
+            255,
+            255,
+            255,
+            .08
+        );
+
+    padding-bottom: 8px;
 
 }
 
-.legal-page p,
+.legal-page p {
+
+    line-height: 1.8;
+
+    margin-bottom: 16px;
+
+    color: var(--text-color);
+
+}
+
+.legal-page ul {
+
+    margin: 16px 0;
+
+    padding-left: 24px;
+
+}
+
 .legal-page li {
 
     line-height: 1.8;
+
+    margin-bottom: 10px;
 
     color: var(--text-color);
 
