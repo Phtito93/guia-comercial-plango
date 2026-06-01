@@ -916,7 +916,7 @@ function renderizarPaginaAnuncie() {
                     <div class="plano-card">
 
                         <span class="plano-badge">
-                            Plano Presença
+                            📍 Plano Presença
                         </span>
 
                         <h3>
@@ -925,19 +925,23 @@ function renderizarPaginaAnuncie() {
 
                         <ul>
                             <li>
-                                ✔ Empresa listada
+                                ✔ Perfil da empresa
                             </li>
 
                             <li>
-                                ✔ WhatsApp
+                                ✔ WhatsApp direto
                             </li>
 
                             <li>
-                                ✔ Instagram
+                                ✔ Redes sociais
                             </li>
 
                             <li>
-                                ✔ Busca
+                                ✔ Exibição nas categorias
+                            </li>
+
+                            <li>
+                                ✔ Participação nas buscas
                             </li>
                         </ul>
 
@@ -955,26 +959,151 @@ function renderizarPaginaAnuncie() {
                         </h3>
 
                         <ul>
+
                             <li>
-                                ⭐ Card Premium
+                                ⭐ Tudo do Plano Presença
                             </li>
 
                             <li>
-                                ⭐ Topo categorias
+                                ⭐ Destaque visual exclusivo
                             </li>
 
                             <li>
-                                ⭐ Destaque Home
+                                ⭐ Badge Premium
                             </li>
 
                             <li>
-                                ⭐ Prioridade busca
+                                ⭐ Prioridade nas pesquisas
+                            </li>
+
+                            <li>
+                                ⭐ Maior visibilidade local
                             </li>
                         </ul>
 
                     </div>
 
                 </div>
+
+            </section>
+
+            <!-- FORMULÁRIO -->
+
+            <section class="lead-section">
+
+                <div class="section-title">
+
+                    <h2>
+                        Solicite seu cadastro
+                    </h2>
+
+                    <p>
+                        Preencha os dados abaixo
+                        e entraremos em contato.
+                    </p>
+
+                </div>
+
+                <form id="leadForm">
+
+                    <input
+                        type="hidden"
+                        id="leadOrigem"
+                        value="pagina-anuncie"
+                    >
+
+                    <input
+                        type="text"
+                        id="leadNome"
+                        placeholder="Seu nome"
+                        required
+                    >
+
+                    <input
+                        type="text"
+                        id="leadEmpresa"
+                        placeholder="Nome da empresa"
+                        required
+                    >
+
+                    <input
+                        type="tel"
+                        id="leadTelefone"
+                        placeholder="WhatsApp - 61999999999"
+                        minlength="10"
+                        required
+                    >
+
+                    <input
+                        type="email"
+                        id="leadEmail"
+                        placeholder="E-mail (opcional)"
+                    >
+
+                    <select
+                        id="leadPlano"
+                        required
+                    >
+
+                        <option value="">
+                            Qual plano deseja?
+                        </option>
+
+                        <option value="presenca">
+                            Plano Presença
+                        </option>
+
+                        <option value="destaque">
+                            Plano Destaque
+                        </option>
+
+                    </select>
+
+                    <textarea
+                        id="leadMensagem"
+                        rows="4"
+                        placeholder="
+                            Conte um pouco sobre
+                            sua empresa...
+                        "
+                    ></textarea>
+
+                    <label class="lead-consent">
+
+                        <input
+                            type="checkbox"
+                            id="leadConsent"
+                            required
+                        >
+
+                        <span>
+                            Li e concordo com a
+
+                            <a
+                                href="#"
+                                onclick="
+                                    navegar(
+                                        '/politica-de-privacidade'
+                                    )
+                                "
+                            >
+                                Política de Privacidade
+                            </a>
+
+                        </span>
+
+                    </label>
+
+                    <button
+                        type="submit"
+                        class="anuncie-cta"
+                    >
+
+                        📩 Solicitar Contato
+
+                    </button>
+
+                </form>
 
             </section>
             
@@ -997,7 +1126,21 @@ function renderizarPaginaAnuncie() {
 
         </section>
     `;
-}            
+
+    document
+
+        .getElementById(
+            "leadForm"
+        )
+
+        ?.addEventListener(
+
+            "submit",
+
+            salvarLead
+
+        );
+}     
 
 /*
 =====================================================

@@ -6,3 +6,6 @@ Thumbs.db
 
 backup/
 temp/
+
+node_modules
+.env

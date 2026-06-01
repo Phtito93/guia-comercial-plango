@@ -106,6 +106,14 @@ HERO
 
 }
 
+.anuncie-cta:disabled {
+
+    opacity: .7;
+
+    cursor: not-allowed;
+
+}
+
 /*
 =====================================================
 SECTIONS
@@ -263,6 +271,121 @@ PLANO DESTAQUE
     gap: 14px;
 
     list-style: none;
+
+}
+
+/*
+=====================================================
+LEADS
+=====================================================
+*/
+
+.lead-section {
+
+    margin-top: 60px;
+
+}
+
+#leadForm {
+
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+}
+
+#leadForm input,
+#leadForm select,
+#leadForm textarea {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid rgba(
+            255,
+            255,
+            255,
+            .08
+        );
+
+    background:
+        var(--card-bg);
+
+    color:
+        var(--text-color);
+
+    font-size: 15px;
+
+}
+
+#leadForm textarea {
+
+    resize: vertical;
+
+}
+
+/*
+=====================================================
+LGPD
+=====================================================
+*/
+
+.lead-consent {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    font-size: 14px;
+
+    color: var(--gray-medium);
+
+    line-height: 1.5;
+
+}
+
+.lead-consent input {
+
+    width: auto;
+
+    margin: 0;
+
+    padding: 0;
+
+    cursor: pointer;
+
+}
+
+.lead-consent span {
+
+    margin: 0;
+
+}
+
+.lead-consent a {
+
+    color:
+        var(--primary-color);
+
+    text-decoration: none;
+
+}
+
+.lead-consent a:hover {
+
+    text-decoration: underline;
 
 }
 
