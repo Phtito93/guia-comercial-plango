@@ -328,9 +328,24 @@ LEADS
 
 }
 
+
 #leadForm textarea {
 
     resize: vertical;
+
+    min-height: 120px;
+
+    padding: 14px;
+
+    text-align: left;
+
+    vertical-align: top;
+
+}
+
+#leadForm textarea::placeholder {
+
+    text-align: left;
 
 }
 
@@ -342,50 +357,41 @@ LGPD
 
 .lead-consent {
 
-    display: flex;
+    display: grid;
 
-    align-items: center;
+    grid-template-columns: 18px 1fr;
 
-    gap: 6px;
+    gap: 8px;
 
-    font-size: 14px;
-
-    color: var(--gray-medium);
-
-    line-height: 1.5;
+    align-items: start;
 
 }
 
 .lead-consent input {
 
+    margin-top: 3px;
+
+    flex-shrink: 0;
+
     width: auto;
-
-    margin: 0;
-
-    padding: 0;
-
-    cursor: pointer;
 
 }
 
 .lead-consent span {
 
-    margin: 0;
+    flex: 1;
+
+    min-width: 0;
+
+    word-break: break-word;
 
 }
 
 .lead-consent a {
 
-    color:
-        var(--primary-color);
+    color: var(--primary-color);
 
     text-decoration: none;
-
-}
-
-.lead-consent a:hover {
-
-    text-decoration: underline;
 
 }
 

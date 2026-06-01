@@ -1310,10 +1310,7 @@ function renderizarPaginaAnuncie() {
                     <textarea
                         id="leadMensagem"
                         rows="4"
-                        placeholder="
-                            Conte um pouco sobre
-                            sua empresa...
-                        "
+                        placeholder="Conte um pouco sobre sua empresa..."
                     ></textarea>
 
                     <label class="lead-consent">

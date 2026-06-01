@@ -14,6 +14,14 @@ RESPONSIVIDADE
     .card-actions {
         flex-direction: column;
     }
+
+    .lead-consent {
+
+        font-size: 13px;
+
+        gap: 6px;
+
+    }
 }
 
 @media (min-width: 768px) {
