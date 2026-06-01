@@ -330,6 +330,13 @@
 
       <div class="submenu-content" id="submenuContatos"></div>
     </div>
+
+    <a
+        href="/admin"
+        id="mobileAdminBtn"c
+    >
+        📊 Dashboard
+    </a>
     
     <!--
     =====================================================
@@ -559,10 +566,44 @@
     </div>
   </section>
 
-  <footer class="footer">
-    <p>
-        © 2026 Guia Comercial - Todos os direitos reservados.
-    </p>
+  <!--
+  =====================================================
+  FOOTER
+  =====================================================
+  -->
+
+  <footer class="footer-legal">
+
+      <span>
+          © 2026 Guia Comercial - Todos os direitos reservados.
+      </span>
+
+      <div class="footer-links">
+
+          <a
+              href="#"
+              onclick="
+                  navegar(
+                      '/politica-de-privacidade'
+                  )
+              "
+          >
+              Política de Privacidade
+          </a>
+
+          <a
+              href="#"
+              onclick="
+                  navegar(
+                      '/termos-de-uso'
+                  )
+              "
+          >
+              Termos de Uso
+          </a>
+
+      </div>
+
   </footer>
 
   <!--
@@ -611,6 +652,55 @@
 
   <!--
   =====================================================
+  COOKIES
+  =====================================================
+  -->
+
+  <div id="cookieBanner" class="cookie-banner">
+
+    <div class="cookie-content">
+
+      <span>
+
+        🍪 Utilizamos cookies para
+        melhorar sua experiência,
+        analisar acessos e otimizar
+        nossos serviços.
+
+      </span>
+
+      <div class="cookie-actions">
+
+        <button
+          id="acceptCookies"
+          class="cookie-btn primary"
+        >
+          Aceitar
+        </button>
+
+        <button
+          id="rejectCookies"
+          class="cookie-btn secondary"
+        >
+          Recusar
+        </button>
+
+        <button
+          id="closeCookies"
+          class="cookie-close"
+          aria-label="Fechar"
+        >
+          ✕
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!--
+  =====================================================
   JAVASCRIPT
   =====================================================
   -->
@@ -627,7 +717,7 @@
 
   <script defer src="/js/contatos.js"></script>
 
-  <script defer src="/js/loading.js"></script>
+  <!--<script defer src="/js/loading.js"></script>-->
 
   <script defer src="/js/toast.js"></script>
 
@@ -658,6 +748,10 @@
   <script defer src="/js/leads.js"></script>
 
   <script defer src="/js/app.js"></script>
+
+  <script defer src="/js/legal.js"></script>
+
+  <script defer src="/js/cookies.js"></script>
 
 </body>
 </html>

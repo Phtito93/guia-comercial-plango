@@ -23,6 +23,11 @@ function navegar(url) {
 
     );
 
+    window.scrollTo(
+        0,
+        0
+    );
+
     /*
     =====================================
     APPLY
@@ -40,6 +45,11 @@ ROUTER
 */
 
 async function aplicarRota() {
+
+    console.log(
+        "PATH:",
+        window.location.pathname
+    );
 
     /*
     =====================================
@@ -70,17 +80,10 @@ async function aplicarRota() {
         path === "/index.html"
     ) {
 
-        if (
-            estado.modo !== "home"
-            ||
-            estado.filtroHome
-            ||
-            somenteFavoritos
-        ) {
+        estado.modo =
+            "home";
 
-            voltarHome();
-
-        }
+        atualizarInterface();
 
         return;
 
@@ -238,6 +241,63 @@ async function aplicarRota() {
         );
 
         atualizarInterface();
+
+        return;
+
+    }
+
+    /*
+    =====================================
+    POLÍTICA DE PRIVACIDADE
+    =====================================
+    */
+
+    if (
+        path === "/politica-de-privacidade"
+    ) {
+
+        estado.modo =
+            "privacidade";
+
+        renderizarPoliticaPrivacidade();
+
+        return;
+
+    }
+
+    /*
+    =====================================
+    TERMOS DE USO
+    =====================================
+    */
+
+    if (
+        path === "/termos-de-uso"
+    ) {
+
+        estado.modo =
+            "termos";
+
+        renderizarTermosUso();
+
+        return;
+
+    }
+
+    /*
+    =====================================
+    ADMIN
+    =====================================
+    */
+
+    if (
+        path === "/admin"
+    ) {
+
+        estado.modo =
+            "admin";
+
+        renderizarDashboardAdmin();
 
         return;
 

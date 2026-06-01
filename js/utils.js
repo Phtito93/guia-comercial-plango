@@ -12,3 +12,73 @@ function normalizarTexto(texto = "") {
         .replace(/[\u0300-\u036f]/g, "");
 
 }
+
+/*
+=====================================================
+SCORE EMPRESA
+=====================================================
+*/
+
+function calcularScore(
+
+    empresa
+
+) {
+
+    return (
+
+        (empresa.views || 0)
+
+        +
+
+        (
+
+            (empresa.whatsappClicks || 0)
+
+            * 5
+
+        )
+
+    );
+}
+
+/*
+=====================================================
+EMPRESA NOVA
+=====================================================
+*/
+
+function empresaNova(empresa) {
+
+    if (
+        !empresa.createdAt
+    ) {
+
+        return false;
+
+    }
+
+    const dataCadastro =
+
+        new Date(
+            empresa.createdAt
+        );
+
+    const hoje =
+        new Date();
+
+    const dias =
+
+        Math.floor(
+
+            (hoje - dataCadastro)
+
+            /
+
+            86400000
+
+        );
+
+    return dias <= 30;
+
+}

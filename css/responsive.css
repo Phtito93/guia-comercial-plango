@@ -51,6 +51,67 @@ RESPONSIVIDADE
         width: 100%;
     }
 
+    .cookie-banner {
+
+    position: fixed;
+
+    bottom: 20px;
+
+    left: 20px;
+
+    right: 20px;
+
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    z-index: 9999;
+
+    background: var(--card-bg);
+
+    border: 1px solid rgba(
+        255,
+        255,
+        255,
+        .08
+    );
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 12px 30px rgba(
+            0,
+            0,
+            0,
+            .25
+        );
+
+    padding: 16px;
+
+    display: none;
+
+    }
+
+    .cookie-content {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+    .cookie-actions {
+
+        width: 100%;
+
+    }
+
+    .cookie-btn {
+
+        flex: 1;
+
+    }
+
 }
 
 @media (min-width: 1024px) {

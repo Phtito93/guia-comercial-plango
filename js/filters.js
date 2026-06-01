@@ -206,7 +206,11 @@ ATUALIZAR INTERFACE
 function atualizarInterface() {
 
     if (
-        estado.modo !== "anuncie"
+
+        !["anuncie", "admin"].includes(
+            estado.modo
+        )
+
     ) {
 
         resetarLayoutPadrao();
@@ -219,7 +223,8 @@ function atualizarInterface() {
     =====================================
     */
 
-    mostrarSkeleton();
+    /*mostrarSkeleton();*/
+    renderizarSkeleton();
 
     /*
     =====================================
@@ -532,11 +537,11 @@ function atualizarInterface() {
 
             return (
 
-                (b.views || 0)
+                calcularScore(b)
 
                 -
 
-                (a.views || 0)
+                calcularScore(a)
 
             );
 
@@ -723,6 +728,12 @@ VOLTAR HOME
 */
 
 function voltarHome() {
+
+    history.pushState(
+        {},
+        "",
+        "/"
+    );
 
     /*
     =====================================

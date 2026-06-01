@@ -5,7 +5,7 @@ LOADING
 */
 
 function mostrarSkeleton(
-    quantidade = 6
+    quantidade = 10
 ) {
 
     empresaGrid.innerHTML = `

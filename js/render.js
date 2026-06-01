@@ -9,31 +9,71 @@ function renderizarSkeleton() {
 
     let skeletonHTML = "";
 
-    for (let i = 0; i < 10; i++) {
+    for (
+        let i = 0;
+        i < 10;
+        i++
+    ) {
 
         skeletonHTML += `
 
             <div class="card skeleton-card">
 
-                <div class="skeleton skeleton-image"></div>
+                <div
+                    class="
+                        skeleton
+                        skeleton-image
+                    "
+                ></div>
 
                 <div class="card-content">
 
-                    <div class="skeleton skeleton-category"></div>
+                    <div
+                        class="
+                            skeleton
+                            skeleton-category
+                        "
+                    ></div>
 
-                    <div class="skeleton skeleton-title"></div>
+                    <div
+                        class="
+                            skeleton
+                            skeleton-title
+                        "
+                    ></div>
 
-                    <div class="skeleton skeleton-text"></div>
+                    <div
+                        class="
+                            skeleton
+                            skeleton-text
+                        "
+                    ></div>
 
-                    <div class="skeleton skeleton-button"></div>
+                    <div
+                        class="
+                            skeleton
+                            skeleton-button
+                        "
+                    ></div>
 
                 </div>
 
             </div>
+
         `;
+
     }
 
-    empresaGrid.innerHTML = skeletonHTML;
+    empresaGrid.innerHTML = `
+
+        <div class="normal-grid">
+
+            ${skeletonHTML}
+
+        </div>
+
+    `;
+
 }
 
 /*
@@ -46,6 +86,10 @@ function renderizarCard(empresa) {
     const status = statusFuncionamento(empresa.horario);
 
     const favorito = favoritos.includes(empresa.id);
+
+    const score = calcularScore(empresa);
+
+    const nova = empresaNova(empresa);
 
     return `
         <div class="
@@ -94,34 +138,45 @@ function renderizarCard(empresa) {
 
                         ` : ""}
 
-                        ${(empresa.views || 0) >= 50 ? `
+                        ${score >= 150 ? `
 
                             <span
                                 class="top-badge badge-icon"
-                                data-tooltip="Top Empresa"
+                                data-tooltip="Top Empresa do Guia"
                             >
                                 👑
                             </span>
 
-                        ` : (empresa.views || 0) >= 30 ? `
+                        ` : score >= 80 ? `
 
                             <span
                                 class="high-badge badge-icon"
-                                data-tooltip="Em Alta"
+                                data-tooltip="Empresa em Alta"
                             >
                                 🚀
                             </span>
 
-                        ` : (empresa.views || 0) >= 10 ? `
+                        ` : score >= 30 ? `
 
                             <span
                                 class="popular-badge badge-icon"
-                                data-tooltip="Popular"
+                                data-tooltip="Empresa Popular"
                             >
                                 🔥
                             </span>
 
-                         ` : ""}
+                        ` : ""}
+
+                        ${nova ? `
+
+                            <span
+                                class="new-badge badge-icon"
+                                data-tooltip="Nova no Guia"
+                            >
+                                🆕
+                            </span>
+
+                        ` : ""}
                     </div>
 
                 </div>
@@ -570,7 +625,7 @@ function renderizarFiltros(lista) {
                     categoria === "todos"
                 ) {
 
-                    navegar("/");
+                    voltarHome();
 
                     return;
 
@@ -764,6 +819,199 @@ function renderizarContatosUteis() {
 
     });
 
+}
+
+/*
+=====================================================
+DASHBOARD ADMIN
+=====================================================
+*/
+
+function renderizarDashboardAdmin() {
+
+    aplicarModoLandingPage();
+
+    const topEmpresas =
+
+        [...empresas]
+
+            .sort(
+
+                (a, b) =>
+
+                    calcularScore(b)
+
+                    -
+
+                    calcularScore(a)
+
+            )
+
+            .slice(0, 10);
+
+    const totalViews =
+
+        empresas.reduce(
+
+            (total, empresa) =>
+
+                total +
+
+                (empresa.views || 0),
+
+            0
+
+        );
+
+    const totalWhatsapp =
+
+        empresas.reduce(
+
+            (total, empresa) =>
+
+                total +
+
+                (
+
+                    empresa.whatsappClicks
+
+                    ||
+
+                    0
+
+                ),
+
+            0
+
+        );
+
+    const totalPremium =
+
+        empresas.filter(
+
+            (empresa) =>
+
+                empresa.plano ===
+                "destaque"
+
+        ).length;
+
+    empresaGrid.innerHTML = `
+
+        <section class="admin-dashboard">
+
+            <h2>
+                📊 Dashboard Admin
+            </h2>
+
+            <div class="admin-cards">
+
+                <div class="admin-stat">
+
+                    <span>
+                        👁️ Views
+                    </span>
+
+                    <strong>
+                        ${totalViews}
+                    </strong>
+
+                </div>
+
+                <div class="admin-stat">
+
+                    <span>
+                        📲 WhatsApp
+                    </span>
+
+                    <strong>
+                        ${totalWhatsapp}
+                    </strong>
+
+                </div>
+
+                <div class="admin-stat">
+
+                    <span>
+                        ⭐ Premium
+                    </span>
+
+                    <strong>
+                        ${totalPremium}
+                    </strong>
+
+                </div>
+
+                <div class="admin-stat">
+
+                    <span>
+                        🏢 Empresas
+                    </span>
+
+                    <strong>
+                        ${empresas.length}
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <div class="admin-ranking">
+
+                ${topEmpresas.map(
+
+                    (empresa, index) => `
+
+                        <div class="admin-ranking-card">
+
+                            <h3>
+
+                                🏆 #${index + 1}
+
+                                ${empresa.nome}
+
+                            </h3>
+
+                            <p>
+
+                                👁️ Views:
+                                ${empresa.views || 0}
+
+                            </p>
+
+                            <p>
+
+                                📲 WhatsApp:
+                                ${empresa.whatsappClicks || 0}
+
+                            </p>
+
+                            <p>
+
+                                ⭐ Plano:
+                                ${empresa.plano}
+
+                            </p>
+
+                            <div class="admin-score">
+
+                                Score:
+                                ${calcularScore(
+                                    empresa
+                                )}
+
+                            </div>
+
+                        </div>
+
+                    `
+
+                ).join("")}
+
+            </div>
+
+        </section>
+    `;
 }
 
 /*
@@ -1183,7 +1431,8 @@ function renderizarEmptyState() {
     document
         .getElementById("emptyHomeBtn")
         .addEventListener("click", () => {
-            navegar("/");
+            voltarHome();
+            /*navegar("/");*/
         });
 }
 
