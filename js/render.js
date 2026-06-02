@@ -1120,9 +1120,27 @@ function renderizarDashboardAdmin() {
 
         <section class="admin-dashboard">
 
-            <h2>
-                📊 Dashboard Admin
-            </h2>
+            <div class="admin-header">
+
+                <h2>
+
+                    📊 Dashboard Admin
+
+                </h2>
+
+                <button
+
+                    onclick="logoutAdmin()"
+
+                    class="logout-btn"
+
+                >
+
+                    Sair
+
+                </button>
+
+            </div>
 
             <div class="admin-cards">
 

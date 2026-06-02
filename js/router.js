@@ -281,6 +281,25 @@ async function aplicarRota() {
 
     /*
     =====================================
+    ADMIN LOGIN
+    =====================================
+    */
+
+    if (
+        path === "/admin-login"
+    ) {
+
+        estado.modo =
+            "admin-login";
+
+        renderizarLoginAdmin();
+
+        return;
+
+    }
+
+    /*
+    =====================================
     ADMIN
     =====================================
     */
@@ -289,50 +308,29 @@ async function aplicarRota() {
         path === "/admin"
     ) {
 
-        const autenticado =
+        const {
 
-            sessionStorage.getItem(
+            data: {
 
-                "adminAuth"
-
-            );
-
-        if (
-            autenticado !== "true"
-        ) {
-
-            const senha = prompt(
-
-                "Digite a senha do administrador"
-
-            );
-
-            if (
-
-                senha !==
-                "guia_2026."
-
-            ) {
-
-                mostrarToast(
-
-                    "Acesso negado"
-
-                );
-
-                navegar("/");
-
-                return;
+                user
 
             }
 
-            sessionStorage.setItem(
+        } = await supabaseClient
 
-                "adminAuth",
+            .auth
 
-                "true"
+            .getUser();
 
+        if (
+            !user
+        ) {
+
+            navegar(
+                "/admin-login"
             );
+
+            return;
 
         }
 
