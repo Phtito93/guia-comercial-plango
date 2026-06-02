@@ -57,6 +57,8 @@ async function logoutAdmin() {
 
         .signOut();
 
-    navegar("/");
+    voltarHome();
+
+    return;
 
 }
