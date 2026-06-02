@@ -879,6 +879,16 @@ function renderizarLeadsAdmin() {
 
                 <p>
 
+                    Status:
+
+                    ${obterBadgeStatus(
+                        lead.status || "novo"
+                    )}
+
+                </p>
+
+                <p>
+
                     📅 ${new Date(
 
                         lead.created_at
@@ -891,9 +901,73 @@ function renderizarLeadsAdmin() {
 
                 </p>
 
+                <div class="lead-actions">
+
+                    <button
+
+                        onclick="
+                            atualizarStatusLead(
+                                '${lead.id}',
+                                'contatado'
+                            )
+                        "
+
+                    >
+
+                        Contatado
+
+                    </button>
+
+                    <button
+
+                        onclick="
+                            atualizarStatusLead(
+                                '${lead.id}',
+                                'cliente'
+                            )
+                        "
+
+                    >
+
+                        Cliente
+
+                    </button>
+
+                    <button
+
+                        onclick="
+                            atualizarStatusLead(
+                                '${lead.id}',
+                                'negociando'
+                            )
+                        "
+
+                    >
+
+                        Negociando
+
+                    </button>
+
+                    <button
+
+                        onclick="
+                            atualizarStatusLead(
+                                '${lead.id}',
+                                'perdido'
+                            )
+                        "
+
+                    >
+
+                        Perdido
+
+                    </button>
+
+                </div>
+
                 <a
 
-                    href="https://wa.me/${lead.telefone.replace(/\D/g,'')}"
+                    href="https://wa.me/${(lead.telefone || "").replace(/\D/g,'')}"
 
                     target="_blank"
 
@@ -939,7 +1013,7 @@ function renderizarDashboardAdmin() {
 
             )
 
-            .slice(0, 10);
+            .slice(0, 20);
 
     const totalViews =
 
@@ -985,6 +1059,38 @@ function renderizarDashboardAdmin() {
 
                 empresa.plano ===
                 "destaque"
+
+        ).length;
+
+    const leadsNovos =
+
+        leads.filter(
+
+            lead =>
+
+                (lead.status || "novo") === "novo"
+
+        ).length;
+
+    const leadsContatados =
+
+        leads.filter(
+
+            lead =>
+
+                lead.status ===
+                "contatado"
+
+        ).length;
+
+    const leadsClientes =
+
+        leads.filter(
+
+            lead =>
+
+                lead.status ===
+                "cliente"
 
         ).length;
 
@@ -1042,6 +1148,74 @@ function renderizarDashboardAdmin() {
 
                     <strong>
                         ${empresas.length}
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <div class="admin-cards">
+
+                <div class="admin-stat">
+
+                    <span>
+
+                        📩 Leads
+
+                    </span>
+
+                    <strong>
+
+                        ${leads.length}
+
+                    </strong>
+
+                </div>
+
+                <div class="admin-stat">
+
+                    <span>
+
+                        🟢 Novos
+
+                    </span>
+
+                    <strong>
+
+                        ${leadsNovos}
+
+                    </strong>
+
+                </div>
+
+                <div class="admin-stat">
+
+                    <span>
+
+                        🟡 Contatados
+
+                    </span>
+
+                    <strong>
+
+                        ${leadsContatados}
+
+                    </strong>
+
+                </div>
+
+                <div class="admin-stat">
+
+                    <span>
+
+                        ⭐ Clientes
+
+                    </span>
+
+                    <strong>
+
+                        ${leadsClientes}
+
                     </strong>
 
                 </div>

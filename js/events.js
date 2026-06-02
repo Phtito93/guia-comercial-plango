@@ -856,3 +856,108 @@ document.addEventListener(
     }
 
 );
+
+/*
+=====================================================
+STATUS LEAD
+=====================================================
+*/
+
+function obterBadgeStatus(
+    status
+) {
+
+    const badges = {
+
+        novo:
+            "🟢 Novo",
+
+        contatado:
+            "🟡 Contatado",
+
+        negociando:
+            "🔵 Negociando",
+
+        cliente:
+            "⭐ Cliente",
+
+        perdido:
+            "🔴 Perdido"
+
+    };
+
+    return (
+
+        badges[status]
+
+        ||
+
+        status
+
+    );
+
+}
+
+/*
+=====================================================
+ATUALIZAR STATUS LEAD
+=====================================================
+*/
+
+async function atualizarStatusLead(
+
+    leadId,
+
+    status
+
+) {
+
+    try {
+
+        const {
+
+            error
+
+        } = await supabaseClient
+
+            .from("leads")
+
+            .update({
+
+                status
+
+            })
+
+            .eq(
+
+                "id",
+
+                leadId
+
+            );
+
+        if (
+            error
+        ) {
+
+            console.error(
+                error
+            );
+
+            return;
+
+        }
+
+        await carregarLeads();
+
+        renderizarDashboardAdmin();
+
+    } catch (erro) {
+
+        console.error(
+            erro
+        );
+
+    }
+
+}
