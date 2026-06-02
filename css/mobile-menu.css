@@ -291,6 +291,32 @@ MENU MOBILE
     color: white;
 }
 
+.mobile-install-btn {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px 16px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: transparent;
+
+    color: var(--text-color);
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+}
+
 .mobile-menu-footer {
     margin-top: auto;
     padding-top: 10px;
