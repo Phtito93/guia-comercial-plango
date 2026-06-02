@@ -1094,6 +1094,28 @@ function renderizarDashboardAdmin() {
 
         ).length;
 
+    const leadsNegociando =
+
+        leads.filter(
+
+            lead =>
+
+                lead.status ===
+                "negociando"
+
+        ).length;
+
+    const leadsPerdidos =
+
+        leads.filter(
+
+            lead =>
+
+                lead.status ===
+                "perdido"
+
+        ).length;
+
     empresaGrid.innerHTML = `
 
         <section class="admin-dashboard">
@@ -1154,6 +1176,60 @@ function renderizarDashboardAdmin() {
 
             </div>
 
+            <div class="admin-ranking">
+
+                ${topEmpresas.map(
+
+                    (empresa, index) => `
+
+                        <div class="admin-ranking-card">
+
+                            <h3>
+
+                                🏆 #${index + 1}
+
+                                ${empresa.nome}
+
+                            </h3>
+
+                            <p>
+
+                                👁️ Views:
+                                ${empresa.views || 0}
+
+                            </p>
+
+                            <p>
+
+                                📲 WhatsApp:
+                                ${empresa.whatsappClicks || 0}
+
+                            </p>
+
+                            <p>
+
+                                ⭐ Plano:
+                                ${empresa.plano}
+
+                            </p>
+
+                            <div class="admin-score">
+
+                                Score:
+                                ${calcularScore(
+                                    empresa
+                                )}
+
+                            </div>
+
+                        </div>
+
+                    `
+
+                ).join("")}
+
+            </div>
+
             <div class="admin-cards">
 
                 <div class="admin-stat">
@@ -1208,6 +1284,22 @@ function renderizarDashboardAdmin() {
 
                     <span>
 
+                        🔵 Negociando
+
+                    </span>
+
+                    <strong>
+
+                        ${leadsNegociando}
+
+                    </strong>
+
+                </div>
+
+                <div class="admin-stat">
+
+                    <span>
+
                         ⭐ Clientes
 
                     </span>
@@ -1220,59 +1312,21 @@ function renderizarDashboardAdmin() {
 
                 </div>
 
-            </div>
+                <div class="admin-stat">
 
-            <div class="admin-ranking">
+                    <span>
 
-                ${topEmpresas.map(
+                        🔴 Perdidos
 
-                    (empresa, index) => `
+                    </span>
 
-                        <div class="admin-ranking-card">
+                    <strong>
 
-                            <h3>
+                        ${leadsPerdidos}
 
-                                🏆 #${index + 1}
+                    </strong>
 
-                                ${empresa.nome}
-
-                            </h3>
-
-                            <p>
-
-                                👁️ Views:
-                                ${empresa.views || 0}
-
-                            </p>
-
-                            <p>
-
-                                📲 WhatsApp:
-                                ${empresa.whatsappClicks || 0}
-
-                            </p>
-
-                            <p>
-
-                                ⭐ Plano:
-                                ${empresa.plano}
-
-                            </p>
-
-                            <div class="admin-score">
-
-                                Score:
-                                ${calcularScore(
-                                    empresa
-                                )}
-
-                            </div>
-
-                        </div>
-
-                    `
-
-                ).join("")}
+                </div>
 
             </div>
 
