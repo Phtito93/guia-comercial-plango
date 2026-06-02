@@ -46,11 +46,6 @@ ROUTER
 
 async function aplicarRota() {
 
-    console.log(
-        "PATH:",
-        window.location.pathname
-    );
-
     /*
     =====================================
     REFRESH DADOS
@@ -293,6 +288,53 @@ async function aplicarRota() {
     if (
         path === "/admin"
     ) {
+
+        const autenticado =
+
+            sessionStorage.getItem(
+
+                "adminAuth"
+
+            );
+
+        if (
+            autenticado !== "true"
+        ) {
+
+            const senha = prompt(
+
+                "Digite a senha do administrador"
+
+            );
+
+            if (
+
+                senha !==
+                "guia_2026."
+
+            ) {
+
+                mostrarToast(
+
+                    "Acesso negado"
+
+                );
+
+                navegar("/");
+
+                return;
+
+            }
+
+            sessionStorage.setItem(
+
+                "adminAuth",
+
+                "true"
+
+            );
+
+        }
 
         await carregarLeads();
 
