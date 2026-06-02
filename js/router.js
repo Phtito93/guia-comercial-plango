@@ -294,6 +294,8 @@ async function aplicarRota() {
         path === "/admin"
     ) {
 
+        await carregarLeads();
+
         estado.modo =
             "admin";
 

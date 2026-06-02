@@ -823,6 +823,98 @@ function renderizarContatosUteis() {
 
 /*
 =====================================================
+RENDERIZAR LEADS
+=====================================================
+*/
+
+function renderizarLeadsAdmin() {
+
+    if (
+        !leads.length
+    ) {
+
+        return `
+
+            <p>
+
+                Nenhum lead recebido.
+
+            </p>
+
+        `;
+
+    }
+
+    return leads
+
+        .slice(0, 20)
+
+        .map((lead) => `
+
+            <div class="lead-card">
+
+                <h3>
+
+                    ${lead.nome}
+
+                </h3>
+
+                <p>
+
+                    🏢 ${lead.empresa}
+
+                </p>
+
+                <p>
+
+                    📲 ${lead.telefone}
+
+                </p>
+
+                <p>
+
+                    ⭐ ${lead.plano_interesse}
+
+                </p>
+
+                <p>
+
+                    📅 ${new Date(
+
+                        lead.created_at
+
+                    ).toLocaleDateString(
+
+                        "pt-BR"
+
+                    )}
+
+                </p>
+
+                <a
+
+                    href="https://wa.me/${lead.telefone.replace(/\D/g,'')}"
+
+                    target="_blank"
+
+                    class="lead-contact-btn"
+
+                >
+
+                    Contatar
+
+                </a>
+
+            </div>
+
+        `)
+
+        .join("");
+
+}
+
+/*
+=====================================================
 DASHBOARD ADMIN
 =====================================================
 */
@@ -1009,6 +1101,22 @@ function renderizarDashboardAdmin() {
                 ).join("")}
 
             </div>
+
+            <section class="admin-leads">
+
+                <h2>
+
+                    📩 Leads Recebidos
+
+                </h2>
+
+                <div class="admin-leads-grid">
+
+                    ${renderizarLeadsAdmin()}
+
+                </div>
+
+            </section>
 
         </section>
     `;

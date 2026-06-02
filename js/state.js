@@ -29,6 +29,8 @@ let empresas = [];
 
 let cardsHTML = "";
 
+let leads = [];
+
 /*
 =====================================================
 FAVORITOS

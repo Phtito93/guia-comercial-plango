@@ -250,3 +250,62 @@ async function salvarLead(
     }
 
 }
+
+/*
+=====================================================
+CARREGAR LEADS
+=====================================================
+*/
+
+async function carregarLeads() {
+
+    try {
+
+        const {
+
+            data,
+
+            error
+
+        } = await supabaseClient
+
+            .from("leads")
+
+            .select("*")
+
+            .order(
+
+                "created_at",
+
+                {
+
+                    ascending: false
+
+                }
+
+            );
+
+        if (
+            error
+        ) {
+
+            console.error(
+                error
+            );
+
+            return;
+
+        }
+
+        leads =
+            data || [];
+
+    } catch (erro) {
+
+        console.error(
+            erro
+        );
+
+    }
+
+}
