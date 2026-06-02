@@ -34,23 +34,43 @@ function renderizarLoginAdmin() {
 
                     >
 
-                    <input
+                    <div class="password-field">
 
-                        type="password"
+                        <input
 
-                        id="adminSenha"
+                            type="password"
 
-                        placeholder="Senha"
+                            id="adminSenha"
 
-                        required
+                            placeholder="Senha"
 
-                    >
+                            required
+
+                        >
+
+                        <button
+
+                            type="button"
+
+                            id="togglePassword"
+
+                            class="password-toggle"
+
+                            aria-label="Mostrar senha"
+
+                        >
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
+                    </div>
 
                     <button
 
                         type="submit"
 
-                        class="anuncie-cta"
+                        class="admin-login-btn"
 
                     >
 
@@ -65,6 +85,55 @@ function renderizarLoginAdmin() {
         </section>
 
     `;
+
+    /*
+    =====================================
+    MOSTRAR / OCULTAR SENHA
+    =====================================
+    */
+
+    const togglePassword =
+
+        document.getElementById(
+            "togglePassword"
+        );
+
+    const passwordInput =
+
+        document.getElementById(
+            "adminSenha"
+        );
+
+    togglePassword?.addEventListener(
+
+        "click",
+
+        () => {
+
+            const visivel =
+
+                passwordInput.type ===
+                "text";
+
+            passwordInput.type =
+
+                visivel
+
+                    ? "password"
+
+                    : "text";
+
+            togglePassword.innerHTML =
+
+                visivel
+
+                    ? '<i class="fa-regular fa-eye"></i>'
+
+                    : '<i class="fa-regular fa-eye-slash"></i>';
+
+        }
+
+    );
 
     /*
     =====================================
@@ -130,10 +199,6 @@ function renderizarLoginAdmin() {
 
             }
 
-        );
-
-        console.log(
-            "admin-login carregado"
         );
 
 }
