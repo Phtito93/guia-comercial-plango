@@ -1013,7 +1013,7 @@ function renderizarDashboardAdmin() {
 
             )
 
-            .slice(0, 20);
+            .slice(0, 10);
 
     const totalViews =
 
@@ -1149,14 +1149,15 @@ function renderizarDashboardAdmin() {
                     class="admin-action-btn"
 
                     onclick="
-                        navegar('/nova-empresa')
+                        window.rotaVoltarEmpresa='/admin';
+                        navegar('/nova-empresa');
                     "
 
                 >
 
                     <i class="fa-solid fa-plus"></i>
 
-                    Criar Empresa
+                    Cadastrar Empresa
 
                 </button>
 
@@ -1232,7 +1233,7 @@ function renderizarDashboardAdmin() {
             <section class="admin-leads">
                 <h2>
 
-                    🏆 Top 05 Empresas
+                    🏆 Top 10 Empresas
 
                 </h2>
             
@@ -1241,7 +1242,7 @@ function renderizarDashboardAdmin() {
 
                     ${topEmpresas
 
-                        .slice(0, 5)
+                        .slice(0, 10)
 
                         .map(
 

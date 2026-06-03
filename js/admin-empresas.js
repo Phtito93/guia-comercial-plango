@@ -44,9 +44,9 @@ function renderizarAdminEmpresas() {
 
                     type="button"
 
-                    class="voltar-btn"
+                    class="voltar-btn-admin"
 
-                    onclick="navegar('/admin')"
+                    onclick= "navegar('/admin')"
 
                 >
 
@@ -98,12 +98,15 @@ function renderizarAdminEmpresas() {
                     class="admin-action-btn"
 
                     onclick="
-                        navegar('/nova-empresa')
+                        window.rotaVoltarEmpresa='/admin/empresas';
+                        navegar('/nova-empresa');
                     "
 
                 >
 
-                    ➕ Cadastrar Empresa
+                    <i class="fa-solid fa-plus"></i>
+
+                    Cadastrar Empresa
 
                 </button>
 
@@ -240,6 +243,11 @@ function renderizarListaEmpresasAdmin(
                             class="
                                 admin-edit-btn
                             "
+                            onclick="
+                                editarEmpresa(
+                                    ${empresa.id}
+                                )
+                            "
 
                         >
 
@@ -314,5 +322,51 @@ function filtrarEmpresasAdmin() {
                 resultado
 
             );
+
+}
+
+/*
+=====================================================
+EDITAR EMPRESA
+=====================================================
+*/
+
+function editarEmpresa(
+    empresaId
+) {
+
+    const empresa =
+
+        empresas.find(
+
+            item =>
+
+                item.id ==
+
+                empresaId
+
+        );
+
+    if (
+
+        !empresa
+
+    ) {
+
+        mostrarToast(
+
+            "Empresa não encontrada"
+
+        );
+
+        return;
+
+    }
+
+    renderizarFormularioEmpresa(
+
+        empresa
+
+    );
 
 }

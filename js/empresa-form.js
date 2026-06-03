@@ -1,4 +1,22 @@
-function renderizarFormularioEmpresa() {
+function renderizarFormularioEmpresa(empresa = null) {
+
+    const empresaId = empresa?.id || null;
+
+    window.empresaEditandoId = empresaId;
+
+    const rotaVoltar =
+
+        empresaId
+
+            ? "/admin/empresas"
+
+            : (
+
+                window.rotaVoltarEmpresa
+
+                || "/admin"
+
+            );
 
     aplicarModoLandingPage();
 
@@ -8,7 +26,15 @@ function renderizarFormularioEmpresa() {
 
             <h2>
 
-                ➕ Nova Empresa
+                ${
+
+                    empresaId
+
+                        ? "✏ Editar Empresa"
+
+                        : "➕ Nova Empresa"
+
+                }
 
             </h2>
 
@@ -20,7 +46,9 @@ function renderizarFormularioEmpresa() {
 
                     class="voltar-btn"
 
-                    onclick="history.back()"
+                    onclick="
+                        navegar('${rotaVoltar}')
+                    "
 
                 >
 
@@ -35,21 +63,24 @@ function renderizarFormularioEmpresa() {
                 
                 <div class="form-grid">
                     <input
+
                         id="empresaNome"
                         placeholder="Nome da Empresa"
+                        value="${empresa?.nome || ""}"
                         required
                     >
 
                     <input
                         id="empresaSlug"
-                        placeholder="Slug"
+                        placeholder="(gerado automaticamente)"
+                        value="${empresa?.slug || ""}"
                     >
                 </div>
 
                 <textarea
                     id="empresaDescricao"
                     placeholder="Descrição"
-                ></textarea>
+                >${(empresa?.descricao || "").trim()}</textarea>
 
                 <div class="form-grid">
 
@@ -57,13 +88,41 @@ function renderizarFormularioEmpresa() {
                         id="empresaPlano"
                     >
 
-                        <option value="presenca">
+                        <option
+
+                            value="presenca"
+
+                            ${
+
+                                empresa?.plano === "presenca"
+
+                                    ? "selected"
+
+                                    : ""
+
+                            }
+
+                        >
 
                             Presença
 
                         </option>
 
-                        <option value="destaque">
+                        <option
+
+                            value="destaque"
+
+                            ${
+
+                                empresa?.plano === "destaque"
+
+                                    ? "selected"
+
+                                    : ""
+
+                            }
+
+                        >
 
                             Destaque
 
@@ -72,24 +131,29 @@ function renderizarFormularioEmpresa() {
                     </select>
 
                     <input
+
                         id="empresaLocal"
                         placeholder="Local"
+                        value="${empresa?.local || ""}"
                     >
                 </div>
 
                 <input
                     id="empresaImagem"
                     placeholder="URL da Imagem: empresa.webp"
+                    value="${empresa?.imagem || ""}"
                 >
                 
                 <input
                     id="empresaCategorias"
                     placeholder="Categorias separadas por vírgula"
+                    value="${empresa?.categorias?.map(item => item.trim()).join(', ') || ''}"
                 >
 
                 <input
                     id="empresaTags"
                     placeholder="Tags separadas por vírgula"
+                    value="${empresa?.tags?.map(item => item.trim()).join(', ') || ''}"
                 >
 
                 <h3>
@@ -99,21 +163,45 @@ function renderizarFormularioEmpresa() {
                 </h3>
 
                 <div class="form-grid">
-                    <input id="rua" placeholder="Rua">
+                    <input 
+                        id="rua"
+                        placeholder="Rua"
+                        value="${empresa?.endereco?.rua || ''}"
+                    >
 
-                    <input id="numero" placeholder="Número">
+                    <input 
+                        id="numero"
+                        placeholder="Número"
+                        value="${empresa?.endereco?.numero || ''}"
+                    >
                 </div>
 
                 <div class="form-grid">
-                    <input id="bairro" placeholder="Bairro">
+                    <input 
+                        id="bairro" 
+                        placeholder="Bairro" 
+                        value="${empresa?.endereco?.bairro || ''}"
+                    >
 
-                    <input id="cidade" placeholder="Cidade">
+                    <input 
+                        id="cidade" 
+                        placeholder="Cidade" 
+                        value="${empresa?.endereco?.cidade || ''}"
+                    >
                 </div>
 
                 <div class="form-grid">
-                    <input id="estado" placeholder="UF">
+                    <input 
+                        id="estado"
+                        placeholder="UF"
+                        value="${empresa?.endereco?.estado || ''}"
+                    >
 
-                    <input id="cep" placeholder="CEP">
+                    <input 
+                        id="cep" 
+                        placeholder="CEP"
+                        value="${empresa?.endereco?.cep || ''}"
+                    >
                 </div>
 
                 <h3>
@@ -123,20 +211,44 @@ function renderizarFormularioEmpresa() {
                 </h3>
 
                 <div class="form-grid">
-                    <input id="telefone" placeholder="Telefone">
+                    <input 
+                        id="telefone" 
+                        placeholder="Telefone" 
+                        value="${empresa?.contatos?.telefone || ''}"
+                    >
 
-                    <input id="whatsapp" placeholder="WhatsApp">
+                    <input 
+                        id="whatsapp" 
+                        placeholder="WhatsApp" 
+                        value="${empresa?.contatos?.whatsapp || ''}"
+                    >
                 </div>
 
                 <div class="form-grid">
-                    <input id="instagram" placeholder="Instagram">
+                    <input 
+                        id="instagram" 
+                        placeholder="Instagram" 
+                        value="${empresa?.contatos?.instagram || ''}"
+                    >
 
-                    <input id="site" placeholder="Site">
+                    <input 
+                        id="site" 
+                        placeholder="Site" 
+                        value="${empresa?.contatos?.site || ''}"
+                    >
                 </div>
 
-                <input id="email" placeholder="Email">
+                <input 
+                    id="email" 
+                    placeholder="Email" 
+                    value="${empresa?.contatos?.email || ''}"
+                >
 
-                <input id="localizacao" placeholder="Localização">
+                <input 
+                    id="localizacao" 
+                    placeholder="Localização" 
+                    value="${empresa?.contatos?.localizacao || ''}"
+                >
 
                 <h3>
 
@@ -178,7 +290,7 @@ function renderizarFormularioEmpresa() {
 
                 <div class="horarios-container">
 
-                    ${renderizarCamposHorario()}
+                    ${renderizarCamposHorario(empresa)}
 
                 </div>
 
@@ -214,73 +326,108 @@ function renderizarFormularioEmpresa() {
 
         );
 
+    const campoNome =
+
+        document.getElementById(
+            "empresaNome"
+        );
+
+    const campoSlug =
+
+        document.getElementById(
+            "empresaSlug"
+        );
+
+    campoNome?.addEventListener(
+
+        "input",
+
+        () => {
+
+            campoSlug.value =
+
+                gerarSlug(
+
+                    campoNome.value
+
+                );
+        }
+
+    );
+
 }
 
-function renderizarCamposHorario() {
+function renderizarCamposHorario(empresa = null) {
 
     const dias = [
 
         "segunda",
-
         "terca",
-
         "quarta",
-
         "quinta",
-
         "sexta",
-
         "sabado",
-
         "domingo"
 
     ];
 
     return dias.map(
 
-        (dia) => `
+        (dia) => {
 
-            <div class="horario-dia">
+            const horarioDia =
 
-                <label class="horario-label">
+                empresa?.horario?.[dia];
 
-                    <input
+            return `
 
-                        type="checkbox"
+                <div class="horario-dia">
 
-                        id="${dia}Ativo"
+                    <label class="horario-label">
 
-                        checked
+                        <input
 
-                    >
+                            type="checkbox"
 
-                    ${dia.charAt(0).toUpperCase() + dia.slice(1)}
+                            id="${dia}Ativo"
 
-                </label>
+                            ${horarioDia ? "checked" : ""}
 
-                <div class="horario-grid">
+                        >
 
-                    <input
+                        ${dia.charAt(0).toUpperCase() + dia.slice(1)}
 
-                        type="time"
+                    </label>
 
-                        id="${dia}Abre"
+                    <div class="horario-grid">
 
-                    >
+                        <input
 
-                    <input
+                            type="time"
 
-                        type="time"
+                            id="${dia}Abre"
 
-                        id="${dia}Fecha"
+                            value="${horarioDia?.abre || ""}"
 
-                    >
+                        >
+
+                        <input
+
+                            type="time"
+
+                            id="${dia}Fecha"
+
+                            value="${horarioDia?.fecha || ""}"
+
+                        >
+
+                    </div>
 
                 </div>
 
-            </div>
+            `;
 
-        `
+        }
 
     ).join("");
 
@@ -468,6 +615,24 @@ function limparHorarios() {
 async function salvarEmpresa(
     event
 ) {
+    
+    const empresaId = window.empresaEditandoId || null;
+
+    const empresaData = {
+
+        nome,
+        slug,
+        descricao,
+        plano,
+        categorias,
+        tags,
+        local,
+        imagem,
+        endereco,
+        contatos,
+        horario
+
+    };
 
     event.preventDefault();
 
@@ -479,13 +644,21 @@ async function salvarEmpresa(
             )
             .value;
 
-    const slug =
-
+    const slugDigitado =
         document
             .getElementById(
                 "empresaSlug"
             )
-            .value;
+            .value
+            .trim();
+
+    const slug =
+
+        slugDigitado ||
+
+        gerarSlug(
+            nome
+        );
 
     const descricao =
 
@@ -706,51 +879,86 @@ async function salvarEmpresa(
 
     const horario = montarHorario();
 
+    let resultado;
+
+    if (
+
+        empresaId
+
+    ) {
+
+        resultado =
+
+            await supabaseClient
+
+                .from(
+                    "empresas"
+                )
+
+                .update(empresaData)
+
+                .eq(
+                    "id",
+
+                    empresaId
+                );
+
+    }
+
+    else {
+
+        resultado =
+
+            await supabaseClient
+
+                .from(
+                    "empresas"
+                )
+
+                .insert({
+
+                    ...empresaData,
+
+                    views: 0,
+
+                    whatsapp_clicks: 0,
+
+                    instagram_clicks: 0
+
+                });
+    }
+
     const {
 
         error
 
-    } = await supabaseClient
-
-        .from(
-            "empresas"
-        )
-
-        .insert({
-
-            nome,
-
-            slug,
-
-            descricao,
-
-            plano,
-
-            categorias,
-
-            tags,
-
-            local,
-
-            imagem,
-
-            endereco,
-
-            contatos,
-
-            horario,
-
-            views: 0,
-
-            whatsapp_clicks: 0,
-
-            instagram_clicks: 0
-
-        });
+    } = resultado;
 
     if (
+
         error
+
     ) {
+
+        if (
+
+            error.message
+
+                ?.includes(
+                    "slug"
+                )
+
+        ) {
+
+            mostrarToast(
+
+                "Slug já existe. Ajuste o slug manualmente."
+
+            );
+
+            return;
+
+        }
 
         console.error(
             error
@@ -768,12 +976,67 @@ async function salvarEmpresa(
 
     mostrarToast(
 
-        "✅ Empresa cadastrada."
+        empresaId
+
+            ?
+
+            "✅ Empresa atualizada"
+
+            :
+
+            "✅ Empresa cadastrada"
 
     );
 
-    navegar(
-        "/admin"
-    );
+    await carregarEmpresas();
+
+        navegar(
+
+            "/admin/empresas"
+
+        );
+
+}
+
+function abrirNovaEmpresa(
+    rotaOrigem
+) {
+
+    window.rotaVoltarEmpresa =
+
+        rotaOrigem;
+
+    renderizarFormularioEmpresa();
+
+}
+
+function gerarSlug(
+    texto
+) {
+
+    return texto
+
+        .toLowerCase()
+
+        .normalize(
+            "NFD"
+        )
+
+        .replace(
+            /[\u0300-\u036f]/g,
+            ""
+        )
+
+        .replace(
+            /[^a-z0-9\s-]/g,
+            ""
+        )
+
+        .trim()
+
+        .replace(
+            /\s+/g,
+            "-"
+        );
 
 }

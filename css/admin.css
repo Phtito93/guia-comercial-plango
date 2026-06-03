@@ -780,7 +780,8 @@ AÇÕES FORMULÁRIO
 
 }
 
-.voltar-btn {
+.voltar-btn, 
+.voltar-btn-admin {
 
     padding: 10px 16px;
 
@@ -798,7 +799,8 @@ AÇÕES FORMULÁRIO
 
 }
 
-.voltar-btn:hover {
+.voltar-btn:hover,
+.voltar-btn-admin:hover {
 
     transform: translateY(-2px);
 
