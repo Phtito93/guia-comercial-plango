@@ -102,7 +102,7 @@ function renderizarCard(empresa) {
             tabindex="0"
         >
             <img
-                src="${empresa.imagem || '/img/placeholder.jpg'}"
+                src="/img/${empresa.imagem || '/img/placeholder.jpg'}"
     
                 alt="Foto da empresa ${empresa.nome}"
 

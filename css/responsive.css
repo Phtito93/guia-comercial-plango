@@ -122,8 +122,13 @@ RESPONSIVIDADE
 
     .form-grid {
 
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
+
+    }
+
+    .horario-grid {
+
+        grid-template-columns: 1fr;
 
     }
 

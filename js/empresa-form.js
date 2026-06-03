@@ -79,7 +79,7 @@ function renderizarFormularioEmpresa() {
 
                 <input
                     id="empresaImagem"
-                    placeholder="URL da Imagem: /img/empresa.webp"
+                    placeholder="URL da Imagem: empresa.webp"
                 >
                 
                 <input
