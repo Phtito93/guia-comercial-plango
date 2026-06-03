@@ -72,5 +72,6 @@ function logTopEmpresas() {
         return b.views - a.views;
 
     });
+    
 
 }

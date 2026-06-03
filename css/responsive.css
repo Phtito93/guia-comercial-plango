@@ -133,6 +133,41 @@ RESPONSIVIDADE
 
     }
 
+    .admin-header-empresas {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+    .empresa-admin-card {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+    .empresa-admin-actions {
+
+        width: 100%;
+
+    }
+
+    .empresa-admin-actions button {
+
+        flex: 1;
+
+    }
+
+    .admin-empresas-lista {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
 }
 
 @media (min-width: 1024px) {

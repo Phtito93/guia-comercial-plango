@@ -362,6 +362,25 @@ async function aplicarRota() {
 
     }
 
+    
+    /*
+    =====================================
+    ADMIN EMPRESAS
+    =====================================
+    */
+
+    if (
+
+        path === "/admin/empresas"
+
+    ) {
+
+        renderizarAdminEmpresas();
+
+        return;
+
+    }
+
     /*
     =====================================
     ANUNCIE

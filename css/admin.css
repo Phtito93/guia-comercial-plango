@@ -87,6 +87,24 @@
 
 }
 
+.admin-stat-clickable {
+
+    cursor: pointer;
+
+    transition: .25s;
+
+}
+
+.admin-stat-clickable:hover {
+
+    transform: translateY(-3px);
+
+    border-color:
+
+        var(--primary-color);
+
+}
+
 .admin-ranking {
 
     display: grid;
@@ -783,5 +801,218 @@ AÇÕES FORMULÁRIO
 .voltar-btn:hover {
 
     transform: translateY(-2px);
+
+}
+
+/*
+=====================================================
+ADMIN EMPRESAS
+=====================================================
+*/
+
+.admin-header-empresas {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 24px;
+
+}
+
+.admin-title h2 {
+
+    margin-bottom: 8px;
+
+    text-align: center;
+
+}
+
+.admin-title p {
+
+    margin: 0;
+
+    opacity: .75;
+
+    font-size: 14px;
+
+    text-align: center;
+
+    padding: 10px;
+
+}
+
+.empresa-busca {
+
+    width: 100%;
+
+    padding: 14px;
+
+    margin-bottom: 20px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid rgba(
+            255,
+            255,
+            255,
+            .08
+        );
+
+}
+
+.admin-empresas-lista {
+
+    display: grid;
+
+    grid-template-columns:
+
+        repeat(
+
+            auto-fit,
+
+            minmax(
+                450px,
+                1fr
+            )
+
+        );
+
+    gap: 20px;
+
+}
+
+.empresa-admin-card {
+
+    background:
+        var(--card-bg);
+
+    border-radius: 16px;
+
+    padding: 20px;
+
+    border:
+        1px solid rgba(
+            255,
+            255,
+            255,
+            .06
+        );
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    transition: .25s;
+
+}
+
+.empresa-admin-card:hover {
+
+    transform:
+        translateY(-2px);
+
+}
+
+.empresa-id {
+
+    display: inline-block;
+
+    padding: 4px 8px;
+
+    margin-right: 8px;
+
+    border-radius: 999px;
+
+    background: rgba(
+        255,
+        255,
+        255,
+        .08
+    );
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+.empresa-admin-stats {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin: 12px 0;
+
+}
+
+.empresa-admin-stats span {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .05
+        );
+
+    padding: 6px 10px;
+
+    border-radius: 999px;
+
+    font-size: 13px;
+
+}
+
+.empresa-admin-actions {
+
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+}
+
+.admin-edit-btn,
+.admin-delete-btn {
+
+    border: none;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+}
+
+.admin-edit-btn {
+
+    background:
+        var(--primary-color);
+
+    color: #fff;
+
+}
+
+.admin-delete-btn {
+
+    background:
+        #dc3545;
+
+    color: #fff;
 
 }

@@ -1200,173 +1200,196 @@ function renderizarDashboardAdmin() {
 
                 </div>
 
-                <div class="admin-stat">
+                <div
+
+                    class="
+                        admin-stat
+                        admin-stat-clickable
+                    "
+
+                    onclick="
+                        navegar('/admin/empresas')
+                    "
+
+                >
 
                     <span>
-                        🏢 Empresas
+
+                        Empresas
+
                     </span>
 
                     <strong>
+
                         ${empresas.length}
+
                     </strong>
 
                 </div>
 
             </div>
 
-            <div class="admin-ranking">
+            <section class="admin-leads">
+                <h2>
 
-                ${topEmpresas.map(
+                    🏆 Top 05 Empresas
 
-                    (empresa, index) => `
+                </h2>
+            
 
-                        <div class="admin-ranking-card">
+                <div class="admin-ranking">
 
-                            <h3>
+                    ${topEmpresas
 
-                                🏆 #${index + 1}
+                        .slice(0, 5)
 
-                                ${empresa.nome}
+                        .map(
 
-                            </h3>
+                            (empresa, index) => `
 
-                            <p>
+                                <div class="admin-ranking-card">
 
-                                👁️ Views:
-                                ${empresa.views || 0}
+                                    <h3>
 
-                            </p>
+                                        🏆 #${index + 1}
 
-                            <p>
+                                        ${empresa.nome}
 
-                                📲 WhatsApp:
-                                ${empresa.whatsappClicks || 0}
+                                    </h3>
 
-                            </p>
+                                    <p>
 
-                            <p>
+                                        👁️ Views:
+                                        ${empresa.views || 0}
 
-                                ⭐ Plano:
-                                ${empresa.plano}
+                                    </p>
 
-                            </p>
+                                    <p>
 
-                            <div class="admin-score">
+                                        📲 WhatsApp:
+                                        ${empresa.whatsappClicks || 0}
 
-                                Score:
-                                ${calcularScore(
-                                    empresa
-                                )}
+                                    </p>
 
-                            </div>
+                                    <p>
 
-                        </div>
+                                        ⭐ Plano:
+                                        ${empresa.plano}
 
-                    `
+                                    </p>
 
-                ).join("")}
+                                    <div class="admin-score">
 
-            </div>
+                                        Score:
+                                        ${calcularScore(
+                                            empresa
+                                        )}
 
-            <div class="admin-cards">
+                                    </div>
 
-                <div class="admin-stat">
+                                </div>
 
-                    <span>
+                            `
 
-                        📩 Leads
+                        )
 
-                    </span>
-
-                    <strong>
-
-                        ${leads.length}
-
-                    </strong>
+                    .join("")}
 
                 </div>
+            </section>
 
-                <div class="admin-stat">
+            <section class="admin-leads">
 
-                    <span>
+                <h2>
 
-                        🟢 Novos
+                    📩 Status Leads
 
-                    </span>
+                </h2>
+            
+                <div class="admin-cards">
 
-                    <strong>
+                    <div class="admin-stat">
 
-                        ${leadsNovos}
+                        <span>
 
-                    </strong>
+                            🟢 Novos
+
+                        </span>
+
+                        <strong>
+
+                            ${leadsNovos}
+
+                        </strong>
+
+                    </div>
+
+                    <div class="admin-stat">
+
+                        <span>
+
+                            🟡 Contatados
+
+                        </span>
+
+                        <strong>
+
+                            ${leadsContatados}
+
+                        </strong>
+
+                    </div>
+
+                    <div class="admin-stat">
+
+                        <span>
+
+                            🔵 Negociando
+
+                        </span>
+
+                        <strong>
+
+                            ${leadsNegociando}
+
+                        </strong>
+
+                    </div>
+
+                    <div class="admin-stat">
+
+                        <span>
+
+                            ⭐ Clientes
+
+                        </span>
+
+                        <strong>
+
+                            ${leadsClientes}
+
+                        </strong>
+
+                    </div>
+
+                    <div class="admin-stat">
+
+                        <span>
+
+                            🔴 Perdidos
+
+                        </span>
+
+                        <strong>
+
+                            ${leadsPerdidos}
+
+                        </strong>
+
+                    </div>
 
                 </div>
-
-                <div class="admin-stat">
-
-                    <span>
-
-                        🟡 Contatados
-
-                    </span>
-
-                    <strong>
-
-                        ${leadsContatados}
-
-                    </strong>
-
-                </div>
-
-                <div class="admin-stat">
-
-                    <span>
-
-                        🔵 Negociando
-
-                    </span>
-
-                    <strong>
-
-                        ${leadsNegociando}
-
-                    </strong>
-
-                </div>
-
-                <div class="admin-stat">
-
-                    <span>
-
-                        ⭐ Clientes
-
-                    </span>
-
-                    <strong>
-
-                        ${leadsClientes}
-
-                    </strong>
-
-                </div>
-
-                <div class="admin-stat">
-
-                    <span>
-
-                        🔴 Perdidos
-
-                    </span>
-
-                    <strong>
-
-                        ${leadsPerdidos}
-
-                    </strong>
-
-                </div>
-
-            </div>
+            </section>
 
             <section class="admin-leads">
 
