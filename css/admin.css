@@ -816,11 +816,17 @@ ADMIN EMPRESAS
 
     justify-content: space-between;
 
-    align-items: center;
+    align-items: flex-start;
 
-    gap: 12px;
+    width: 100%;
 
-    margin-bottom: 24px;
+}
+
+.admin-title {
+
+    text-align: left;
+
+    flex: 1;
 
 }
 
@@ -828,21 +834,47 @@ ADMIN EMPRESAS
 
     margin-bottom: 8px;
 
-    text-align: center;
-
 }
 
 .admin-title p {
 
-    margin: 0;
+    margin: 10px 0 20px;
 
     opacity: .75;
 
     font-size: 14px;
 
-    text-align: center;
+}
 
-    padding: 10px;
+.admin-resumo {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin: 10px 0 20px;
+
+}
+
+.admin-resumo span {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .05
+        );
+
+    padding: 8px 12px;
+
+    border-radius: 999px;
+
+    font-size: 13px;
+
+    font-weight: 600;
 
 }
 
@@ -852,7 +884,7 @@ ADMIN EMPRESAS
 
     padding: 14px;
 
-    margin-bottom: 20px;
+    margin: 20px 0 20px;
 
     border-radius: 12px;
 

@@ -141,6 +141,12 @@ RESPONSIVIDADE
 
     }
 
+    .admin-action-btn {
+
+        width: 100%;
+
+    }
+
     .empresa-admin-card {
 
         flex-direction: column;

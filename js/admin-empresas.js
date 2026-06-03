@@ -6,6 +6,32 @@ ADMIN EMPRESAS
 
 function renderizarAdminEmpresas() {
 
+    const totalEmpresas = empresas.length;
+    
+    const totalDestaque =
+
+        empresas.filter(
+
+            empresa =>
+
+                empresa.plano ===
+
+                "destaque"
+
+        ).length;
+
+    const totalPresenca =
+
+        empresas.filter(
+
+            empresa =>
+
+                empresa.plano ===
+
+                "presenca"
+
+        ).length;
+    
     aplicarModoLandingPage();
 
     empresaGrid.innerHTML = `
@@ -42,10 +68,28 @@ function renderizarAdminEmpresas() {
 
                     <p>
 
-                        ${empresas.length}
+                        ${totalEmpresas}
                         empresas cadastradas
 
                     </p>
+
+                    <div class="admin-resumo">
+
+                        <span>
+
+                            ⭐
+                            ${totalDestaque}
+
+                        </span>
+
+                        <span>
+
+                            📌
+                            ${totalPresenca}
+
+                        </span>
+
+                    </div>
 
                 </div>
 
