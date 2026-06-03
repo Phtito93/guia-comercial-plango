@@ -509,7 +509,19 @@ async function salvarEmpresa(
             .getElementById(
                 "empresaCategorias"
             )
-            .value;
+            .value
+
+            .split(",")
+
+            .map(
+
+                categoria =>
+
+                    categoria.trim()
+
+            )
+
+            .filter(Boolean);
 
     const tags =
 
@@ -517,7 +529,19 @@ async function salvarEmpresa(
             .getElementById(
                 "empresaTags"
             )
-            .value;
+            .value
+
+            .split(",")
+
+            .map(
+
+                tag =>
+
+                    tag.trim()
+
+            )
+
+            .filter(Boolean);
 
     const local =
 
@@ -534,18 +558,6 @@ async function salvarEmpresa(
                 "empresaImagem"
             )
             .value
-
-            .split(",")
-
-            .map(
-
-                item =>
-
-                    item.trim()
-
-            )
-
-            .filter(Boolean);
 
     const endereco = {
 
@@ -599,55 +611,96 @@ async function salvarEmpresa(
 
     };
 
-    const contatos = {
+    const contatos = {};
 
-        telefone:
+        const telefone =
 
             document
                 .getElementById(
                     "telefone"
                 )
-                .value,
+                .value
+                .trim();
 
-        whatsapp:
+        if (
+            telefone
+        ) {
+            contatos.telefone = telefone;
+        }
+
+        const whatsapp =
 
             document
                 .getElementById(
                     "whatsapp"
                 )
-                .value,
+                .value
+                .trim();
 
-        instagram:
+        if (
+            whatsapp
+        ) {
+            contatos.whatsapp = whatsapp;
+        }
+
+        const instagram =
 
             document
                 .getElementById(
                     "instagram"
                 )
-                .value,
+                .value
+                .trim();
 
-        site:
+        if (
+            instagram
+        ) {
+            contatos.instagram = instagram;
+        }
+
+        const site =
 
             document
                 .getElementById(
                     "site"
                 )
-                .value,
+                .value
+                .trim();
 
-        email:
+        if (
+            site
+        ) {
+            contatos.site = site;
+        }
+
+        const email =
 
             document
                 .getElementById(
                     "email"
                 )
-                .value,
+                .value
+                .trim();
 
-        localizacao:
+        if (
+            email
+        ) {
+            contatos.email = email;
+        }
+
+        const localizacao =
 
             document
                 .getElementById(
                     "localizacao"
                 )
                 .value
+                .trim();
+
+        if (
+            localizacao
+        ) {
+            contatos.localizacao = localizacao;
 
     };
 
