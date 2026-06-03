@@ -23,11 +23,6 @@ RESPONSIVIDADE
 
     }
 
-    .horario-grid {
-
-        grid-template-columns: 1fr;
-
-    }
 }
 
 @media (min-width: 768px) {
@@ -135,6 +130,12 @@ RESPONSIVIDADE
     .horario-grid {
 
         grid-template-columns: 1fr;
+
+    }
+
+    .horario-grid input[type="time"] {
+
+        width: 100%;
 
     }
 

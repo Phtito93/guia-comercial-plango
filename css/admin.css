@@ -544,6 +544,8 @@ FORM
             .08
         );
 
+    box-sizing: border-box;
+
     background:
         var(--card-bg);
 
@@ -674,7 +676,13 @@ HORÁRIOS
 
 .horario-grid input[type="time"] {
 
+    width: 100%;
+
     min-width: 0;
+
+    padding: 8px;
+
+    box-sizing: border-box;
 
 }
 
