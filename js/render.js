@@ -1156,7 +1156,7 @@ function renderizarDashboardAdmin() {
 
                     <i class="fa-solid fa-plus"></i>
 
-                    Nova Empresa
+                    Criar Empresa
 
                 </button>
 
