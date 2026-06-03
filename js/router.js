@@ -347,6 +347,23 @@ async function aplicarRota() {
 
     /*
     =====================================
+    NOVA EMPRESA
+    =====================================
+    */
+
+
+    if (
+        path === "/nova-empresa"
+    ) {
+
+        renderizarFormularioEmpresa();
+
+        return;
+
+    }
+
+    /*
+    =====================================
     ANUNCIE
     =====================================
     */

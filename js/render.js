@@ -219,7 +219,7 @@ function renderizarCard(empresa) {
                     <div class="contact-dropdown">
                         ${empresa.contatos?.whatsapp ? `
                             <a 
-                                href="${empresa.contatos?.whatsapp}"
+                                href="https://wa.me/55${(empresa.contatos?.whatsapp || "").replace(/\D/g,'')}"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onclick="incrementarWhatsappClicks(${empresa.id})"
@@ -231,7 +231,7 @@ function renderizarCard(empresa) {
 
                         ${empresa.contatos?.instagram ? `
                             <a 
-                                href="${empresa.contatos?.instagram}"
+                                href="https://instagram.com/${empresa.contatos?.instagram}"
                                 target="_blank" 
                                 rel="noopener noreferrer"
                                 >
@@ -1137,6 +1137,26 @@ function renderizarDashboardAdmin() {
                 >
 
                     Sair
+
+                </button>
+
+            </div>
+
+            <div class="admin-actions">
+
+                <button
+
+                    class="admin-action-btn"
+
+                    onclick="
+                        navegar('/nova-empresa')
+                    "
+
+                >
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Nova Empresa
 
                 </button>
 

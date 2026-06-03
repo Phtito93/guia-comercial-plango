@@ -429,3 +429,361 @@ PASSWORD FIELD
     cursor: pointer;
 
 }
+
+/*
+=====================================================
+ADMIN ACTIONS
+=====================================================
+*/
+
+.admin-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    margin-bottom: 30px;
+
+}
+
+.admin-action-btn {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 10px 0;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: var(--primary-color);
+
+    color: #fff;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+.admin-action-btn:hover {
+
+    transform: translateY(-2px);
+
+}
+
+/*
+=====================================================
+NOVA EMPRESA
+=====================================================
+*/
+
+.empresa-form-page {
+
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    padding: 50px 20px;
+
+}
+
+.empresa-form-page h2 {
+
+    margin-bottom: 24px;
+
+}
+
+.empresa-form-page h3 {
+
+    margin-top: 30px;
+
+    margin-bottom: 12px;
+
+    font-size: 18px;
+
+}
+
+/*
+=====================================================
+FORM
+=====================================================
+*/
+
+#empresaForm {
+
+    display: grid;
+
+    gap: 18px;
+
+}
+
+#empresaForm input:not([type="checkbox"]),
+#empresaForm textarea,
+#empresaForm select {
+
+    width: 100%;
+
+    min-height: 56px;
+
+    padding: 16px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid rgba(
+            255,
+            255,
+            255,
+            .08
+        );
+
+    background:
+        var(--card-bg);
+
+    color:
+        var(--text-color);
+
+    font-size: 16px;
+
+}
+
+#empresaForm textarea {
+
+    min-height: 180px;
+
+    resize: vertical;
+
+}
+
+/*
+=====================================================
+GRID
+=====================================================
+*/
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap: 14px;
+
+}
+
+/*
+=====================================================
+SALVAR
+=====================================================
+*/
+
+.form-submit {
+
+    margin-top: 20px;
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        var(--primary-color);
+
+    color: #fff;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+.form-submit:hover {
+
+    transform: translateY(-2px);
+
+}
+
+/*
+=====================================================
+HORÁRIOS
+=====================================================
+*/
+
+.horarios-container {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+
+}
+
+.horario-dia {
+
+    background: var(--card-bg);
+
+    border-radius: 12px;
+
+    padding: 16px;
+
+}
+
+.horario-label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 12px;
+
+    font-weight: 600;
+
+}
+
+.horario-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+}
+
+.horario-padrao-btn {
+
+    margin-bottom: 16px;
+
+    padding: 12px 16px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: var(--primary-color);
+
+    color: #fff;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+}
+
+.horario-padrao-btn:hover {
+
+    opacity: .9;
+
+}
+
+/*
+=====================================================
+CHECKBOX HORÁRIO
+=====================================================
+*/
+
+.horario-label input[type="checkbox"] {
+
+    width: auto;
+
+    min-height: auto;
+
+    height: 18px;
+
+    width: 18px;
+
+    margin: 0;
+
+    padding: 0;
+
+    cursor: pointer;
+
+}
+
+.horario-actions {
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 20px;
+
+}
+
+.horario-limpar-btn {
+
+    padding: 12px 16px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #dc3545;
+
+    color: #fff;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+}
+
+/*
+=====================================================
+AÇÕES FORMULÁRIO
+=====================================================
+*/
+
+.empresa-form-actions {
+
+    margin-bottom: 24px;
+
+}
+
+.voltar-btn {
+
+    padding: 10px 16px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: var(--card-bg);
+
+    color: var(--text-color);
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+.voltar-btn:hover {
+
+    transform: translateY(-2px);
+
+}
