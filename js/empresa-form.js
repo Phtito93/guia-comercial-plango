@@ -4,6 +4,12 @@ function renderizarFormularioEmpresa(empresa = null) {
 
     window.empresaEditandoId = empresaId;
 
+    const CIDADE_PADRAO = "Planaltina";
+
+    const ESTADO_PADRAO = "GO";
+
+    const CEP_PADRAO = "73750-000";
+
     const rotaVoltar =
 
         empresaId
@@ -186,7 +192,7 @@ function renderizarFormularioEmpresa(empresa = null) {
                     <input 
                         id="cidade" 
                         placeholder="Cidade" 
-                        value="${empresa?.endereco?.cidade || ''}"
+                        value="${empresa?.endereco?.cidade || CIDADE_PADRAO}"
                     >
                 </div>
 
@@ -194,13 +200,13 @@ function renderizarFormularioEmpresa(empresa = null) {
                     <input 
                         id="estado"
                         placeholder="UF"
-                        value="${empresa?.endereco?.estado || ''}"
+                        value="${empresa?.endereco?.estado || ESTADO_PADRAO}"
                     >
 
                     <input 
                         id="cep" 
                         placeholder="CEP"
-                        value="${empresa?.endereco?.cep || ''}"
+                        value="${empresa?.endereco?.cep || CEP_PADRAO}"
                     >
                 </div>
 

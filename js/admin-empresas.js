@@ -194,7 +194,12 @@ function renderizarListaEmpresasAdmin(
 
                             <span class="empresa-id">
 
-                                #${empresa.id}
+                                EMP-${String(
+                                    empresa.id
+                                ).padStart(
+                                    3,
+                                    "0"
+                                )}
 
                             </span>
 
