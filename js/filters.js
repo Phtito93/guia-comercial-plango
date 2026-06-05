@@ -223,7 +223,6 @@ function atualizarInterface() {
     =====================================
     */
 
-    /*mostrarSkeleton();*/
     renderizarSkeleton();
 
     /*
@@ -254,43 +253,15 @@ function atualizarInterface() {
             somenteFavoritos
         ) {
 
-            lista = lista.filter((empresa) => {
+            lista = lista.filter(
 
-                return favoritos.includes(
-                    empresa.id
-                );
+                empresa =>
 
-            });
+                    favoritos.includes(
+                        empresa.id
+                    )
 
-        }
-
-        /*
-        =================================
-        HOME NORMAL
-        =================================
-        */
-
-        else {
-
-            /*
-            =============================
-            APENAS DESTAQUES
-            =============================
-            */
-
-            lista = lista.filter((empresa) => {
-
-                return empresa.plano === "destaque";
-
-            });
-
-            /*
-            =============================
-            LIMITA
-            =============================
-            */
-
-            lista = lista.slice(0, 10);
+            );
 
         }
 
@@ -304,15 +275,17 @@ function atualizarInterface() {
             estado.filtroHome
         ) {
 
-            lista = lista.filter((empresa) => {
+            lista = lista.filter(
 
-                return empresa.categorias?.includes(
+                empresa =>
 
-                    estado.filtroHome
+                    empresa.categorias?.includes(
 
-                );
+                        estado.filtroHome
 
-            });
+                    )
+
+            );
 
         }
 
@@ -328,39 +301,31 @@ function atualizarInterface() {
         estado.modo === "categoria"
     ) {
 
-        /*
-        =================================
-        FILTRA CATEGORIA
-        =================================
-        */
+        lista = lista.filter(
 
-        lista = lista.filter((empresa) => {
+            empresa =>
 
-            return empresa.categorias?.includes(
+                empresa.categorias?.includes(
 
-                estado.categoriaAtual
+                    estado.categoriaAtual
 
-            );
+                )
 
-        });
-
-        /*
-        =================================
-        FAVORITOS CATEGORIA
-        =================================
-        */
+        );
 
         if (
             somenteFavoritos
         ) {
 
-            lista = lista.filter((empresa) => {
+            lista = lista.filter(
 
-                return favoritos.includes(
-                    empresa.id
-                );
+                empresa =>
 
-            });
+                    favoritos.includes(
+                        empresa.id
+                    )
+
+            );
 
         }
 
@@ -376,63 +341,51 @@ function atualizarInterface() {
         estado.modo === "busca"
     ) {
 
-        /*
-        =================================
-        BUSCA
-        =================================
-        */
+        lista = lista.filter(
 
-        lista = lista.filter((empresa) => {
+            empresa =>
 
-            return empresaMatchBusca(
+                empresaMatchBusca(
 
-                empresa,
+                    empresa,
 
-                estado.busca
+                    estado.busca
 
-            );
+                )
 
-        });
-
-        /*
-        =====================================
-        FILTRO BUSCA
-        =====================================
-        */
+        );
 
         if (
             estado.filtroHome
         ) {
 
-            lista = lista.filter((empresa) => {
+            lista = lista.filter(
 
-                return empresa.categorias?.includes(
+                empresa =>
 
-                    estado.filtroHome
+                    empresa.categorias?.includes(
 
-                );
+                        estado.filtroHome
 
-            });
+                    )
+
+            );
 
         }
-
-        /*
-        =================================
-        FAVORITOS BUSCA
-        =================================
-        */
 
         if (
             somenteFavoritos
         ) {
 
-            lista = lista.filter((empresa) => {
+            lista = lista.filter(
 
-                return favoritos.includes(
-                    empresa.id
-                );
+                empresa =>
 
-            });
+                    favoritos.includes(
+                        empresa.id
+                    )
+
+            );
 
         }
 
@@ -440,7 +393,7 @@ function atualizarInterface() {
 
     /*
     =====================================================
-    STATUS
+    ABERTOS
     =====================================================
     */
 
@@ -448,13 +401,15 @@ function atualizarInterface() {
         estado.status === "abertos"
     ) {
 
-        lista = lista.filter((empresa) => {
+        lista = lista.filter(
 
-            return statusFuncionamento(
-                empresa.horario
-            ).aberto;
+            empresa =>
 
-        });
+                statusFuncionamento(
+                    empresa.horario
+                ).aberto
+
+        );
 
     }
 
@@ -468,13 +423,15 @@ function atualizarInterface() {
         estado.status === "fechados"
     ) {
 
-        lista = lista.filter((empresa) => {
+        lista = lista.filter(
 
-            return !statusFuncionamento(
-                empresa.horario
-            ).aberto;
+            empresa =>
 
-        });
+                !statusFuncionamento(
+                    empresa.horario
+                ).aberto
+
+        );
 
     }
 
@@ -498,15 +455,8 @@ function atualizarInterface() {
         const premiumB =
             b.plano === "destaque";
 
-        /*
-        =====================================
-        PREMIUM PRIORIDADE
-        =====================================
-        */
-
         if (
-            premiumA
-            &&
+            premiumA &&
             !premiumB
         ) {
 
@@ -515,8 +465,7 @@ function atualizarInterface() {
         }
 
         if (
-            !premiumA
-            &&
+            !premiumA &&
             premiumB
         ) {
 
@@ -592,8 +541,7 @@ function atualizarInterface() {
                 ).aberto;
 
             if (
-                abertoA
-                &&
+                abertoA &&
                 !abertoB
             ) {
 
@@ -602,8 +550,7 @@ function atualizarInterface() {
             }
 
             if (
-                !abertoA
-                &&
+                !abertoA &&
                 abertoB
             ) {
 
@@ -653,14 +600,8 @@ function atualizarInterface() {
         =====================================
         */
 
-        return (
-
-            (b.views || 0)
-
-            -
-
-            (a.views || 0)
-
+        return a.nome.localeCompare(
+            b.nome
         );
 
     });
@@ -707,7 +648,9 @@ function atualizarInterface() {
 
     setTimeout(() => {
 
-        renderizarEmpresas(lista);
+        renderizarEmpresas(
+            lista
+        );
 
     }, SKELETON_DELAY);
 

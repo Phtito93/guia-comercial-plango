@@ -287,36 +287,112 @@ function renderizarEmpresas(lista) {
 
     cardsHTML = "";
 
-    const inicio = (paginaAtual - 1) * EMPRESAS_POR_PAGINA;
+    const inicio =
 
-    const fim = inicio + EMPRESAS_POR_PAGINA;
+        (paginaAtual - 1)
 
-    const empresasPaginadas = lista.slice(inicio, fim);
+        * EMPRESAS_POR_PAGINA;
+
+    const fim =
+
+        inicio
+
+        + EMPRESAS_POR_PAGINA;
+
+    /*
+    =====================================
+    ORDENAÇÃO
+    =====================================
+    */
 
     const empresasDestaque =
-        empresasPaginadas.filter(
-            (empresa) => {
 
-                return (
-                    empresa.plano ===
-                    "destaque"
-                );
-            }
+        lista.filter(
+
+            empresa =>
+
+                empresa.plano ===
+
+                "destaque"
+
         );
 
     const empresasNormais =
-        empresasPaginadas.filter(
-            (empresa) => {
 
-                return (
-                    empresa.plano !==
-                    "destaque"
-                );
-            }
+        lista.filter(
+
+            empresa =>
+
+                empresa.plano !==
+
+                "destaque"
+
         );
 
+    const listaOrdenada = [
+
+        ...empresasDestaque,
+
+        ...empresasNormais
+
+    ];
+
+    /*
+    =====================================
+    PAGINAÇÃO
+    =====================================
+    */
+
+    const empresasPaginadas =
+
+        listaOrdenada.slice(
+
+            inicio,
+
+            fim
+
+        );
+
+    /*
+    =====================================
+    SEPARAÇÃO VISUAL
+    =====================================
+    */
+
+    const empresasDestaquePagina =
+
+        empresasPaginadas.filter(
+
+            empresa =>
+
+                empresa.plano ===
+
+                "destaque"
+
+        );
+
+    const empresasNormaisPagina =
+
+        empresasPaginadas.filter(
+
+            empresa =>
+
+                empresa.plano !==
+
+                "destaque"
+
+        );
+
+    /*
+    =====================================
+    DESTAQUES
+    =====================================
+    */
+
     if (
-        empresasDestaque.length
+
+        empresasDestaquePagina.length
+
     ) {
 
         cardsHTML += `
@@ -326,21 +402,30 @@ function renderizarEmpresas(lista) {
                 <div class="premium-header">
 
                     <span>
-                        ⭐ Empresas em Destaque
+
+                        ⭐ Empresas Destaque
+
                     </span>
 
                 </div>
 
                 <div class="premium-grid">
+
         `;
 
-        empresasDestaque.forEach((empresa) => {
+        empresasDestaquePagina.forEach(
 
-            cardsHTML +=
-                renderizarCard(
-                    empresa
-                );
-        });
+            empresa => {
+
+                cardsHTML +=
+
+                    renderizarCard(
+                        empresa
+                    );
+
+            }
+
+        );
 
         cardsHTML += `
 
@@ -351,8 +436,16 @@ function renderizarEmpresas(lista) {
         `;
     }
 
+    /*
+    =====================================
+    TODOS NEGÓCIOS
+    =====================================
+    */
+
     if (
-        empresasNormais.length
+
+        empresasNormaisPagina.length
+
     ) {
 
         cardsHTML += `
@@ -362,27 +455,37 @@ function renderizarEmpresas(lista) {
                 <div class="normal-header">
 
                     <span>
-                        🏪 Outros Negócios
+
+                        📍 Todos os Negócios
+
                     </span>
 
                 </div>
 
                 <div class="normal-grid">
+
         `;
 
-        empresasNormais.forEach((empresa) => {
+        empresasNormaisPagina.forEach(
 
-            cardsHTML +=
-                renderizarCard(
-                    empresa
-                );
-        });
+            empresa => {
+
+                cardsHTML +=
+
+                    renderizarCard(
+                        empresa
+                    );
+
+            }
+
+        );
 
         cardsHTML += `
 
                 </div>
 
             </section>
+
         `;
     }
 
@@ -395,46 +498,53 @@ function renderizarEmpresas(lista) {
     */
 
     document
+
         .querySelectorAll(
             ".favorite-btn"
         )
-        .forEach((btn) => {
 
-            btn.addEventListener(
-                "click",
-                (event) => {
+        .forEach(
 
-                    /*
-                    =====================
-                    EVITA PROPAGAÇÃO
-                    =====================
-                    */
+            btn => {
 
-                    event.stopPropagation();
+                btn.addEventListener(
 
-                    /*
-                    =====================
-                    ID
-                    =====================
-                    */
+                    "click",
 
-                    const id =
-                        Number(
-                            btn.dataset.id
+                    event => {
+
+                        event.stopPropagation();
+
+                        const id =
+
+                            Number(
+
+                                btn.dataset.id
+
+                            );
+
+                        toggleFavorito(
+
+                            id,
+
+                            btn
+
                         );
 
-                    /*
-                    =====================
-                    TOGGLE
-                    =====================
-                    */
+                    }
 
-                    toggleFavorito(id, btn);
-                }
-            );
-        });
+                );
 
-    atualizarPaginacao(lista);
+            }
+
+        );
+
+    atualizarPaginacao(
+
+        listaOrdenada
+
+    );
+
 }
 
 /*
@@ -452,7 +562,7 @@ function renderizarFiltros(lista) {
     */
 
     const categorias =
-        lista.flatMap((empresa) => {
+        empresas.flatMap((empresa) => {
 
             return empresa.categorias || [];
 
@@ -535,6 +645,14 @@ function renderizarFiltros(lista) {
     =====================================
     */
 
+    const textoTodos =
+
+        estado.modo === "categoria"
+
+            ? "← Home"
+
+            : "Todos";
+
     filtrosContainer.innerHTML = `
         <button
             class="
@@ -553,7 +671,7 @@ function renderizarFiltros(lista) {
             "
         >
 
-            Todos
+            ${textoTodos}
 
         </button>
     `;
@@ -625,7 +743,33 @@ function renderizarFiltros(lista) {
                     categoria === "todos"
                 ) {
 
-                    voltarHome();
+                    /*
+                    =================================
+                    CATEGORIA
+                    =================================
+                    */
+
+                    if (
+                        estado.modo === "categoria"
+                    ) {
+
+                        voltarHome();
+
+                        return;
+
+                    }
+
+                    /*
+                    =================================
+                    HOME / BUSCA
+                    =================================
+                    */
+
+                    estado.filtroHome = null;
+
+                    paginaAtual = 1;
+
+                    atualizarInterface();
 
                     return;
 
@@ -1912,9 +2056,10 @@ function atualizarTituloSecao() {
     if (estado.modo === "home") {
 
         sectionTitle.innerHTML = `
-            🔥 Negócios em destaque
+            <span class="category-highlight">
+        
+            </span>
         `;
-
     }
 
     /*
