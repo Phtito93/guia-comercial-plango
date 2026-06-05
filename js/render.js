@@ -971,17 +971,58 @@ RENDERIZAR LEADS
 =====================================================
 */
 
-function renderizarLeadsAdmin() {
+function renderizarLeadsAdmin(
+    status = null
+) {
+
+    let leadsFiltrados =
+
+        [...leads];
+
+    /*
+    =====================================
+    FILTRO STATUS
+    =====================================
+    */
 
     if (
-        !leads.length
+        status
+    ) {
+
+        leadsFiltrados =
+
+            leadsFiltrados.filter(
+
+                lead =>
+
+                    (
+                        lead.status
+
+                        ||
+
+                        "novo"
+
+                    ) === status
+
+            );
+
+    }
+
+    /*
+    =====================================
+    EMPTY STATE
+    =====================================
+    */
+
+    if (
+        !leadsFiltrados.length
     ) {
 
         return `
 
             <p>
 
-                Nenhum lead recebido.
+                Nenhum lead encontrado.
 
             </p>
 
@@ -989,9 +1030,37 @@ function renderizarLeadsAdmin() {
 
     }
 
-    return leads
+    /*
+    =====================================
+    ORDENAÇÃO
+    =====================================
+    */
 
-        .slice(0, 20)
+    leadsFiltrados.sort(
+
+        (a, b) =>
+
+            new Date(
+                b.created_at
+            )
+
+            -
+
+            new Date(
+                a.created_at
+            )
+
+    );
+
+    /*
+    =====================================
+    RENDER
+    =====================================
+    */
+
+    return leadsFiltrados
+
+        .slice(0, 50)
 
         .map((lead) => `
 
@@ -1453,11 +1522,14 @@ function renderizarDashboardAdmin() {
             
                 <div class="admin-cards">
 
-                    <div class="admin-stat">
+                    <div 
+                        class="admin-stat admin-stat-clickable"
+                        onclick="navegar('/admin/leads/novos')"
+                    >
 
                         <span>
 
-                            🟢 Novos
+                            🆕 Novos
 
                         </span>
 
@@ -1469,11 +1541,14 @@ function renderizarDashboardAdmin() {
 
                     </div>
 
-                    <div class="admin-stat">
+                    <div 
+                        class="admin-stat admin-stat-clickable"
+                        onclick="navegar('/admin/leads/contatados')"
+                    >
 
                         <span>
 
-                            🟡 Contatados
+                            📞 Contatados
 
                         </span>
 
@@ -1485,11 +1560,14 @@ function renderizarDashboardAdmin() {
 
                     </div>
 
-                    <div class="admin-stat">
+                    <div 
+                        class="admin-stat admin-stat-clickable"
+                        onclick="navegar('/admin/leads/negociando')"
+                    >
 
                         <span>
 
-                            🔵 Negociando
+                            🤝 Negociando
 
                         </span>
 
@@ -1501,11 +1579,14 @@ function renderizarDashboardAdmin() {
 
                     </div>
 
-                    <div class="admin-stat">
+                    <div 
+                        class="admin-stat admin-stat-clickable"
+                        onclick="navegar('/admin/leads/clientes')"
+                    >
 
                         <span>
 
-                            ⭐ Clientes
+                            ✅ Clientes
 
                         </span>
 
@@ -1517,11 +1598,14 @@ function renderizarDashboardAdmin() {
 
                     </div>
 
-                    <div class="admin-stat">
+                    <div 
+                        class="admin-stat admin-stat-clickable"
+                        onclick="navegar('/admin/leads/perdidos')"
+                    >
 
                         <span>
 
-                            🔴 Perdidos
+                            ❌ Perdidos
 
                         </span>
 
@@ -1540,13 +1624,15 @@ function renderizarDashboardAdmin() {
 
                 <h2>
 
-                    📩 Leads Recebidos
+                    🆕 Novos Leads
 
                 </h2>
 
                 <div class="admin-leads-grid">
 
-                    ${renderizarLeadsAdmin()}
+                    ${renderizarLeadsAdmin(
+                        "novo"
+                    )}
 
                 </div>
 

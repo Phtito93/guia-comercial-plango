@@ -950,7 +950,11 @@ async function atualizarStatusLead(
 
         await carregarLeads();
 
-        renderizarDashboardAdmin();
+        mostrarToast(
+            "Lead atualizado"
+        );
+
+        aplicarRota();
 
     } catch (erro) {
 

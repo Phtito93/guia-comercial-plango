@@ -356,6 +356,18 @@ async function aplicarRota() {
         path === "/nova-empresa"
     ) {
 
+        const autorizado =
+
+            await validarAdmin();
+
+        if (
+            !autorizado
+        ) {
+
+            return;
+
+        }
+
         renderizarFormularioEmpresa();
 
         return;
@@ -375,7 +387,179 @@ async function aplicarRota() {
 
     ) {
 
+        const autorizado =
+
+            await validarAdmin();
+
+        if (
+            !autorizado
+        ) {
+
+            return;
+
+        }
+
         renderizarAdminEmpresas();
+
+        return;
+
+    }
+
+    /*
+    =====================================
+    ADMIN LEADS - NOVOS
+    =====================================
+    */
+
+    if (
+
+        path === "/admin/leads/novos"
+
+    ) {
+
+        const autorizado =
+
+            await validarAdmin();
+
+        if (
+            !autorizado
+        ) {
+
+            return;
+
+        }
+
+        renderizarLeadsPorStatus(
+            "novo"
+        );
+
+        return;
+
+    }
+
+    /*
+    =====================================
+    ADMIN LEADS - CONTATADOS
+    =====================================
+    */
+
+    if (
+
+        path === "/admin/leads/contatados"
+
+    ) {
+
+        const autorizado =
+
+            await validarAdmin();
+
+        if (
+            !autorizado
+        ) {
+
+            return;
+
+        }
+        
+        renderizarLeadsPorStatus(
+            "contatado"
+        );
+
+        return;
+
+    }
+
+    /*
+    =====================================
+    ADMIN LEADS - NEGOCIANDO
+    =====================================
+    */
+
+    if (
+
+        path === "/admin/leads/negociando"
+
+    ) {
+
+        const autorizado =
+
+            await validarAdmin();
+
+        if (
+            !autorizado
+        ) {
+
+            return;
+
+        }
+
+        renderizarLeadsPorStatus(
+            "negociando"
+        );
+
+        return;
+
+    }
+
+    /*
+    =====================================
+    ADMIN LEADS - CLIENTES
+    =====================================
+    */
+
+    if (
+
+        path === "/admin/leads/clientes"
+
+    ) {
+
+        const autorizado =
+
+            await validarAdmin();
+
+        if (
+            !autorizado
+        ) {
+
+            return;
+
+        }
+
+        renderizarLeadsPorStatus(
+            "cliente"
+        );
+
+        return;
+
+    }
+
+    /*
+    =====================================
+    ADMIN LEADS - PERDIDOS
+    =====================================
+    */
+
+    if (
+
+        path === "/admin/leads/perdidos"
+
+    ) {
+
+        const autorizado =
+
+            await validarAdmin();
+
+        if (
+            !autorizado
+        ) {
+
+            return;
+
+        }
+
+        renderizarLeadsPorStatus(
+            "perdido"
+        );
 
         return;
 
@@ -398,6 +582,38 @@ async function aplicarRota() {
 
         return;
     }
+
+}
+
+async function validarAdmin() {
+
+    const {
+
+        data: {
+
+            user
+
+        }
+
+    } = await supabaseClient
+
+        .auth
+
+        .getUser();
+
+    if (
+        !user
+    ) {
+
+        navegar(
+            "/admin-login"
+        );
+
+        return false;
+
+    }
+
+    return true;
 
 }
 
