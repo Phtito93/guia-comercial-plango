@@ -369,3 +369,108 @@ function editarEmpresa(
     );
 
 }
+
+/*
+=====================================================
+EXCLUIR EMPRESA
+=====================================================
+*/
+
+async function excluirEmpresa(
+    empresaId
+) {
+
+    const empresa =
+
+        empresas.find(
+
+            item =>
+
+                item.id ==
+
+                empresaId
+
+        );
+
+    if (
+
+        !empresa
+
+    ) {
+
+        mostrarToast(
+
+            "Empresa não encontrada"
+
+        );
+
+        return;
+
+    }
+
+    const confirmar =
+
+        confirm(
+
+            `Excluir "${empresa.nome}"?`
+
+        );
+
+    if (
+
+        !confirmar
+
+    ) {
+
+        return;
+
+    }
+
+    const {
+
+        error
+
+    } = await supabaseClient
+
+        .from(
+            "empresas"
+        )
+
+        .delete()
+
+        .eq(
+            "id",
+            empresaId
+        );
+
+    if (
+
+        error
+
+    ) {
+
+        console.error(
+            error
+        );
+
+        mostrarToast(
+
+            "Erro ao excluir empresa"
+
+        );
+
+        return;
+
+    }
+
+    mostrarToast(
+
+        "Empresa excluída"
+
+    );
+
+    await carregarEmpresas();
+
+    renderizarAdminEmpresas();
+
+}
