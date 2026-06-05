@@ -151,7 +151,7 @@ RESPONSIVIDADE
 
         flex-direction: column;
 
-        align-items: flex-start;
+        align-items: stretch;
 
     }
 
@@ -159,11 +159,31 @@ RESPONSIVIDADE
 
         width: 100%;
 
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 12px;
+
+    }
+
+    .empresa-admin-card h3 {
+
+        word-break: break-word;
+
+        overflow-wrap: break-word;
+
     }
 
     .empresa-admin-actions button {
 
         flex: 1;
+
+    }
+
+    .empresa-admin-info {
+
+        min-width: 0;
 
     }
 

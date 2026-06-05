@@ -206,31 +206,27 @@ function renderizarListaEmpresasAdmin(
 
                             <span>
 
-                                👁️
-                                ${empresa.views || 0}
+                                👁️ ${empresa.views || 0}
 
                             </span>
 
                             <span>
 
-                                📲
-                                ${empresa.whatsapp_clicks || 0}
+                                📲 ${empresa.whatsapp_clicks || 0}
 
                             </span>
 
                             <span>
 
-                                ⭐
-                                ${empresa.plano}
+                                ⭐ ${empresa.plano}
 
                             </span>
 
                         </div>
 
-                        <p>
+                        <p class="empresa-admin-local">
 
-                            📍
-                            ${empresa.local || "-"}
+                            📍 ${empresa.local || "-"}
 
                         </p>
 
@@ -240,9 +236,8 @@ function renderizarListaEmpresasAdmin(
 
                         <button
 
-                            class="
-                                admin-edit-btn
-                            "
+                            class="admin-edit-btn"
+
                             onclick="
                                 editarEmpresa(
                                     ${empresa.id}
@@ -257,8 +252,12 @@ function renderizarListaEmpresasAdmin(
 
                         <button
 
-                            class="
-                                admin-delete-btn
+                            class="admin-delete-btn"
+
+                            onclick="
+                                excluirEmpresa(
+                                    ${empresa.id}
+                                )
                             "
 
                         >
