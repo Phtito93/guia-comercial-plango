@@ -618,31 +618,15 @@ async function salvarEmpresa(
     
     const empresaId = window.empresaEditandoId || null;
 
-    const empresaData = {
-
-        nome,
-        slug,
-        descricao,
-        plano,
-        categorias,
-        tags,
-        local,
-        imagem,
-        endereco,
-        contatos,
-        horario
-
-    };
-
     event.preventDefault();
 
     const nome =
-
         document
             .getElementById(
                 "empresaNome"
             )
-            .value;
+            .value
+            .trim();
 
     const slugDigitado =
         document
@@ -661,12 +645,12 @@ async function salvarEmpresa(
         );
 
     const descricao =
-
         document
             .getElementById(
                 "empresaDescricao"
             )
-            .value;
+            .value
+            .trim();
 
     const plano =
 
@@ -730,7 +714,7 @@ async function salvarEmpresa(
             .getElementById(
                 "empresaImagem"
             )
-            .value
+            .value;
 
     const endereco = {
 
@@ -878,6 +862,20 @@ async function salvarEmpresa(
     };
 
     const horario = montarHorario();
+
+    const empresaData = {
+        nome,
+        slug,
+        descricao,
+        plano,
+        categorias,
+        tags,
+        local,
+        imagem,
+        endereco,
+        contatos,
+        horario
+    };
 
     let resultado;
 
