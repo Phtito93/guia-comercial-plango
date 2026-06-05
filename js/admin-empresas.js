@@ -408,69 +408,125 @@ async function excluirEmpresa(
 
     }
 
-    const confirmar =
+    abrirModalConfirmacao({
 
-        confirm(
+        titulo:
 
-            `Excluir "${empresa.nome}"?`
+            "⚠ Excluir Empresa",
 
+        mensagem:
+
+            empresa.nome,
+
+        onConfirm:
+
+            async () => {
+
+                const {
+
+                    error
+
+                } = await supabaseClient
+
+                    .from(
+                        "empresas"
+                    )
+
+                    .delete()
+
+                    .eq(
+                        "id",
+                        empresaId
+                    );
+
+                if (
+                    error
+                ) {
+
+                    console.error(
+                        error
+                    );
+
+                    mostrarToast(
+
+                        "Erro ao excluir"
+
+                    );
+
+                    return;
+
+                }
+
+                mostrarToast(
+
+                    "Empresa excluída"
+
+                );
+
+                await carregarEmpresas();
+
+                renderizarAdminEmpresas();
+
+            }
+
+    });
+
+}
+
+/*
+=====================================================
+MODAL CONFIRMAÇÃO
+=====================================================
+*/
+
+function abrirModalConfirmacao({
+
+    titulo,
+
+    mensagem,
+
+    onConfirm
+
+}) {
+
+    const modal =
+
+        document.getElementById(
+            "confirmModal"
         );
 
-    if (
+    document.getElementById(
+        "confirmModalTitulo"
+    ).textContent = titulo;
 
-        !confirmar
+    document.getElementById(
+        "confirmModalMensagem"
+    ).textContent = mensagem;
 
-    ) {
-
-        return;
-
-    }
-
-    const {
-
-        error
-
-    } = await supabaseClient
-
-        .from(
-            "empresas"
-        )
-
-        .delete()
-
-        .eq(
-            "id",
-            empresaId
-        );
-
-    if (
-
-        error
-
-    ) {
-
-        console.error(
-            error
-        );
-
-        mostrarToast(
-
-            "Erro ao excluir empresa"
-
-        );
-
-        return;
-
-    }
-
-    mostrarToast(
-
-        "Empresa excluída"
-
+    modal.classList.add(
+        "active"
     );
 
-    await carregarEmpresas();
+    document.getElementById(
+        "confirmCancelBtn"
+    ).onclick = () => {
 
-    renderizarAdminEmpresas();
+        modal.classList.remove(
+            "active"
+        );
+
+    };
+
+    document.getElementById(
+        "confirmOkBtn"
+    ).onclick = () => {
+
+        modal.classList.remove(
+            "active"
+        );
+
+        onConfirm();
+
+    };
 
 }
