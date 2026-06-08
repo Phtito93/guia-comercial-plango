@@ -42,9 +42,7 @@ function renderizarDetalheEmpresa(
 
                     class="voltar-btn"
 
-                    onclick="
-                        navegar('/admin/empresas')
-                    "
+                    onclick="voltarPagina()"
 
                 >
 
@@ -97,9 +95,8 @@ function renderizarDetalheEmpresa(
                     class="admin-edit-btn"
 
                     onclick="
-                        editarEmpresa(
-                            ${empresa.id}
-                        )
+                        window.rotaVoltarEmpresa='/admin/empresa/${empresa.id}';
+                        editarEmpresa(${empresa.id});
                     "
 
                 >
@@ -513,6 +510,80 @@ function renderizarBlocosEmpresa(
                 </div>
 
             ` : ""}
+
+        </div>
+
+        <div class="admin-info-card">
+
+            <h3>
+
+                📊 Estatísticas
+
+            </h3>
+
+            <div class="info-item">
+
+                <span class="info-label">
+
+                    Visualizações
+
+                </span>
+
+                <strong class="info-value">
+
+                    👁️ ${empresa.views || 0}
+
+                </strong>
+
+            </div>
+
+            <div class="info-item">
+
+                <span class="info-label">
+
+                    Cliques WhatsApp
+
+                </span>
+
+                <strong class="info-value">
+
+                    📲 ${empresa.whatsappClicks || 0}
+
+                </strong>
+
+            </div>
+
+            <div class="info-item">
+
+                <span class="info-label">
+
+                    Cliques Instagram
+
+                </span>
+
+                <strong class="info-value">
+
+                    📸 ${empresa.instagramClicks || 0}
+
+                </strong>
+
+            </div>
+
+            <div class="info-item">
+
+                <span class="info-label">
+
+                    Score
+
+                </span>
+
+                <strong class="info-value">
+
+                    🏆 ${calcularScore(empresa)}
+
+                </strong>
+
+            </div>
 
         </div>
 

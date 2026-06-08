@@ -285,7 +285,7 @@ function renderizarLeadsPorStatus(
 
                     class="voltar-btn"
 
-                    onclick="navegar('/admin')"
+                    onclick="voltarPagina()"
 
                 >
 

@@ -46,7 +46,7 @@ function renderizarAdminEmpresas() {
 
                     class="voltar-btn-admin"
 
-                    onclick= "navegar('/admin')"
+                    onclick="voltarPagina()"
 
                 >
 
@@ -258,9 +258,8 @@ function renderizarListaEmpresasAdmin(
                             class="admin-edit-btn"
 
                             onclick="
-                                editarEmpresa(
-                                    ${empresa.id}
-                                )
+                                window.rotaVoltarEmpresa='/admin/empresas';
+                                editarEmpresa(${empresa.id});
                             "
 
                         >

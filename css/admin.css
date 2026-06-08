@@ -1278,6 +1278,8 @@ ADMIN DETALHE EMPRESA
         255,
         .05
     );
+
+    max-width: 480px;
 }
 
 .admin-detalhe-imagem img {

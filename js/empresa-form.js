@@ -12,17 +12,11 @@ function renderizarFormularioEmpresa(empresa = null) {
 
     const rotaVoltar =
 
-        empresaId
+        window.rotaVoltarEmpresa
 
-            ? "/admin/empresas"
+        ||
 
-            : (
-
-                window.rotaVoltarEmpresa
-
-                || "/admin"
-
-            );
+        "/admin";
 
     aplicarModoLandingPage();
 
@@ -992,13 +986,21 @@ async function salvarEmpresa(
 
     );
 
+    const rotaVoltar =
+
+        window.rotaVoltarEmpresa
+
+        ||
+
+        "/admin/empresas";
+
     await carregarEmpresas();
 
-        navegar(
+    navegar(
+        rotaVoltar
+    );
 
-            "/admin/empresas"
-
-        );
+    window.rotaVoltarEmpresa = null;
 
 }
 

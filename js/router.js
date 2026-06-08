@@ -662,6 +662,28 @@ async function validarAdmin() {
 
 /*
 =====================================================
+VOLTAR PÁGINA
+=====================================================
+*/
+
+function voltarPagina() {
+
+    if (
+        window.history.length > 1
+    ) {
+
+        window.history.back();
+
+        return;
+
+    }
+
+    navegar("/admin");
+
+}
+
+/*
+=====================================================
 BACK / FORWARD
 =====================================================
 */
@@ -671,3 +693,4 @@ window.addEventListener(
     "popstate",
         aplicarRota
 );
+
