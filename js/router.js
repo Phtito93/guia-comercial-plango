@@ -419,6 +419,18 @@ async function aplicarRota() {
 
     ) {
 
+        const autorizado =
+
+            await validarAdmin();
+
+        if (
+            !autorizado
+        ) {
+
+            return;
+
+        }
+
         const empresaId =
 
             Number(
@@ -436,7 +448,6 @@ async function aplicarRota() {
         return;
 
     }
-
     /*
     =====================================
     ADMIN LEADS - NOVOS
