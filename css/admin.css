@@ -607,6 +607,74 @@ GRID
 
 /*
 =====================================================
+IMAGEM PREVIEW
+=====================================================
+*/
+
+.empresa-imagem-preview {
+
+    margin-top: 16px;
+
+    width: 100%;
+
+    max-width: 420px;
+
+    aspect-ratio: 16 / 10;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .04
+        );
+
+    border:
+        1px solid rgba(
+            255,
+            255,
+            255,
+            .08
+        );
+
+}
+
+.empresa-imagem-preview img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+.preview-placeholder {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    opacity: .6;
+
+    font-size: 14px;
+
+}
+
+/*
+=====================================================
 SALVAR
 =====================================================
 */
@@ -920,41 +988,6 @@ ADMIN EMPRESAS
     gap: 20px;
 
 }
-
-/*
-.empresa-admin-card {
-
-    background:
-        var(--card-bg);
-
-    border-radius: 16px;
-
-    padding: 20px;
-
-    border:
-        1px solid rgba(
-            255,
-            255,
-            255,
-            .06
-        );
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: flex-start;
-
-    gap: 16px;
-
-    transition: .25s;
-
-    box-sizing: border-box;
-
-    width: 100%;
-
-}
-*/
 
 .empresa-admin-card {
 

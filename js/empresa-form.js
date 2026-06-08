@@ -139,10 +139,49 @@ function renderizarFormularioEmpresa(empresa = null) {
                 </div>
 
                 <input
+
                     id="empresaImagem"
-                    placeholder="URL da Imagem: empresa.webp"
+
+                    placeholder="Imagem: empresa.webp"
+
                     value="${empresa?.imagem || ""}"
+
                 >
+
+                <div
+
+                    id="empresaImagemPreview"
+
+                    class="empresa-imagem-preview"
+
+                >
+
+                    ${empresa?.imagem
+
+                        ? `
+
+                            <img
+
+                                src="/img/${empresa.imagem}"
+
+                                alt="${empresa.nome || 'Preview'}"
+
+                            >
+
+                        `
+
+                        : `
+
+                            <div class="preview-placeholder">
+
+                                🖼️ Preview da imagem
+
+                            </div>
+
+                        `
+                    }
+
+                </div>
                 
                 <input
                     id="empresaCategorias"
@@ -338,6 +377,18 @@ function renderizarFormularioEmpresa(empresa = null) {
             "empresaSlug"
         );
 
+    const campoImagem =
+
+        document.getElementById(
+            "empresaImagem"
+        );
+
+    const previewImagem =
+
+        document.getElementById(
+            "empresaImagemPreview"
+        );
+
     campoNome?.addEventListener(
 
         "input",
@@ -351,6 +402,55 @@ function renderizarFormularioEmpresa(empresa = null) {
                     campoNome.value
 
                 );
+        }
+
+    );
+
+    campoImagem?.addEventListener(
+
+        "input",
+
+        () => {
+
+            const imagem =
+
+                campoImagem.value.trim();
+
+            if (
+                !imagem
+            ) {
+
+                previewImagem.innerHTML = `
+
+                    <div class="preview-placeholder">
+
+                        🖼️ Preview da imagem
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+            previewImagem.innerHTML = `
+
+                <img
+
+                    src="/img/${imagem}"
+
+                    alt="Preview"
+
+                    onerror="
+                        this.parentElement.innerHTML=
+                        '<div class=preview-placeholder>❌ Imagem não encontrada</div>'
+                    "
+
+                >
+
+            `;
+
         }
 
     );
