@@ -241,6 +241,20 @@ function renderizarListaEmpresasAdmin(
 
                         <button
 
+                            class="admin-view-btn"
+
+                            onclick="
+                                navegar('/admin/empresa/${empresa.id}')
+                            "
+
+                        >
+
+                            👁 Ver
+
+                        </button>
+
+                        <button
+
                             class="admin-edit-btn"
 
                             onclick="

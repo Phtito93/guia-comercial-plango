@@ -407,6 +407,38 @@ async function aplicarRota() {
 
     /*
     =====================================
+    DETALHE EMPRESA
+    =====================================
+    */
+
+    if (
+
+        path.startsWith(
+            "/admin/empresa/"
+        )
+
+    ) {
+
+        const empresaId =
+
+            Number(
+
+                path.split(
+                    "/"
+                )[3]
+
+            );
+
+        renderizarDetalheEmpresa(
+            empresaId
+        );
+
+        return;
+
+    }
+
+    /*
+    =====================================
     ADMIN LEADS - NOVOS
     =====================================
     */
