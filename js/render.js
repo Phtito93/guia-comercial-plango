@@ -222,7 +222,8 @@ function renderizarCard(empresa) {
                                 href="https://wa.me/55${(empresa.contatos?.whatsapp || "").replace(/\D/g,'')}"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                onclick="incrementarWhatsappClicks(${empresa.id})"
+                                onclick="incrementarCliqueContato(${empresa.id},
+                                'whatsapp_clicks')"
                                 >
                                 <i class="fa-brands fa-whatsapp"></i>
                                 WhatsApp
@@ -234,6 +235,8 @@ function renderizarCard(empresa) {
                                 href="https://instagram.com/${empresa.contatos?.instagram}"
                                 target="_blank" 
                                 rel="noopener noreferrer"
+                                onclick="incrementarCliqueContato(${empresa.id},
+                                'instagram_clicks')"
                                 >
                                 <i class="fa-brands fa-instagram"></i>
                                 Instagram
@@ -243,6 +246,8 @@ function renderizarCard(empresa) {
                         ${empresa.contatos?.telefone ? `
                             <a 
                                 href="tel:${empresa.contatos?.telefone}"
+                                onclick="incrementarCliqueContato(${empresa.id},
+                                'telefone_clicks')"
                                 >
                                 <i class="fa-solid fa-phone"></i>
                                 Telefone
@@ -253,7 +258,9 @@ function renderizarCard(empresa) {
                             <a 
                                 href="${empresa.contatos?.localizacao}" 
                                 target="_blank" 
-                                rel="noopener noreferrer" 
+                                rel="noopener noreferrer"
+                                onclick="incrementarCliqueContato(${empresa.id},
+                                'localizacao_clicks')"
                                 > 
                                 <i class="fa-solid fa-location-dot"></i> 
                                 Localização
@@ -264,10 +271,23 @@ function renderizarCard(empresa) {
                             <a 
                                 href="${empresa.contatos?.site}" 
                                 target="_blank" 
-                                rel="noopener noreferrer" 
+                                rel="noopener noreferrer"
+                                onclick="incrementarCliqueContato(${empresa.id},
+                                'site_clicks')"
                                 > 
                                 <i class="fa-solid fa-globe"></i>   
                                 Site
+                            </a>
+                        `: ""}
+
+                        ${empresa.contatos?.email ? `
+                            <a 
+                                href="mailto:${empresa.contatos?.email}"
+                                onclick="incrementarCliqueContato(${empresa.id},
+                                'email_clicks')"
+                                > 
+                                <i class="fa-solid fa-envelope"></i>   
+                                E-mail
                             </a>
                         `: ""}
                     </div>

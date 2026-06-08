@@ -15,6 +15,46 @@ function normalizarTexto(texto = "") {
 
 /*
 =====================================================
+TOTAL INTERAÇÕES
+=====================================================
+*/
+
+function calcularTotalInteracoes(
+
+    empresa
+
+) {
+
+    return (
+
+        (empresa.whatsapp_clicks || 0)
+
+        +
+
+        (empresa.instagram_clicks || 0)
+
+        +
+
+        (empresa.telefone_clicks || 0)
+
+        +
+
+        (empresa.site_clicks || 0)
+
+        +
+
+        (empresa.email_clicks || 0)
+
+        +
+
+        (empresa.localizacao_clicks || 0)
+
+    );
+
+}
+
+/*
+=====================================================
 SCORE EMPRESA
 =====================================================
 */
@@ -31,15 +71,10 @@ function calcularScore(
 
         +
 
-        (
-
-            (empresa.whatsappClicks || 0)
-
-            * 5
-
-        )
+        (calcularTotalInteracoes(empresa) * 5)
 
     );
+
 }
 
 /*

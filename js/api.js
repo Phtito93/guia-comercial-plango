@@ -64,7 +64,7 @@ async function carregarEmpresas() {
 
             (data || []).map(
 
-                (empresa) => ({
+                empresa => ({
 
                     ...empresa,
 
@@ -72,7 +72,22 @@ async function carregarEmpresas() {
                         empresa.created_at,
 
                     whatsappClicks:
-                        empresa.whatsapp_clicks
+                        empresa.whatsapp_clicks,
+
+                    instagramClicks:
+                        empresa.instagram_clicks,
+
+                    telefoneClicks:
+                        empresa.telefone_clicks,
+
+                    siteClicks:
+                        empresa.site_clicks,
+
+                    localizacaoClicks:
+                        empresa.localizacao_clicks,
+
+                    emailClicks:
+                        empresa.email_clicks
 
                 })
 
@@ -237,23 +252,19 @@ function registrarView(
 
 /*
 =====================================================
-INCREMENTAR WHATSAPP
+INCREMENTAR CLIQUES
 =====================================================
 */
 
-async function incrementarWhatsappClicks(
+async function incrementarCliqueContato(
 
-    empresaId
+    empresaId,
+
+    campo
 
 ) {
 
     try {
-
-        /*
-        =====================================
-        BUSCA VALOR ATUAL
-        =====================================
-        */
 
         const {
 
@@ -265,7 +276,7 @@ async function incrementarWhatsappClicks(
 
             .from("empresas")
 
-            .select("whatsapp_clicks")
+            .select(campo)
 
             .eq(
                 "id",
@@ -273,12 +284,6 @@ async function incrementarWhatsappClicks(
             )
 
             .single();
-
-        /*
-        =====================================
-        ERROR
-        =====================================
-        */
 
         if (
             erroBusca
@@ -292,21 +297,11 @@ async function incrementarWhatsappClicks(
 
         }
 
-        /*
-        =====================================
-        NOVO TOTAL
-        =====================================
-        */
-
         const novoTotal =
 
-            (data.whatsapp_clicks || 0) + 1;
+            (data[campo] || 0)
 
-        /*
-        =====================================
-        UPDATE
-        =====================================
-        */
+            + 1;
 
         const {
 
@@ -318,7 +313,7 @@ async function incrementarWhatsappClicks(
 
             .update({
 
-                whatsapp_clicks:
+                [campo]:
                     novoTotal
 
             })
@@ -328,23 +323,21 @@ async function incrementarWhatsappClicks(
                 empresaId
             );
 
-        /*
-        =====================================
-        ERROR UPDATE
-        =====================================
-        */
-
         if (
             error
         ) {
 
-            console.error(error);
+            console.error(
+                error
+            );
 
         }
 
     } catch (erro) {
 
-        console.error(erro);
+        console.error(
+            erro
+        );
 
     }
 
@@ -404,7 +397,7 @@ async function atualizarEmpresas() {
 
             (data || []).map(
 
-                (empresa) => ({
+                empresa => ({
 
                     ...empresa,
 
@@ -412,7 +405,22 @@ async function atualizarEmpresas() {
                         empresa.created_at,
 
                     whatsappClicks:
-                        empresa.whatsapp_clicks
+                        empresa.whatsapp_clicks,
+
+                    instagramClicks:
+                        empresa.instagram_clicks,
+
+                    telefoneClicks:
+                        empresa.telefone_clicks,
+
+                    siteClicks:
+                        empresa.site_clicks,
+
+                    localizacaoClicks:
+                        empresa.localizacao_clicks,
+
+                    emailClicks:
+                        empresa.email_clicks
 
                 })
 

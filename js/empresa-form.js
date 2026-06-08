@@ -1126,10 +1126,6 @@ async function salvarEmpresa(
 
                     views: 0,
 
-                    whatsapp_clicks: 0,
-
-                    instagram_clicks: 0
-
                 });
     }
 

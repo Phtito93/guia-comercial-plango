@@ -541,13 +541,13 @@ function renderizarBlocosEmpresa(
 
                 <span class="info-label">
 
-                    Cliques WhatsApp
+                    WhatsApp
 
                 </span>
 
                 <strong class="info-value">
 
-                    📲 ${empresa.whatsappClicks || 0}
+                    📲 ${empresa.whatsapp_clicks || 0}
 
                 </strong>
 
@@ -557,13 +557,77 @@ function renderizarBlocosEmpresa(
 
                 <span class="info-label">
 
-                    Cliques Instagram
+                    Instagram
 
                 </span>
 
                 <strong class="info-value">
 
-                    📸 ${empresa.instagramClicks || 0}
+                    📸 ${empresa.instagram_clicks || 0}
+
+                </strong>
+
+            </div>
+
+            <div class="info-item">
+
+                <span class="info-label">
+
+                    Telefone
+
+                </span>
+
+                <strong class="info-value">
+
+                    ☎️ ${empresa.telefone_clicks || 0}
+
+                </strong>
+
+            </div>
+
+            <div class="info-item">
+
+                <span class="info-label">
+
+                    Site
+
+                </span>
+
+                <strong class="info-value">
+
+                    🌐 ${empresa.site_clicks || 0}
+
+                </strong>
+
+            </div>
+
+            <div class="info-item">
+
+                <span class="info-label">
+
+                    E-mail
+
+                </span>
+
+                <strong class="info-value">
+
+                    ✉️ ${empresa.email_clicks || 0}
+
+                </strong>
+
+            </div>
+
+            <div class="info-item">
+
+                <span class="info-label">
+
+                    Localização
+
+                </span>
+
+                <strong class="info-value">
+
+                    📍 ${empresa.localizacao_clicks || 0}
 
                 </strong>
 
