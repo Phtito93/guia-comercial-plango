@@ -699,6 +699,30 @@ IMAGEM
 
 }
 
+.imagem-status {
+
+    margin-top: 10px;
+
+    font-size: 14px;
+
+}
+
+.imagem-ok {
+
+    color: #28a745;
+
+    font-weight: 600;
+
+}
+
+.imagem-erro {
+
+    color: #dc3545;
+
+    font-weight: 600;
+
+}
+
 /*
 =====================================================
 SALVAR

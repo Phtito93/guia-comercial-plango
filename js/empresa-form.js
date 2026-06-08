@@ -196,6 +196,16 @@ function renderizarFormularioEmpresa(empresa = null) {
                     }
 
                 </div>
+
+                <div
+
+                    id="imagemStatus"
+
+                    class="imagem-status"
+
+                >
+
+                </div>
                 
                 <input
                     id="empresaCategorias"
@@ -409,6 +419,12 @@ function renderizarFormularioEmpresa(empresa = null) {
             "empresaImagemPreview"
         );
 
+    const statusImagem =
+
+        document.getElementById(
+            "imagemStatus"
+        );
+
     campoNome?.addEventListener(
 
         "input",
@@ -487,22 +503,61 @@ function renderizarFormularioEmpresa(empresa = null) {
 
             }
 
-            previewImagem.innerHTML = `
+            const img =
 
-                <img
+                new Image();
 
-                    src="/img/${imagem}"
+            img.onload = () => {
 
-                    alt="Preview"
+                previewImagem.innerHTML = `
 
-                    onerror="
-                        this.parentElement.innerHTML=
-                        '<div class=preview-placeholder>❌ Imagem não encontrada</div>'
-                    "
+                    <img
 
-                >
+                        src="/img/${imagem}"
 
-            `;
+                        alt="Preview"
+
+                    >
+
+                `;
+
+                statusImagem.innerHTML = `
+
+                    <span class="imagem-ok">
+
+                        ✅ Imagem encontrada
+
+                    </span>
+
+                `;
+
+            };
+
+            img.onerror = () => {
+
+                previewImagem.innerHTML = `
+
+                    <div class="preview-placeholder">
+
+                        ❌ Imagem não encontrada
+
+                    </div>
+
+                `;
+
+                statusImagem.innerHTML = `
+
+                    <span class="imagem-erro">
+
+                        ⚠️ Verifique o nome do arquivo
+
+                    </span>
+
+                `;
+
+            };
+
+            img.src = `/img/${imagem}`;
 
         }
 
