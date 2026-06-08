@@ -201,6 +201,39 @@ RESPONSIVIDADE
 
     }
 
+    .admin-detalhe-topo {
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 20px;
+
+    }
+
+    .admin-title {
+
+        width: 100%;
+
+        min-width: 0;
+
+    }
+
+    .admin-title h2 {
+
+        font-size: 24px;
+
+        line-height: 1.3;
+
+    }
+
+    .admin-detalhe-imagem {
+
+        max-width: 100%;
+    }
+
 }
 
 @media (min-width: 1024px) {

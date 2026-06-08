@@ -54,7 +54,19 @@ function renderizarDetalheEmpresa(
 
             </div>
 
-            <div class="admin-header-empresas">
+            <div class="admin-detalhe-topo">
+
+                <div class="admin-detalhe-imagem">
+
+                    <img
+
+                        src="/img/${empresa.imagem || 'placeholder.jpg'}"
+
+                        alt="${empresa.nome}"
+
+                    >
+
+                </div>
 
                 <div class="admin-title">
 
@@ -68,10 +80,49 @@ function renderizarDetalheEmpresa(
 
                         EMP-${String(
                             empresa.id
-                        ).padStart(3, "0")}
+                        ).padStart(
+                            3,
+                            "0"
+                        )}
                     </p>
 
                 </div>
+
+            </div>
+
+            <div class="admin-detalhe-actions">
+
+                <button
+
+                    class="admin-edit-btn"
+
+                    onclick="
+                        editarEmpresa(
+                            ${empresa.id}
+                        )
+                    "
+
+                >
+
+                    ✏ Editar
+
+                </button>
+
+                <button
+
+                    class="admin-delete-btn"
+
+                    onclick="
+                        excluirEmpresa(
+                            ${empresa.id}
+                        )
+                    "
+
+                >
+
+                    🗑 Excluir
+
+                </button>
 
             </div>
 
