@@ -142,11 +142,25 @@ function renderizarFormularioEmpresa(empresa = null) {
 
                     id="empresaImagem"
 
-                    placeholder="Imagem: empresa.webp"
+                    placeholder="(gerado automaticamente)"
 
                     value="${empresa?.imagem || ""}"
 
                 >
+
+                <div class="imagem-upload-area">
+
+                    <input
+
+                        type="file"
+
+                        id="empresaImagemArquivo"
+
+                        accept=".jpg,.jpeg,.png,.webp"
+
+                    >
+
+                </div>
 
                 <div
 
@@ -383,6 +397,12 @@ function renderizarFormularioEmpresa(empresa = null) {
             "empresaImagem"
         );
 
+    const campoArquivoImagem =
+
+        document.getElementById(
+            "empresaImagemArquivo"
+        );
+
     const previewImagem =
 
         document.getElementById(
@@ -402,6 +422,39 @@ function renderizarFormularioEmpresa(empresa = null) {
                     campoNome.value
 
                 );
+        }
+
+    );
+
+    campoArquivoImagem?.addEventListener(
+
+        "change",
+
+        (event) => {
+
+            const arquivo =
+
+                event.target.files?.[0];
+
+            if (
+                !arquivo
+            ) {
+
+                return;
+
+            }
+
+            campoImagem.value =
+                arquivo.name;
+
+            campoImagem.dispatchEvent(
+
+                new Event(
+                    "input"
+                )
+
+            );
+
         }
 
     );
@@ -454,7 +507,6 @@ function renderizarFormularioEmpresa(empresa = null) {
         }
 
     );
-
 }
 
 function renderizarCamposHorario(empresa = null) {

@@ -607,9 +607,35 @@ GRID
 
 /*
 =====================================================
-IMAGEM PREVIEW
+IMAGEM 
 =====================================================
 */
+
+.imagem-upload-area {
+
+    margin-top: 12px;
+
+    margin-bottom: 16px;
+
+}
+
+#empresaImagemArquivo {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid rgba(
+            255,
+            255,
+            255,
+            .08
+        );
+
+}
 
 .empresa-imagem-preview {
 
