@@ -646,6 +646,6 @@ async function alterarStatusEmpresa(
 
     await carregarEmpresas();
 
-    renderizarListaEmpresasAdmin();
+    renderizarAdminEmpresas();
 
 }
