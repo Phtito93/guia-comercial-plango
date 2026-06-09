@@ -231,7 +231,15 @@ function atualizarInterface() {
     =====================================
     */
 
-    let lista = [...empresas];
+    let lista =
+
+        empresas.filter(
+
+            empresa =>
+
+                empresa.ativo !== false
+
+        );
 
     /*
     =====================================================

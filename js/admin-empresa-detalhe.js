@@ -121,6 +121,31 @@ function renderizarDetalheEmpresa(
 
                 </button>
 
+                <button
+
+                    class="admin-status-btn"
+
+                    onclick="
+                        alterarStatusEmpresa(
+                            ${empresa.id},
+                            ${empresa.ativo !== false ? false : true}
+                        )
+                    "
+
+                >
+
+                    ${
+
+                        empresa.ativo !== false
+
+                            ? "🔴 Desativar"
+
+                            : "🟢 Ativar"
+
+                    }
+
+                </button>
+
             </div>
 
             <div class="admin-detalhe-grid">
@@ -162,6 +187,30 @@ function renderizarBlocosEmpresa(
                 <strong class="info-value">
 
                     ⭐ ${empresa.plano}
+                </strong>
+
+            </div>
+
+            <div class="info-item">
+
+                <span class="info-label">
+
+                    Status
+
+                </span>
+
+                <strong class="info-value">
+
+                    ${
+
+                        empresa.ativo !== false
+
+                            ? "🟢 Ativa"
+
+                            : "🔴 Inativa"
+
+                    }
+
                 </strong>
 
             </div>

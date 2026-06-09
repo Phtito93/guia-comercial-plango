@@ -1096,6 +1096,22 @@ ADMIN EMPRESAS
 
 }
 
+.empresa-status {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 12px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
 .empresa-admin-stats {
 
     display: flex;
@@ -1172,7 +1188,8 @@ ADMIN EMPRESAS
 }
 
 .admin-edit-btn,
-.admin-delete-btn {
+.admin-delete-btn,
+.admin-status-btn {
 
     width: 100%;
 

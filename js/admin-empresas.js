@@ -207,6 +207,17 @@ function renderizarListaEmpresasAdmin(
 
                         </h3>
 
+                        <div class="empresa-status">
+
+                            ${empresa.ativo !== false
+
+                                    ? "🟢 Ativa"
+
+                                    : "🔴 Inativa"
+                            }
+
+                        </div>
+
                         <div class="empresa-admin-stats">
 
                             <span>
@@ -281,6 +292,31 @@ function renderizarListaEmpresasAdmin(
                         >
 
                             🗑 Excluir
+
+                        </button>
+
+                        <button
+
+                            class="admin-status-btn"
+
+                            onclick="
+                                alterarStatusEmpresa(
+                                    ${empresa.id},
+                                    ${empresa.ativo !== false ? false : true}
+                                )
+                            "
+
+                        >
+
+                            ${
+
+                                empresa.ativo !== false
+
+                                    ? "🔴 Desativar"
+
+                                    : "🟢 Ativar"
+
+                            }
 
                         </button>
 
@@ -546,5 +582,70 @@ function abrirModalConfirmacao({
         onConfirm();
 
     };
+
+}
+
+async function alterarStatusEmpresa(
+
+    empresaId,
+
+    ativo
+
+) {
+
+    const {
+
+        error
+
+    } = await supabaseClient
+
+        .from("empresas")
+
+        .update({
+
+            ativo
+
+        })
+
+        .eq(
+            "id",
+            empresaId
+        );
+
+    if (
+        error
+    ) {
+
+        console.error(
+            error
+        );
+
+        mostrarToast(
+
+            "Erro ao atualizar status."
+
+        );
+
+        return;
+
+    }
+
+    mostrarToast(
+
+        ativo
+
+            ?
+
+            "✅ Empresa ativada"
+
+            :
+
+            "⚠️ Empresa desativada"
+
+    );
+
+    await carregarEmpresas();
+
+    renderizarListaEmpresasAdmin();
 
 }
