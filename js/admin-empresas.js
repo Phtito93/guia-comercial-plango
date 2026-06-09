@@ -6,7 +6,37 @@ ADMIN EMPRESAS
 
 function renderizarAdminEmpresas() {
 
-    const totalEmpresas = empresas.length;
+    let listaEmpresas = [...empresas];
+
+    if (
+
+        filtroStatusEmpresa === "ativas"
+    ) {
+
+        listaEmpresas =
+
+            listaEmpresas.filter(
+
+                empresa => empresa.ativo !== false
+            );
+
+    }
+
+    else if (
+
+        filtroStatusEmpresa === "inativas"
+
+    ) {
+
+        listaEmpresas =
+
+            listaEmpresas.filter(
+
+                empresa => empresa.ativo === false
+            );
+    }
+
+    const totalEmpresas = listaEmpresas.length;
     
     const totalDestaque =
 
@@ -14,9 +44,7 @@ function renderizarAdminEmpresas() {
 
             empresa =>
 
-                empresa.plano ===
-
-                "destaque"
+                empresa.plano === "destaque"
 
         ).length;
 
@@ -26,11 +54,37 @@ function renderizarAdminEmpresas() {
 
             empresa =>
 
-                empresa.plano ===
-
-                "presenca"
+                empresa.plano === "presenca"
 
         ).length;
+
+    let textoResumo =
+
+        `${totalEmpresas} empresa(s) cadastrada(s)`;
+
+    if (
+
+        filtroStatusEmpresa === "ativas"
+
+    ) {
+
+        textoResumo =
+
+            `${totalEmpresas} empresa(s) ativa(s)`;
+
+    }
+
+    else if (
+
+        filtroStatusEmpresa === "inativas"
+
+    ) {
+
+        textoResumo =
+
+            `${totalEmpresas} empresa(s) inativa(s)`;
+
+    }
     
     aplicarModoLandingPage();
 
@@ -66,10 +120,64 @@ function renderizarAdminEmpresas() {
 
                     </h2>
 
-                    <p>
+                    <div class="admin-status-filtros">
 
-                        ${totalEmpresas}
-                        empresas cadastradas
+                        <button
+
+                            class="
+                                filtro-status-btn
+                                ${filtroStatusEmpresa === "todas" ? "active" : ""}
+                            "
+
+                            onclick="
+                                filtrarEmpresasStatus('todas')
+                            "
+
+                        >
+
+                            Todas
+
+                        </button>
+
+                        <button
+
+                            class="
+                                filtro-status-btn
+                                ${filtroStatusEmpresa === "ativas" ? "active" : ""}
+                            "
+
+                            onclick="
+                                filtrarEmpresasStatus('ativas')
+                            "
+
+                        >
+
+                            Ativas
+
+                        </button>
+
+                        <button
+
+                            class="
+                                filtro-status-btn
+                                ${filtroStatusEmpresa === "inativas" ? "active" : ""}
+                            "
+
+                            onclick="
+                                filtrarEmpresasStatus('inativas')
+                            "
+
+                        >
+
+                            Inativas
+
+                        </button>
+
+                    </div>
+
+                    <p id="adminResumoEmpresas">
+
+                        ${textoResumo}
 
                     </p>
 
@@ -133,7 +241,7 @@ function renderizarAdminEmpresas() {
             >
 
                 ${renderizarListaEmpresasAdmin(
-                    empresas
+                    listaEmpresas
                 )}
 
             </div>
@@ -342,25 +450,91 @@ function filtrarEmpresasAdmin() {
 
             .value
 
-            .toLowerCase();
+            .toLowerCase()
 
-    const resultado =
+            .trim();
 
-        empresas.filter(
+    let resultado =
 
-            empresa =>
+        [...empresas];
 
-                empresa.nome
+    /*
+    =====================================
+    FILTRO STATUS
+    =====================================
+    */
 
-                    .toLowerCase()
+    if (
 
-                    .includes(
+        filtroStatusEmpresa ===
+        "ativas"
 
-                        termo
+    ) {
 
-                    )
+        resultado =
 
-        );
+            resultado.filter(
+
+                empresa =>
+
+                    empresa.ativo !== false
+
+            );
+
+    }
+
+    else if (
+
+        filtroStatusEmpresa ===
+        "inativas"
+
+    ) {
+
+        resultado =
+
+            resultado.filter(
+
+                empresa =>
+
+                    empresa.ativo === false
+
+            );
+
+    }
+
+    /*
+    =====================================
+    BUSCA NOME
+    =====================================
+    */
+
+    if (
+        termo
+    ) {
+
+        resultado =
+
+            resultado.filter(
+
+                empresa =>
+
+                    empresa.nome
+
+                        .toLowerCase()
+
+                        .includes(
+                            termo
+                        )
+
+            );
+
+    }
+
+    /*
+    =====================================
+    RENDER
+    =====================================
+    */
 
     document
 
@@ -376,6 +550,7 @@ function filtrarEmpresasAdmin() {
 
             );
 
+        atualizarResumoEmpresas(resultado.length, termo);
 }
 
 /*
@@ -647,5 +822,98 @@ async function alterarStatusEmpresa(
     await carregarEmpresas();
 
     renderizarAdminEmpresas();
+
+}
+
+function filtrarEmpresasStatus(
+
+    status
+
+) {
+
+    filtroStatusEmpresa =
+        status;
+
+    renderizarAdminEmpresas();
+
+}
+
+function atualizarResumoEmpresas(
+
+    quantidade,
+
+    termo = ""
+
+) {
+
+    const resumo =
+
+        document.getElementById(
+            "adminResumoEmpresas"
+        );
+
+    if (
+        !resumo
+    ) {
+
+        return;
+
+    }
+
+    /*
+    =====================================
+    BUSCA
+    =====================================
+    */
+
+    if (
+        termo
+    ) {
+
+        resumo.textContent =
+
+            `${quantidade} resultado(s) encontrado(s)`;
+
+        return;
+
+    }
+
+    /*
+    =====================================
+    STATUS
+    =====================================
+    */
+
+    let texto =
+
+        `${quantidade} empresas cadastradas`;
+
+    if (
+
+        filtroStatusEmpresa ===
+        "ativas"
+
+    ) {
+
+        texto =
+
+            `${quantidade} empresas ativas`;
+
+    }
+
+    else if (
+
+        filtroStatusEmpresa ===
+        "inativas"
+
+    ) {
+
+        texto =
+
+            `${quantidade} empresas inativas`;
+
+    }
+
+    resumo.textContent = texto;
 
 }

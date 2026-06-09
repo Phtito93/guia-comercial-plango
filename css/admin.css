@@ -998,6 +998,51 @@ ADMIN EMPRESAS
 
 }
 
+.admin-status-filtros {
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin: 20px 0;
+
+}
+
+.filtro-status-btn {
+
+    border: none;
+
+    cursor: pointer;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    background:
+
+        rgba(
+            255,
+            255,
+            255,
+            .05
+        );
+
+}
+
+.filtro-status-btn.active {
+
+    background:
+
+        var(
+            --primary-color
+        );
+
+    color: #fff;
+
+}
+
 .empresa-busca {
 
     width: 100%;

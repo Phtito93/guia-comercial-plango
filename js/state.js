@@ -31,6 +31,8 @@ let cardsHTML = "";
 
 let leads = [];
 
+let filtroStatusEmpresa = "todas";
+
 /*
 =====================================================
 FAVORITOS
