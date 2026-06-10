@@ -22,13 +22,36 @@ function renderizarAdminCategorias() {
 
             </div>
 
-            <div class="admin-header-empresas">
+            <div class="admin-header-categorias">
 
-                <h2>
+                <div>
 
-                    📂 Categorias
+                    <h2>
 
-                </h2>
+                        📂 Categorias
+
+                    </h2>
+
+                    <p>
+
+                        ${categorias.length}
+                        categorias cadastradas
+
+                    </p>
+
+                </div>
+
+                <button
+
+                    class="admin-action-btn"
+
+                    onclick="abrirNovaCategoria()"
+
+                >
+
+                    ➕ Nova Categoria
+
+                </button>
 
             </div>
 
@@ -40,11 +63,88 @@ function renderizarAdminCategorias() {
 
                         <div class="categoria-card">
 
-                            <span>
+                            <div class="categoria-info">
 
-                                ${categoria.nome}
+                                <h3>
 
-                            </span>
+                                    ${categoria.nome}
+
+                                </h3>
+
+                                <span>
+
+                                    ${
+
+                                        categoria.ativo
+
+                                            ? "🟢 Ativa"
+
+                                            : "🔴 Inativa"
+
+                                    }
+
+                                </span>
+
+                            </div>
+
+                            <div class="categoria-actions">
+
+                                <button
+
+                                    class="categoria-btn categoria-btn-edit"
+
+                                    title="Editar"
+
+                                    onclick="
+                                        editarCategoria(
+                                            ${categoria.id}
+                                        )
+                                    "
+
+                                >
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </button>
+
+                                <button
+
+                                    class="categoria-btn categoria-btn-status"
+
+                                    title="${categoria.ativo ? 'Desativar' : 'Ativar'}"
+
+                                    onclick="
+                                        alterarStatusCategoria(
+                                            ${categoria.id},
+                                            ${!categoria.ativo}
+                                        )
+                                    "
+
+                                >
+
+                                    <i class="fa-solid fa-power-off"></i>
+
+                                </button>
+
+                                <button
+
+                                    class="categoria-btn categoria-btn-delete"
+
+                                    title="Excluir"
+
+                                    onclick="
+                                        excluirCategoria(
+                                            ${categoria.id}
+                                        )
+                                    "
+
+                                >
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </div>
 
                         </div>
 
@@ -57,5 +157,215 @@ function renderizarAdminCategorias() {
         </section>
 
     `;
+
+}
+
+async function abrirNovaCategoria() {
+
+    const nome =
+
+        prompt(
+
+            "Nome da categoria"
+        );
+
+    if (
+        !nome
+    ) {
+
+        return;
+
+    }
+
+    const {
+
+        error
+
+    } = await supabaseClient
+
+        .from("categorias")
+
+        .insert({
+
+            nome:
+
+                nome.trim()
+
+        });
+
+    if (
+        error
+    ) {
+
+        console.error(
+            error
+        );
+
+        mostrarToast(
+
+            "Erro ao criar categoria"
+
+        );
+
+        return;
+
+    }
+
+    await carregarCategorias();
+
+    renderizarAdminCategorias();
+
+}
+
+async function editarCategoria(
+
+    categoriaId
+
+) {
+
+    const categoria =
+
+        categorias.find(
+
+            item =>
+
+                item.id === categoriaId
+
+        );
+
+    if (
+        !categoria
+    ) {
+
+        return;
+
+    }
+
+    const novoNome =
+
+        prompt(
+
+            "Editar categoria",
+
+            categoria.nome
+
+        );
+
+    if (
+        !novoNome
+    ) {
+
+        return;
+
+    }
+
+    await supabaseClient
+
+        .from("categorias")
+
+        .update({
+
+            nome:
+
+                novoNome.trim()
+
+        })
+
+        .eq(
+            "id",
+            categoriaId
+        );
+
+    await carregarCategorias();
+
+    renderizarAdminCategorias();
+
+}
+
+async function alterarStatusCategoria(
+
+    categoriaId,
+
+    ativo
+
+) {
+
+    await supabaseClient
+
+        .from("categorias")
+
+        .update({
+
+            ativo
+
+        })
+
+        .eq(
+            "id",
+            categoriaId
+        );
+
+    await carregarCategorias();
+
+    renderizarAdminCategorias();
+
+}
+
+async function excluirCategoria(
+
+    categoriaId
+
+) {
+
+    const categoria =
+
+        categorias.find(
+
+            item =>
+
+                item.id === categoriaId
+
+        );
+
+    if (
+        !categoria
+    ) {
+
+        return;
+
+    }
+
+    abrirModalConfirmacao({
+
+        titulo:
+
+            "⚠ Excluir Categoria",
+
+        mensagem:
+
+            categoria.nome,
+
+        onConfirm:
+
+            async () => {
+
+                await supabaseClient
+
+                    .from("categorias")
+
+                    .delete()
+
+                    .eq(
+                        "id",
+                        categoriaId
+                    );
+
+                await carregarCategorias();
+
+                renderizarAdminCategorias();
+
+            }
+
+    });
 
 }

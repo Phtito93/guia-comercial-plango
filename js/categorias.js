@@ -12,11 +12,6 @@ async function carregarCategorias() {
 
         .select("*")
 
-        .eq(
-            "ativo",
-            true
-        )
-
         .order(
             "nome"
         );

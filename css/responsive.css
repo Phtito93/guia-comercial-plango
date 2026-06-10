@@ -234,6 +234,32 @@ RESPONSIVIDADE
         max-width: 100%;
     }
 
+    .admin-header-categorias {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+    .admin-categorias-lista {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .categoria-actions {
+
+        flex-direction: column;
+
+    }
+
+    .categoria-actions button {
+
+        width: 100%;
+
+    }
+
 }
 
 @media (min-width: 1024px) {
