@@ -1187,6 +1187,21 @@ ADMIN EMPRESAS
 
 }
 
+.empresa-admin-local {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 30px;
+
+    margin-bottom: 16px;
+
+    font-size: 15px;
+
+}
+
+
 .empresa-admin-actions {
 
     width: 100%;
@@ -1219,6 +1234,8 @@ ADMIN EMPRESAS
 .empresa-admin-info h3 {
 
     margin-bottom: 16px;
+
+    margin-top: 10px;
 
     line-height: 1.3;
 

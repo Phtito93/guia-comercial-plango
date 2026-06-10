@@ -298,18 +298,18 @@ function renderizarListaEmpresasAdmin(
 
                     <div class="empresa-admin-info">
 
+                        <span class="empresa-id">
+
+                            EMP-${String(
+                                empresa.id
+                            ).padStart(
+                                3,
+                                "0"
+                            )}
+
+                        </span>
+
                         <h3>
-
-                            <span class="empresa-id">
-
-                                EMP-${String(
-                                    empresa.id
-                                ).padStart(
-                                    3,
-                                    "0"
-                                )}
-
-                            </span>
 
                             ${empresa.nome}
 
@@ -346,6 +346,16 @@ function renderizarListaEmpresasAdmin(
 
                             </span>
 
+                        </div>
+
+                        <div class="empresa-admin-local">
+
+                            <span>
+
+                                📍 ${empresa.local || "-"}
+
+                            </span>
+
                             <span>
 
                                 🏷 ${(empresa.categorias || []).join(", ") || "-"}
@@ -353,12 +363,6 @@ function renderizarListaEmpresasAdmin(
                             </span>
 
                         </div>
-
-                        <p class="empresa-admin-local">
-
-                            📍 ${empresa.local || "-"}
-
-                        </p>
 
                     </div>
 
