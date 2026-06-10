@@ -276,6 +276,65 @@ async function editarCategoria(
             categoriaId
         );
 
+        /*
+        =====================================
+        ATUALIZA EMPRESAS
+        =====================================
+        */
+
+        const empresasAfetadas =
+
+            empresas.filter(
+
+                empresa =>
+
+                    empresa.categorias?.includes(
+
+                        categoria.nome
+
+                    )
+
+            );
+
+        for (
+
+            const empresa of empresasAfetadas
+
+        ) {
+
+            const novasCategorias =
+
+                empresa.categorias.map(
+
+                    item =>
+
+                        item === categoria.nome
+
+                            ? novoNome.trim()
+
+                            : item
+
+                );
+
+            await supabaseClient
+
+                .from("empresas")
+
+                .update({
+
+                    categorias:
+
+                        novasCategorias
+
+                })
+
+                .eq(
+                    "id",
+                    empresa.id
+                );
+
+        }
+
     await carregarCategorias();
 
     renderizarAdminCategorias();
@@ -335,6 +394,48 @@ async function excluirCategoria(
 
     }
 
+    /*
+    =====================================
+    VERIFICA SE ESTÁ EM USO
+    =====================================
+    */
+
+    const emUso =
+
+        empresas.some(
+
+            empresa =>
+
+                empresa.categorias?.includes(
+
+                    categoria.nome
+
+                )
+
+        );
+
+    if (
+
+        emUso
+
+    ) {
+
+        mostrarToast(
+
+            "Categoria em uso por empresas."
+
+        );
+
+        return;
+
+    }
+
+    /*
+    =====================================
+    CONFIRMAÇÃO
+    =====================================
+    */
+
     abrirModalConfirmacao({
 
         titulo:
@@ -349,7 +450,11 @@ async function excluirCategoria(
 
             async () => {
 
-                await supabaseClient
+                const {
+
+                    error
+
+                } = await supabaseClient
 
                     .from("categorias")
 
@@ -359,6 +464,30 @@ async function excluirCategoria(
                         "id",
                         categoriaId
                     );
+
+                if (
+                    error
+                ) {
+
+                    console.error(
+                        error
+                    );
+
+                    mostrarToast(
+
+                        "Erro ao excluir categoria."
+
+                    );
+
+                    return;
+
+                }
+
+                mostrarToast(
+
+                    "Categoria excluída."
+
+                );
 
                 await carregarCategorias();
 
