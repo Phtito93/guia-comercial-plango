@@ -567,6 +567,48 @@ function renderizarEmpresas(lista) {
 
 }
 
+function obterCategoriasVisiveis() {
+
+    return categorias
+
+        .filter(
+
+            categoria =>
+
+                categoria.ativo !== false
+
+                &&
+
+                empresas.some(
+
+                    empresa =>
+
+                        empresa.ativo !== false
+
+                        &&
+
+                        empresa.categorias?.includes(
+
+                            categoria.nome
+
+                        )
+
+                )
+
+        )
+
+        .map(
+
+            categoria =>
+
+                categoria.nome
+
+        )
+
+        .sort();
+
+}
+
 /*
 =====================================================
 RENDERIZAR FILTROS
@@ -577,26 +619,13 @@ function renderizarFiltros(lista) {
 
     /*
     =====================================
-    CATEGORIAS
-    =====================================
-    */
-
-    const categorias =
-        empresas.flatMap((empresa) => {
-
-            return empresa.categorias || [];
-
-        });
-
-    /*
-    =====================================
-    REMOVE DUPLICADAS
+    CATEGORIAS VISÍVEIS
     =====================================
     */
 
     const categoriasUnicas =
-        [...new Set(categorias)]
-            .sort();
+
+        obterCategoriasVisiveis();
 
     /*
     =====================================
@@ -870,35 +899,17 @@ RENDERIZAR MENU CATEGORIAS
 =====================================================
 */
 
-function renderizarMenuCategorias(lista) {
+function renderizarMenuCategorias() {
 
     /*
     =====================================
-    CATEGORIAS ÚNICAS
+    CATEGORIAS VISÍVEIS
     =====================================
     */
 
-    const categorias = [
+    const categoriasVisiveis =
 
-        ...new Set(
-
-            lista.flatMap((empresa) => {
-
-                return empresa.categorias || [];
-
-            })
-
-        )
-
-    ];
-
-    /*
-    =====================================
-    ORDENAÇÃO
-    =====================================
-    */
-
-    categorias.sort();
+        obterCategoriasVisiveis();
 
     /*
     =====================================
@@ -914,18 +925,31 @@ function renderizarMenuCategorias(lista) {
     =====================================
     */
 
-    categorias.forEach((categoria) => {
+    categoriasVisiveis.forEach((categoria) => {
 
         submenuCategorias.innerHTML += `
 
-            <button class="submenu-categoria-btn ${estado.categoriaAtual === categoria? "active" : ""}"
+            <button
+
+                class="
+                    submenu-categoria-btn
+                    ${estado.categoriaAtual === categoria ? "active" : ""}
+                "
+
                 data-categoria="${categoria}"
+
             >
+
                 <i class="fa-solid fa-tag"></i>
+
                 ${categoria}
+
             </button>
+
         `;
+
     });
+
 }
 
 /*

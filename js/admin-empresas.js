@@ -346,6 +346,12 @@ function renderizarListaEmpresasAdmin(
 
                             </span>
 
+                            <span>
+
+                                🏷 ${(empresa.categorias || []).join(", ") || "-"}
+
+                            </span>
+
                         </div>
 
                         <p class="empresa-admin-local">
