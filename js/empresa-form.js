@@ -207,11 +207,23 @@ function renderizarFormularioEmpresa(empresa = null) {
 
                 </div>
                 
-                <input
-                    id="empresaCategorias"
-                    placeholder="Categorias separadas por vírgula"
-                    value="${empresa?.categorias?.map(item => item.trim()).join(', ') || ''}"
+                <h3>
+
+                    Categorias
+
+                </h3>
+
+                <div
+
+                    id="categoriasCheckbox"
+
+                    class="categorias-checkbox-grid"
+
                 >
+
+                    ${renderizarCheckboxCategorias(empresa)}
+
+                </div>
 
                 <input
                     id="empresaTags"
@@ -869,23 +881,23 @@ async function salvarEmpresa(
 
     const categorias =
 
-        document
-            .getElementById(
-                "empresaCategorias"
-            )
-            .value
+        [
 
-            .split(",")
+            ...document.querySelectorAll(
 
-            .map(
-
-                categoria =>
-
-                    categoria.trim()
+                '#categoriasCheckbox input:checked'
 
             )
 
-            .filter(Boolean);
+        ]
+
+        .map(
+
+            checkbox =>
+
+                checkbox.value
+
+        );
 
     const tags =
 
@@ -1168,6 +1180,22 @@ async function salvarEmpresa(
         mostrarToast(
 
             "Erro ao salvar empresa."
+
+        );
+
+        return;
+
+    }
+
+    if (
+
+        categorias.length === 0
+
+    ) {
+
+        mostrarToast(
+
+            "Selecione ao menos uma categoria."
 
         );
 

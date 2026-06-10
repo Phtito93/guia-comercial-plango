@@ -448,6 +448,37 @@ async function aplicarRota() {
         return;
 
     }
+
+    /*
+    =====================================
+    ADMIN CATEGORIAS
+    =====================================
+    */
+
+    if (
+
+        path === "/admin/categorias"
+
+    ) {
+
+        const autorizado =
+
+            await validarAdmin();
+
+        if (
+            !autorizado
+        ) {
+
+            return;
+
+        }
+
+        renderizarAdminCategorias();
+
+        return;
+
+    }
+
     /*
     =====================================
     ADMIN LEADS - NOVOS

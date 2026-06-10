@@ -33,6 +33,8 @@ let leads = [];
 
 let filtroStatusEmpresa = "todas";
 
+let categorias = [];
+
 /*
 =====================================================
 FAVORITOS

@@ -1214,13 +1214,40 @@ function renderizarDashboardAdmin() {
 
                     <span>
 
-                        Empresas
+                        🏢 Empresas
 
                     </span>
 
                     <strong>
 
                         ${empresas.length}
+
+                    </strong>
+
+                </div>
+
+                <div
+
+                    class="
+                        admin-stat
+                        admin-stat-clickable
+                    "
+
+                    onclick="
+                        navegar('/admin/categorias')
+                    "
+
+                >
+
+                    <span>
+
+                        📂 Categorias
+
+                    </span>
+
+                    <strong>
+
+                        ${categorias.length}
 
                     </strong>
 
