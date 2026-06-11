@@ -147,6 +147,14 @@ function renderizarLeadsAdmin(
 
                 </p>
 
+                <p>
+
+                    🎁 Indicação:
+
+                    ${lead.codigo_indicacao || "-"}
+
+                </p>
+
                 <p class="lead-next-step">
 
                     Alterar para:

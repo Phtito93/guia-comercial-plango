@@ -269,7 +269,7 @@ function renderizarCard(empresa) {
                             
                         ${empresa.contatos?.site ? `
                             <a 
-                                href="${empresa.contatos?.site}" 
+                                href="${normalizarUrl(empresa.contatos.site)}"
                                 target="_blank" 
                                 rel="noopener noreferrer"
                                 onclick="incrementarCliqueContato(${empresa.id},
@@ -1743,6 +1743,7 @@ function renderizarPaginaAnuncie() {
                         id="leadTelefone"
                         placeholder="WhatsApp - 61999999999"
                         minlength="10"
+                        maxlength="15"
                         required
                     >
 
@@ -1776,6 +1777,18 @@ function renderizarPaginaAnuncie() {
                         rows="4"
                         placeholder="Conte um pouco sobre sua empresa..."
                     ></textarea>
+
+                    <input
+
+                        type="text"
+
+                        id="leadIndicacao"
+
+                        maxlength="6"
+
+                        placeholder="Código de indicação (opcional)"
+
+                    >
 
                     <label class="lead-consent">
 
@@ -2017,5 +2030,21 @@ function atualizarTituloSecao() {
         `;
 
     }
+
+}
+
+function normalizarUrl(url) {
+
+    if (
+
+        !url.startsWith("http")
+
+    ) {
+
+        return `https://${url}`;
+
+    }
+
+    return url;
 
 }

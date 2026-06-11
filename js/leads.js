@@ -79,6 +79,18 @@ async function salvarLead(
 
         "pagina-anuncie";
 
+    const codigoIndicacao =
+
+        document
+            .getElementById(
+                "leadIndicacao"
+            )
+            ?.value
+            ?.trim()
+            .toUpperCase()
+
+        || null;
+
     /*
     =====================================
     BOTÃO
@@ -100,6 +112,52 @@ async function salvarLead(
         "Enviando...";
 
     try {
+
+        /*
+        =====================================
+        VALIDAR CÓDIGO DE INDICAÇÃO
+        =====================================
+        */
+
+        if (
+
+            codigoIndicacao
+
+        ) {
+
+            const empresaIndicadora =
+
+                empresas.find(
+
+                    empresa =>
+
+                        empresa.codigo_indicacao
+
+                            ?.toUpperCase()
+
+                        ===
+
+                        codigoIndicacao
+
+                );
+
+            if (
+
+                !empresaIndicadora
+
+            ) {
+
+                mostrarToast(
+
+                    "Código de indicação inválido."
+
+                );
+
+                return;
+
+            }
+
+        }
 
         /*
         =====================================
@@ -130,7 +188,10 @@ async function salvarLead(
                 plano_interesse:
                     plano,
 
-                origem
+                origem,
+
+                codigo_indicacao:
+                    codigoIndicacao
 
             });
 
@@ -192,7 +253,9 @@ async function salvarLead(
 
                     plano,
 
-                    mensagem
+                    mensagem,
+
+                    codigoIndicacao
 
                 })
 

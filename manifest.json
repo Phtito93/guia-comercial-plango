@@ -3,7 +3,7 @@
 
     "short_name": "Guia Premium",
 
-    "start_url": "./index.html",
+    "start_url": "/",
 
     "display": "standalone",
 

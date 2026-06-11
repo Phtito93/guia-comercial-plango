@@ -914,6 +914,30 @@ async function atualizarStatusLead(
 
     try {
 
+        /*
+        =====================================
+        LEAD
+        =====================================
+        */
+
+        const lead =
+
+            leads.find(
+
+                item =>
+
+                    item.id ==
+
+                    leadId
+
+            );
+
+        /*
+        =====================================
+        UPDATE STATUS
+        =====================================
+        */
+
         const {
 
             error
@@ -948,18 +972,152 @@ async function atualizarStatusLead(
 
         }
 
+        /*
+        =====================================
+        INDICAÇÃO
+        =====================================
+        */
+
+        if (
+
+            status === "cliente"
+
+            &&
+
+            lead?.codigo_indicacao
+
+            &&
+
+            !lead?.bonus_processado
+
+        ) {
+
+            const empresaIndicadora =
+
+                empresas.find(
+
+                    empresa =>
+
+                        empresa.codigo_indicacao
+
+                        ===
+
+                        lead.codigo_indicacao
+
+                );
+
+            if (
+
+                empresaIndicadora
+
+            ) {
+
+                /*
+                =============================
+                EMPRESA
+                =============================
+                */
+
+                await supabaseClient
+
+                    .from("empresas")
+
+                    .update({
+
+                        indicacoes:
+
+                            (
+
+                                empresaIndicadora.indicacoes
+
+                                || 0
+
+                            )
+
+                            + 1,
+
+                        meses_bonus:
+
+                            (
+
+                                empresaIndicadora.meses_bonus
+
+                                || 0
+
+                            )
+
+                            + 1
+
+                    })
+
+                    .eq(
+
+                        "id",
+
+                        empresaIndicadora.id
+
+                    );
+
+                /*
+                =============================
+                LEAD PROCESSADO
+                =============================
+                */
+
+                await supabaseClient
+
+                    .from("leads")
+
+                    .update({
+
+                        bonus_processado:
+
+                            true
+
+                    })
+
+                    .eq(
+
+                        "id",
+
+                        leadId
+
+                    );
+
+            }
+
+        }
+
+        /*
+        =====================================
+        REFRESH
+        =====================================
+        */
+
+        await carregarEmpresas();
+
         await carregarLeads();
 
         mostrarToast(
+
             "Lead atualizado"
+
         );
 
         aplicarRota();
 
-    } catch (erro) {
+    }
+
+    catch (
+
+        erro
+
+    ) {
 
         console.error(
+
             erro
+
         );
 
     }

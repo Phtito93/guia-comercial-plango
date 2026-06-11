@@ -1,5 +1,6 @@
 /*
 =====================================================
+seo.js
 LER URL
 =====================================================
 */
@@ -209,16 +210,11 @@ function atualizarSEO() {
         estado.categoriaAtual
     ) {
 
-        titulo = `
-            ${estado.categoriaAtual}
-            em Planaltina GO
-        `;
+        titulo =
+            `${estado.categoriaAtual} em Planaltina GO`;
 
-        descricao = `
-            Confira as melhores opções de
-            ${estado.categoriaAtual}
-            em Planaltina GO.
-        `;
+        descricao =
+            `Confira as melhores opções de ${estado.categoriaAtual} em Planaltina GO.`;
 
     }
 
@@ -286,6 +282,74 @@ function atualizarSEO() {
     if (metaDescription) {
 
         metaDescription.setAttribute(
+            "content",
+            descricao
+        );
+
+    }
+
+    /*
+    =====================================================
+    OPEN GRAPH
+    =====================================================
+    */
+
+    const metaOgTitle =
+        document.querySelector(
+            'meta[property="og:title"]'
+        );
+
+    if (metaOgTitle) {
+
+        metaOgTitle.setAttribute(
+            "content",
+            titulo
+        );
+
+    }
+
+    const metaOgDescription =
+        document.querySelector(
+            'meta[property="og:description"]'
+        );
+
+    if (metaOgDescription) {
+
+        metaOgDescription.setAttribute(
+            "content",
+            descricao
+        );
+
+    }
+
+    /*
+    =====================================================
+    TWITTER
+    =====================================================
+    */
+
+    const metaTwitterTitle =
+        document.querySelector(
+            'meta[name="twitter:title"]'
+        );
+
+    if (metaTwitterTitle) {
+
+        metaTwitterTitle.setAttribute(
+            "content",
+            titulo
+        );
+
+    }
+
+    const metaTwitterDescription =
+        document.querySelector(
+            'meta[name="twitter:description"]'
+        );
+
+    if (metaTwitterDescription) {
+
+        metaTwitterDescription.setAttribute(
             "content",
             descricao
         );

@@ -117,3 +117,57 @@ function empresaNova(empresa) {
     return dias <= 30;
 
 }
+
+/*
+=====================================================
+CÓDIGO INDICAÇÃO
+=====================================================
+*/
+
+function gerarCodigoIndicacao() {
+
+    const letras =
+
+        "ABCDEFGHJKLMNPQRSTUVWXYZ";
+
+    let codigo = "";
+
+    for (
+
+        let i = 0;
+
+        i < 3;
+
+        i++
+
+    ) {
+
+        codigo +=
+
+            letras.charAt(
+
+                Math.floor(
+
+                    Math.random()
+
+                    * letras.length
+
+                )
+
+            );
+
+    }
+
+    codigo +=
+
+        Math.floor(
+
+            100 +
+
+            Math.random() * 900
+
+        );
+
+    return codigo;
+
+}

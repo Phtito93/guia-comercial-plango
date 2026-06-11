@@ -1083,6 +1083,7 @@ async function salvarEmpresa(
     const horario = montarHorario();
 
     const empresaData = {
+
         nome,
         slug,
         descricao,
@@ -1094,6 +1095,7 @@ async function salvarEmpresa(
         endereco,
         contatos,
         horario
+
     };
 
     let resultado;
@@ -1137,6 +1139,14 @@ async function salvarEmpresa(
                     ...empresaData,
 
                     views: 0,
+
+                    codigo_indicacao:
+
+                        gerarCodigoIndicacao(),
+
+                    indicacoes: 0,
+
+                    meses_bonus: 0
 
                 });
     }

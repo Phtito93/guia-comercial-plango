@@ -700,6 +700,66 @@ function renderizarBlocosEmpresa(
 
         </div>
 
+        <div class="admin-info-card">
+
+            <h3>
+
+                🎁 Programa de Indicação
+
+            </h3>
+
+            <div class="info-item">
+
+                <span class="info-label">
+
+                    Código
+
+                </span>
+
+                <strong class="info-value">
+
+                    ${empresa.codigo_indicacao || "-"}
+
+                </strong>
+
+            </div>
+
+            <div class="info-item">
+
+                <span class="info-label">
+
+                    Indicações
+
+                </span>
+
+                <strong class="info-value">
+
+                    ${empresa.indicacoes || 0}
+
+                </strong>
+
+            </div>
+
+            <div class="info-item">
+
+                <span class="info-label">
+
+                    Bônus
+
+                </span>
+
+                <strong class="info-value">
+
+                    🎉 ${empresa.meses_bonus || 0}
+
+                    mês(es)
+
+                </strong>
+
+            </div>
+
+        </div>
+
     `;
 
 }
