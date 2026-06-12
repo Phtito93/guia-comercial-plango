@@ -1178,38 +1178,6 @@ async function renderizarDashboardAdmin() {
 
             </div>
 
-            <div class="admin-card-metrica">
-
-                <span>
-
-                    👁️ Visitas Totais
-
-                </span>
-
-                <strong>
-
-                    ${metricas.totalVisitas}
-
-                </strong>
-
-            </div>
-
-            <div class="admin-card-metrica">
-
-                <span>
-
-                    📅 Hoje
-
-                </span>
-
-                <strong>
-
-                    ${metricas.visitasHoje}
-
-                </strong>
-
-            </div>
-
             <div class="admin-actions">
 
                 <button
@@ -1232,6 +1200,38 @@ async function renderizarDashboardAdmin() {
             </div>
 
             <div class="admin-cards">
+
+                <div class="admin-stat">
+
+                    <span>
+
+                        👁️ Visitas Totais
+
+                    </span>
+
+                    <strong>
+
+                        ${metricas.totalVisitas}
+
+                    </strong>
+
+                </div>
+
+                <div class="admin-stat">
+
+                    <span>
+
+                        📅 Visitas Hoje
+
+                    </span>
+
+                    <strong>
+
+                        ${metricas.visitasHoje}
+
+                    </strong>
+
+                </div>
 
                 <div class="admin-stat">
 
