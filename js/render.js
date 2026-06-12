@@ -1015,9 +1015,23 @@ DASHBOARD ADMIN
 =====================================================
 */
 
-function renderizarDashboardAdmin() {
+async function renderizarDashboardAdmin() {
 
     aplicarModoLandingPage();
+
+    const metricas =
+
+        await carregarMetricasVisitas()
+
+        ||
+
+        {
+
+            totalVisitas: 0,
+
+            visitasHoje: 0
+
+        };
 
     const topEmpresas =
 
@@ -1161,6 +1175,38 @@ function renderizarDashboardAdmin() {
                     Sair
 
                 </button>
+
+            </div>
+
+            <div class="admin-card-metrica">
+
+                <span>
+
+                    👁️ Visitas Totais
+
+                </span>
+
+                <strong>
+
+                    ${metricas.totalVisitas}
+
+                </strong>
+
+            </div>
+
+            <div class="admin-card-metrica">
+
+                <span>
+
+                    📅 Hoje
+
+                </span>
+
+                <strong>
+
+                    ${metricas.visitasHoje}
+
+                </strong>
 
             </div>
 

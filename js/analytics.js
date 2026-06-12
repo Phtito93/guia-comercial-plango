@@ -75,3 +75,253 @@ function logTopEmpresas() {
     
 
 }
+
+/*
+=====================================================
+VISITAS
+=====================================================
+*/
+
+async function registrarVisita() {
+
+    try {
+
+        const hoje =
+
+            new Date()
+
+                .toISOString()
+
+                .split("T")[0];
+
+        /*
+        =====================================
+        JÁ REGISTRADA
+        =====================================
+        */
+
+        const ultimaVisita =
+
+            localStorage.getItem(
+
+                "ultimaVisitaGuia"
+
+            );
+
+        if (
+
+            ultimaVisita === hoje
+
+        ) {
+
+            return;
+
+        }
+
+        /*
+        =====================================
+        BUSCA DIA
+        =====================================
+        */
+
+        const {
+
+            data
+
+        } = await supabaseClient
+
+            .from("visitas")
+
+            .select("*")
+
+            .eq(
+
+                "data",
+
+                hoje
+
+            )
+
+            .maybeSingle();
+
+        /*
+        =====================================
+        UPDATE
+        =====================================
+        */
+
+        if (
+
+            data
+
+        ) {
+
+            await supabaseClient
+
+                .from("visitas")
+
+                .update({
+
+                    total:
+
+                        data.total + 1
+
+                })
+
+                .eq(
+
+                    "id",
+
+                    data.id
+
+                );
+
+        }
+
+        /*
+        =====================================
+        INSERT
+        =====================================
+        */
+
+        else {
+
+            await supabaseClient
+
+                .from("visitas")
+
+                .insert({
+
+                    data: hoje,
+
+                    total: 1
+
+                });
+
+        }
+
+        localStorage.setItem(
+
+            "ultimaVisitaGuia",
+
+            hoje
+
+        );
+
+    }
+
+    catch (
+
+        erro
+
+    ) {
+
+        console.error(
+
+            erro
+
+        );
+
+    }
+
+}
+
+async function carregarMetricasVisitas() {
+
+    try {
+
+        const {
+
+            data,
+
+            error
+
+        } = await supabaseClient
+
+            .from("visitas")
+
+            .select("*");
+
+        if (
+
+            error
+
+        ) {
+
+            console.error(
+
+                error
+
+            );
+
+            return null;
+
+        }
+
+        const totalVisitas =
+
+            (data || []).reduce(
+
+                (
+
+                    soma,
+
+                    item
+
+                ) =>
+
+                    soma +
+
+                    (item.total || 0),
+
+                0
+
+            );
+
+        const hoje =
+
+            new Date()
+
+                .toISOString()
+
+                .split("T")[0];
+
+        const visitasHoje =
+
+            data.find(
+
+                item =>
+
+                    item.data ===
+
+                    hoje
+
+            )?.total || 0;
+
+        return {
+
+            totalVisitas,
+
+            visitasHoje
+
+        };
+
+    }
+
+    catch (
+
+        erro
+
+    ) {
+
+        console.error(
+
+            erro
+
+        );
+
+        return null;
+
+    }
+
+}
