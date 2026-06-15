@@ -249,9 +249,7 @@ async function carregarMetricasVisitas() {
         ) {
 
             console.error(
-
                 error
-
             );
 
             return null;
@@ -262,13 +260,7 @@ async function carregarMetricasVisitas() {
 
             (data || []).reduce(
 
-                (
-
-                    soma,
-
-                    item
-
-                ) =>
+                (soma, item) =>
 
                     soma +
 
@@ -292,17 +284,71 @@ async function carregarMetricasVisitas() {
 
                 item =>
 
-                    item.data ===
-
-                    hoje
+                    item.data === hoje
 
             )?.total || 0;
+
+        /*
+        =====================================
+        ÚLTIMOS 7 DIAS
+        =====================================
+        */
+
+        const seteDiasAtras =
+
+            new Date();
+
+        seteDiasAtras.setDate(
+
+            seteDiasAtras.getDate() - 7
+
+        );
+
+        const visitas7Dias =
+
+            (data || [])
+
+                .filter(
+
+                    item =>
+
+                        new Date(item.data)
+
+                        >=
+
+                        seteDiasAtras
+
+                )
+
+                .reduce(
+
+                    (soma, item) =>
+
+                        soma +
+
+                        (item.total || 0),
+
+                    0
+
+                );
+
+            const mediaDiaria =
+
+                Math.round(
+
+                    visitas7Dias / 7
+
+                );
 
         return {
 
             totalVisitas,
 
-            visitasHoje
+            visitasHoje,
+
+            visitas7Dias,
+
+            mediaDiaria
 
         };
 
@@ -315,9 +361,7 @@ async function carregarMetricasVisitas() {
     ) {
 
         console.error(
-
             erro
-
         );
 
         return null;

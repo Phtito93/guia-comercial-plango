@@ -1235,7 +1235,39 @@ async function renderizarDashboardAdmin() {
 
                         <strong>
 
-                            ${metricas.visitasHoje}
+                            ${metricas.visitasHoje || 0}
+
+                        </strong>
+
+                    </div>
+
+                    <div class="admin-stat">
+
+                        <span>
+
+                            📆 Últimos 7 dias
+
+                        </span>
+
+                        <strong>
+
+                            ${metricas.visitas7Dias || 0}
+
+                        </strong>
+
+                    </div>
+
+                    <div class="admin-stat">
+
+                        <span>
+
+                            📊 Média diária
+
+                        </span>
+
+                        <strong>
+
+                            ${metricas.mediaDiaria || 0}
 
                         </strong>
 
