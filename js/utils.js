@@ -300,7 +300,7 @@ Passando para lembrar da mensalidade do Guia Plango.
 
 *Valor:* R$ ${empresa.valor_mensal || 0}
 
-*Vencimento:* ${empresa.vencimento || "-"}
+*Vencimento:* ${formatarData(empresa.vencimento)}
 
 Obrigado!`
 
@@ -314,30 +314,36 @@ FORMATAR DATA
 =====================================================
 */
 
-function formatarData(
+function formatarData(data) {
 
-    data
-
-) {
-
-    if (
-
-        !data
-
-    ) {
+    if (!data) {
 
         return "-";
 
     }
 
-    return new Date(
+    const dataLimpa =
 
-        data
+        data.split("T")[0];
 
-    ).toLocaleDateString(
+    const [ano, mes, dia] =
 
-        "pt-BR"
+        dataLimpa.split("-");
 
-    );
+    return `${dia}/${mes}/${ano}`;
+
+}
+
+function formatarDataHora(data) {
+
+    if (!data) {
+
+        return "-";
+
+    }
+
+    return new Date(data)
+
+        .toLocaleString("pt-BR");
 
 }
