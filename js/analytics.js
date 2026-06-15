@@ -287,6 +287,7 @@ async function carregarMetricasVisitas() {
                     item.data === hoje
 
             )?.total || 0;
+            
 
         /*
         =====================================
@@ -331,14 +332,114 @@ async function carregarMetricasVisitas() {
                     0
 
                 );
+        
+        /*
+        =====================================
+        7 DIAS ANTERIORES
+        =====================================
+        */
 
-            const mediaDiaria =
+        const quatorzeDiasAtras =
+
+            new Date();
+
+        quatorzeDiasAtras.setDate(
+
+            quatorzeDiasAtras.getDate() - 14
+
+        );
+
+        const visitas7DiasAnterior =
+
+            (data || [])
+
+                .filter(
+
+                    item => {
+
+                        const dataVisita =
+
+                            new Date(item.data);
+
+                        return (
+
+                            dataVisita >=
+
+                            quatorzeDiasAtras
+
+                            &&
+
+                            dataVisita <
+
+                            seteDiasAtras
+
+                        );
+
+                    }
+
+                )
+
+                .reduce(
+
+                    (soma, item) =>
+
+                        soma +
+
+                        (item.total || 0),
+
+                    0
+
+                );
+
+        const mediaDiaria =
+
+            Math.round(
+
+                visitas7Dias / 7
+
+            );
+
+        /*
+        =====================================
+        CRESCIMENTO
+        =====================================
+        */
+
+        let crescimento = 0;
+
+        if (
+
+            visitas7DiasAnterior > 0
+
+        ) {
+
+            crescimento =
 
                 Math.round(
 
-                    visitas7Dias / 7
+                    (
+
+                        (
+
+                            visitas7Dias
+
+                            -
+
+                            visitas7DiasAnterior
+
+                        )
+
+                        /
+
+                        visitas7DiasAnterior
+
+                    )
+
+                    * 100
 
                 );
+
+        }
 
         return {
 
@@ -348,7 +449,9 @@ async function carregarMetricasVisitas() {
 
             visitas7Dias,
 
-            mediaDiaria
+            mediaDiaria,
+
+            crescimento
 
         };
 

@@ -1881,3 +1881,15 @@ AÇÕES
     font-size: 1.3rem;
 
 }
+
+.positivo {
+
+    color: #22c55e;
+
+}
+
+.negativo {
+
+    color: #ef4444;
+
+}

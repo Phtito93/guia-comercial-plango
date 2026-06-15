@@ -1152,6 +1152,14 @@ async function renderizarDashboardAdmin() {
 
         ).length;
 
+    const classeCrescimento =
+
+                metricas.crescimento >= 0
+
+                    ? "positivo"
+
+                    : "negativo";
+
     empresaGrid.innerHTML = `
 
         <section class="admin-dashboard">
@@ -1268,6 +1276,22 @@ async function renderizarDashboardAdmin() {
                         <strong>
 
                             ${metricas.mediaDiaria || 0}
+
+                        </strong>
+
+                    </div>
+
+                    <div class="admin-stat">
+
+                        <span>
+
+                            🚀 Crescimento
+
+                        </span>
+
+                        <strong class="${classeCrescimento}">
+
+                            ${metricas.crescimento}%
 
                         </strong>
 
