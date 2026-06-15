@@ -1199,133 +1199,157 @@ async function renderizarDashboardAdmin() {
 
             </div>
 
-            <div class="admin-cards">
+            <section class="admin-analytics">
 
-                <div class="admin-stat">
+                <h2>
 
-                    <span>
+                    📈 Tráfego do Guia
 
-                        👁️ Visitas Totais
+                </h2>
 
-                    </span>
+                <div class="admin-cards">
 
-                    <strong>
+                    <div class="admin-stat">
 
-                        ${metricas.totalVisitas}
+                        <span>
 
-                    </strong>
+                            👁️ Visitas Totais
 
-                </div>
+                        </span>
 
-                <div class="admin-stat">
+                        <strong>
 
-                    <span>
+                            ${metricas.totalVisitas}
 
-                        📅 Visitas Hoje
+                        </strong>
 
-                    </span>
+                    </div>
 
-                    <strong>
+                    <div class="admin-stat">
 
-                        ${metricas.visitasHoje}
+                        <span>
 
-                    </strong>
+                            📅 Hoje
 
-                </div>
+                        </span>
 
-                <div class="admin-stat">
+                        <strong>
 
-                    <span>
-                        👁️ Views
-                    </span>
+                            ${metricas.visitasHoje}
 
-                    <strong>
-                        ${totalViews}
-                    </strong>
+                        </strong>
+
+                    </div>
 
                 </div>
 
-                <div class="admin-stat">
+            </section>
 
-                    <span>
-                        📲 WhatsApp
-                    </span>
+            <section class="admin-analytics">
 
-                    <strong>
-                        ${totalWhatsapp}
-                    </strong>
+                <h2>
+
+                    🏢 Indicadores
+
+                </h2>
+
+                <div class="admin-cards">
+
+                    <div class="admin-stat">
+
+                        <span>
+                            👁️ Views
+                        </span>
+
+                        <strong>
+                            ${totalViews}
+                        </strong>
+
+                    </div>
+
+                    <div class="admin-stat">
+
+                        <span>
+                            📲 WhatsApp
+                        </span>
+
+                        <strong>
+                            ${totalWhatsapp}
+                        </strong>
+
+                    </div>
+
+                    <div class="admin-stat">
+
+                        <span>
+                            ⭐ Premium
+                        </span>
+
+                        <strong>
+                            ${totalPremium}
+                        </strong>
+
+                    </div>
+
+                    <div
+
+                        class="
+                            admin-stat
+                            admin-stat-clickable
+                        "
+
+                        onclick="
+                            navegar('/admin/empresas')
+                        "
+
+                    >
+
+                        <span>
+
+                            🏢 Empresas
+
+                        </span>
+
+                        <strong>
+
+                            ${empresas.length}
+
+                        </strong>
+
+                    </div>
+
+                    <div
+
+                        class="
+                            admin-stat
+                            admin-stat-clickable
+                        "
+
+                        onclick="
+                            navegar('/admin/categorias')
+                        "
+
+                    >
+
+                        <span>
+
+                            📂 Categorias
+
+                        </span>
+
+                        <strong>
+
+                            ${categorias.length}
+
+                        </strong>
+
+                    </div>
 
                 </div>
 
-                <div class="admin-stat">
+            </section>
 
-                    <span>
-                        ⭐ Premium
-                    </span>
-
-                    <strong>
-                        ${totalPremium}
-                    </strong>
-
-                </div>
-
-                <div
-
-                    class="
-                        admin-stat
-                        admin-stat-clickable
-                    "
-
-                    onclick="
-                        navegar('/admin/empresas')
-                    "
-
-                >
-
-                    <span>
-
-                        🏢 Empresas
-
-                    </span>
-
-                    <strong>
-
-                        ${empresas.length}
-
-                    </strong>
-
-                </div>
-
-                <div
-
-                    class="
-                        admin-stat
-                        admin-stat-clickable
-                    "
-
-                    onclick="
-                        navegar('/admin/categorias')
-                    "
-
-                >
-
-                    <span>
-
-                        📂 Categorias
-
-                    </span>
-
-                    <strong>
-
-                        ${categorias.length}
-
-                    </strong>
-
-                </div>
-
-            </div>
-
-            <section class="admin-leads">
+            <section class="admin-analytics">
                 <h2>
 
                     🏆 Top 10 Empresas
@@ -1394,7 +1418,7 @@ async function renderizarDashboardAdmin() {
                 </div>
             </section>
 
-            <section class="admin-leads">
+            <section class="admin-analytics">
 
                 <h2>
 
@@ -1502,7 +1526,7 @@ async function renderizarDashboardAdmin() {
                 </div>
             </section>
 
-            <section class="admin-leads">
+            <section class="admin-analytics">
 
                 <h2>
 

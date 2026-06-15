@@ -1867,3 +1867,17 @@ AÇÕES
     background: #c605059f;
 
 }
+
+.admin-analytics {
+
+    margin-bottom: 32px;
+
+}
+
+.admin-analytics h2 {
+
+    margin-bottom: 20px;
+    margin-top: 50px;
+    font-size: 1.3rem;
+
+}
