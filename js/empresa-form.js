@@ -327,6 +327,40 @@ function renderizarFormularioEmpresa(empresa = null) {
 
                 <h3>
 
+                    Financeiro
+
+                </h3>
+
+                <div class="form-grid">
+
+                    <input
+
+                        id="valorMensal"
+
+                        type="number"
+
+                        step="0.01"
+
+                        placeholder="Valor Mensal"
+
+                        value="${empresa?.valor_mensal || ''}"
+
+                    >
+
+                    <input
+
+                        id="vencimento"
+
+                        type="date"
+
+                        value="${empresa?.vencimento || ''}"
+
+                    >
+
+                </div>
+
+                <h3>
+
                     Horário de Funcionamento
 
                 </h3>
@@ -1080,6 +1114,32 @@ async function salvarEmpresa(
 
     };
 
+    const valorMensal =
+
+        Number(
+
+            document
+
+                .getElementById(
+                    "valorMensal"
+                )
+
+                .value
+
+        ) || 0;
+
+    const vencimento =
+
+        document
+
+            .getElementById(
+                "vencimento"
+            )
+
+            .value
+
+        || null;
+
     const horario = montarHorario();
 
     const empresaData = {
@@ -1094,7 +1154,12 @@ async function salvarEmpresa(
         imagem,
         endereco,
         contatos,
-        horario
+        horario,
+
+        valor_mensal:
+            valorMensal,
+
+        vencimento
 
     };
 

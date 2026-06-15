@@ -171,3 +171,173 @@ function gerarCodigoIndicacao() {
     return codigo;
 
 }
+
+/*
+=====================================================
+STATUS PAGAMENTO
+=====================================================
+*/
+
+function obterStatusPagamento(
+
+    empresa
+
+) {
+
+    if (
+
+        !empresa.vencimento
+
+    ) {
+
+        return {
+
+            texto:
+
+                "Sem configuração",
+
+            emoji:
+
+                "⚪"
+
+        };
+
+    }
+
+    const hoje =
+
+        new Date();
+
+    const vencimento =
+
+        new Date(
+
+            empresa.vencimento
+
+        );
+
+    if (
+
+        empresa.ultimo_pagamento
+
+        &&
+
+        new Date(
+
+            empresa.ultimo_pagamento
+
+        ) >= vencimento
+
+    ) {
+
+        return {
+
+            texto:
+
+                "Pago",
+
+            emoji:
+
+                "🟢"
+
+        };
+
+    }
+
+    if (
+
+        vencimento < hoje
+
+    ) {
+
+        return {
+
+            texto:
+
+                "Vencida",
+
+            emoji:
+
+                "🔴"
+
+        };
+
+    }
+
+    return {
+
+        texto:
+
+            "A vencer",
+
+        emoji:
+
+            "🟡"
+
+    };
+
+}
+
+/*
+=====================================================
+MENSAGEM COBRANÇA
+=====================================================
+*/
+
+function gerarMensagemCobranca(
+
+    empresa
+
+) {
+
+    return encodeURIComponent(
+
+`Olá ${empresa.nome}.
+
+Passando para lembrar da mensalidade do Guia Plango.
+
+*Plano:* ${empresa.plano}
+
+*Valor:* R$ ${empresa.valor_mensal || 0}
+
+*Vencimento:* ${empresa.vencimento || "-"}
+
+Obrigado!`
+
+    );
+
+}
+
+/*
+=====================================================
+FORMATAR DATA
+=====================================================
+*/
+
+function formatarData(
+
+    data
+
+) {
+
+    if (
+
+        !data
+
+    ) {
+
+        return "-";
+
+    }
+
+    return new Date(
+
+        data
+
+    ).toLocaleDateString(
+
+        "pt-BR"
+
+    );
+
+}

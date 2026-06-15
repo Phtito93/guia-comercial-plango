@@ -84,6 +84,11 @@ function renderizarDetalheEmpresa(
                         )}
                     </p>
 
+                    <p class="empresa-meta">
+
+                        Cliente desde - ${formatarData(empresa.created_at)}
+                    </p>
+
                 </div>
 
             </div>
@@ -165,6 +170,12 @@ function renderizarDetalheEmpresa(
 function renderizarBlocosEmpresa(
     empresa
 ) {
+
+    const statusPagamento =
+
+        obterStatusPagamento(
+            empresa
+        );
 
     return `
 
@@ -704,6 +715,108 @@ function renderizarBlocosEmpresa(
 
             <h3>
 
+                💰 Financeiro
+
+            </h3>
+
+            <div class="info-item">
+
+                <span class="info-label">
+
+                    Valor
+
+                </span>
+
+                <strong class="info-value">
+
+                    R$ ${(empresa.valor_mensal || 0).toFixed(2)}
+
+                </strong>
+
+            </div>
+
+            <div class="info-item">
+
+                <span class="info-label">
+
+                    Vencimento
+
+                </span>
+
+                <strong class="info-value">
+
+                    ${formatarData(empresa.vencimento)}
+
+                </strong>
+
+            </div>
+
+            <div class="info-item">
+
+                <span class="info-label">
+
+                    Último Pagamento
+
+                </span>
+
+                <strong class="info-value">
+
+                    ${formatarData(empresa.ultimo_pagamento)}
+
+                </strong>
+
+            </div>
+
+            <div class="info-item">
+
+                <span class="info-label">
+
+                    Status
+
+                </span>
+
+                <strong class="info-value">
+
+                    ${statusPagamento.emoji}
+
+                    ${statusPagamento.texto}
+
+                </strong>
+
+            </div>
+
+            <button
+
+                class="admin-action-btn"
+
+                onclick="marcarPagamento(${empresa.id})"
+
+            >
+
+                ✅ Marcar como Pago
+
+            </button>
+
+            <a
+
+                class="admin-action-btn"
+
+                target="_blank"
+
+                href="https://wa.me/55${(empresa.contatos?.whatsapp || '').replace(/\D/g,'')}?text=${gerarMensagemCobranca(empresa)}"
+
+            >
+
+                📲 Cobrar via WhatsApp
+
+            </a>
+
+        </div>
+
+        <div class="admin-info-card">
+
+            <h3>
+
                 🎁 Programa de Indicação
 
             </h3>
@@ -761,5 +874,227 @@ function renderizarBlocosEmpresa(
         </div>
 
     `;
+
+}
+
+
+
+/*
+=====================================================
+MARCAR PAGAMENTO
+=====================================================
+*/
+
+/*
+=====================================================
+MARCAR PAGAMENTO
+=====================================================
+*/
+
+async function marcarPagamento(
+
+    empresaId
+
+) {
+
+    const empresa =
+
+        empresas.find(
+
+            item =>
+
+                item.id ==
+
+                empresaId
+
+        );
+
+    if (
+
+        !empresa
+
+    ) {
+
+        mostrarToast(
+
+            "Empresa não encontrada."
+
+        );
+
+        return;
+
+    }
+
+    abrirModalConfirmacao({
+
+        titulo:
+
+            "💰 Confirmar Pagamento",
+
+        mensagem:
+
+            `${empresa.nome}`,
+
+        onConfirm:
+
+            async () => {
+
+                try {
+
+                    /*
+                    =====================================
+                    DATA ATUAL
+                    =====================================
+                    */
+
+                    const hoje =
+
+                        new Date()
+
+                            .toISOString()
+
+                            .split("T")[0];
+
+                    /*
+                    =====================================
+                    NOVO VENCIMENTO
+                    =====================================
+                    */
+
+                    let novoVencimento =
+
+                        empresa.vencimento;
+
+                    if (
+
+                        empresa.vencimento
+
+                    ) {
+
+                        const vencimento =
+
+                            new Date(
+
+                                empresa.vencimento
+
+                            );
+
+                        vencimento.setMonth(
+
+                            vencimento.getMonth() + 1
+
+                        );
+
+                        novoVencimento =
+
+                            vencimento
+
+                                .toISOString()
+
+                                .split("T")[0];
+
+                    }
+
+                    /*
+                    =====================================
+                    UPDATE
+                    =====================================
+                    */
+
+                    const {
+
+                        error
+
+                    } = await supabaseClient
+
+                        .from("empresas")
+
+                        .update({
+
+                            ultimo_pagamento:
+                                hoje,
+
+                            vencimento:
+                                novoVencimento
+
+                        })
+
+                        .eq(
+
+                            "id",
+
+                            empresaId
+
+                        );
+
+                    /*
+                    =====================================
+                    ERROR
+                    =====================================
+                    */
+
+                    if (
+
+                        error
+
+                    ) {
+
+                        console.error(
+
+                            error
+
+                        );
+
+                        mostrarToast(
+
+                            "Erro ao registrar pagamento."
+
+                        );
+
+                        return;
+
+                    }
+
+                    /*
+                    =====================================
+                    REFRESH
+                    =====================================
+                    */
+
+                    await carregarEmpresas();
+
+                    mostrarToast(
+
+                        "✅ Pagamento registrado"
+
+                    );
+
+                    aplicarRota();
+
+                }
+
+                catch (
+
+                    erro
+
+                ) {
+
+                    console.error(
+
+                        erro
+
+                    );
+
+                    mostrarToast(
+
+                        "Erro ao registrar pagamento."
+
+                    );
+
+                }
+
+            }
+
+    });
 
 }
