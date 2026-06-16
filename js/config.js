@@ -88,7 +88,7 @@ document.addEventListener(
 
             whatsappLink.href =
 
-                `https://wa.me/5561994243316?text=Olá%20acessei%20o%20seu%20guia%20e%20gostaria%20de%20mais%20informações.`;
+                `https://wa.me/${SITE_CONFIG.whatsapp}?text=${obterMensagemAnunciante()}`;
 
         }
 
@@ -113,21 +113,8 @@ document.addEventListener(
 
             footerWhatsappLink.href =
 
-                `https://wa.me/5561994243316?text=Olá%20acessei%20o%20seu%20guia%20e%20gostaria%20de%20mais%20informações.`;
+                `https://wa.me/${SITE_CONFIG.whatsapp}?text=${obterMensagemAnunciante()}`;
 
         }
-        /*
-        const anuncieBtn =
-            document.getElementById(
-                "anuncieBtn"
-            );
-
-        if (anuncieBtn) {
-
-            anuncieBtn.href =
-
-                `https://wa.me/5561994243316?text=Olá%20acessei%20o%20seu%20guia%20e%20gostaria%20de%20mais%20informações.`;
-
-        }*/
     }
 ); 

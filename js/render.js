@@ -219,7 +219,9 @@ function renderizarCard(empresa) {
                     <div class="contact-dropdown">
                         ${empresa.contatos?.whatsapp ? `
                             <a 
-                                href="https://wa.me/55${(empresa.contatos?.whatsapp || "").replace(/\D/g,'')}"
+                                href="https://wa.me/55${(empresa.contatos?.whatsapp || "").replace(/\D/g,'')}?text=${encodeURIComponent(
+                                    'Olá! Encontrei sua empresa no Guia PlanGO e gostaria de obter mais informações sobre seus produtos e serviços.'
+                                )}"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onclick="incrementarCliqueContato(${empresa.id},
@@ -1637,7 +1639,7 @@ function renderizarPaginaAnuncie() {
                 </p>
 
                 <a
-                    href="https://wa.me/${SITE_CONFIG.whatsapp}?text=Olá,%20quero%20anunciar%20no%20Guia%20Plango"
+                    href="https://wa.me/${SITE_CONFIG.whatsapp}?text=${obterMensagemAnunciante()}"
                     target="_blank"
                     class="anuncie-cta"
                 >
@@ -1963,7 +1965,7 @@ function renderizarPaginaAnuncie() {
                 </h2>
 
                 <a
-                    href="https://wa.me/${SITE_CONFIG.whatsapp}?text=Olá,%20quero%20destacar%20minha%20empresa"
+                    href="https://wa.me/${SITE_CONFIG.whatsapp}?text=${obterMensagemAnunciante()}"
                     target="_blank"
                     class="anuncie-cta"
                 >

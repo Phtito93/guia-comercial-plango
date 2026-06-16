@@ -406,6 +406,42 @@ Obrigado!`
 
 /*
 =====================================================
+MENSAGEM ANUNCIANTE
+=====================================================
+*/
+
+function obterMensagemAnunciante(
+
+    codigoIndicacao = null
+
+) {
+
+    let mensagem =
+
+        "Olá! Acessei o Guia PlanGO e gostaria de receber mais informações sobre os planos de divulgação para empresas.";
+
+    if (
+
+        codigoIndicacao
+
+    ) {
+
+        mensagem +=
+
+            ` Código de indicação: ${codigoIndicacao}`;
+
+    }
+
+    return encodeURIComponent(
+
+        mensagem
+
+    );
+
+}
+
+/*
+=====================================================
 FORMATAR DATA
 =====================================================
 */
