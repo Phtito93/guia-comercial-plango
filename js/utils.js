@@ -178,6 +178,12 @@ STATUS PAGAMENTO
 =====================================================
 */
 
+/*
+=====================================================
+STATUS PAGAMENTO
+=====================================================
+*/
+
 function obterStatusPagamento(
 
     empresa
@@ -208,45 +214,89 @@ function obterStatusPagamento(
 
         new Date();
 
+    hoje.setHours(
+        0, 0, 0, 0
+    );
+
     const vencimento =
 
         new Date(
 
             empresa.vencimento
-
         );
+
+    vencimento.setHours(
+        0, 0, 0, 0
+    );
+
+    /*
+    =====================================
+    PAGO
+    =====================================
+    */
 
     if (
 
         empresa.ultimo_pagamento
 
-        &&
-
-        new Date(
-
-            empresa.ultimo_pagamento
-
-        ) >= vencimento
-
     ) {
 
-        return {
+        const ultimoPagamento =
 
-            texto:
+            new Date(
 
-                "Pago",
+                empresa.ultimo_pagamento
+            );
 
-            emoji:
+        ultimoPagamento.setHours(
+            0, 0, 0, 0
+        );
 
-                "🟢"
+        const inicioCiclo =
 
-        };
+            new Date(
+                vencimento
+            );
+
+        inicioCiclo.setMonth(
+
+            inicioCiclo.getMonth() - 1
+
+        );
+
+        if (
+
+            ultimoPagamento >=
+
+            inicioCiclo
+
+        ) {
+
+            return {
+
+                texto:
+
+                    "Pago",
+
+                emoji:
+
+                    "🟢"
+
+            };
+
+        }
 
     }
 
+    /*
+    =====================================
+    VENCIDA
+    =====================================
+    */
+
     if (
 
-        vencimento < hoje
+        hoje > vencimento
 
     ) {
 
@@ -264,15 +314,61 @@ function obterStatusPagamento(
 
     }
 
+    /*
+    =====================================
+    A VENCER
+    =====================================
+    */
+
+    const dezDiasAntes =
+
+        new Date(
+            vencimento
+        );
+
+    dezDiasAntes.setDate(
+
+        vencimento.getDate() - 10
+
+    );
+
+    if (
+
+        hoje >=
+
+        dezDiasAntes
+
+    ) {
+
+        return {
+
+            texto:
+
+                "A vencer",
+
+            emoji:
+
+                "🟡"
+
+            };
+
+    }
+
+    /*
+    =====================================
+    FORA DA JANELA
+    =====================================
+    */
+
     return {
 
         texto:
 
-            "A vencer",
+            "Em dia",
 
         emoji:
 
-            "🟡"
+            "🔵"
 
     };
 
