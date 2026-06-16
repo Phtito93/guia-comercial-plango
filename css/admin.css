@@ -1143,20 +1143,21 @@ ADMIN EMPRESAS
 
 .empresa-status {
 
-    display: inline-flex;
+    display: flex;
 
     align-items: center;
 
-    gap: 6px;
+    gap: 8px;
 
-    margin-bottom: 12px;
+    flex-wrap: wrap;
 
-    font-size: 13px;
+    font-size: .9rem;
 
     font-weight: 600;
 
-}
+    margin-bottom: 10px;
 
+}
 .empresa-admin-stats {
 
     display: flex;

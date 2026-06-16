@@ -35,6 +35,8 @@ let filtroStatusEmpresa = "todas";
 
 let categorias = [];
 
+let filtroFinanceiroEmpresa = "todas";
+
 /*
 =====================================================
 FAVORITOS

@@ -36,6 +36,88 @@ function renderizarAdminEmpresas() {
             );
     }
 
+    if (
+
+        filtroFinanceiroEmpresa !==
+
+        "todas"
+
+    ) {
+
+        listaEmpresas =
+
+            listaEmpresas.filter(
+
+                empresa => {
+
+                    const status =
+
+                        obterStatusPagamento(
+                            empresa
+                        );
+
+                    if (
+
+                        filtroFinanceiroEmpresa ===
+
+                        "pago"
+
+                    ) {
+
+                        return (
+
+                            status.texto ===
+
+                            "Pago"
+
+                        );
+
+                    }
+
+                    if (
+
+                        filtroFinanceiroEmpresa ===
+
+                        "avencer"
+
+                    ) {
+
+                        return (
+
+                            status.texto ===
+
+                            "A vencer"
+
+                        );
+
+                    }
+
+                    if (
+
+                        filtroFinanceiroEmpresa ===
+
+                        "vencida"
+
+                    ) {
+
+                        return (
+
+                            status.texto ===
+
+                            "Vencida"
+
+                        );
+
+                    }
+
+                    return true;
+
+                }
+
+            );
+
+    }
+
     const totalEmpresas = listaEmpresas.length;
     
     const totalDestaque =
@@ -170,6 +252,57 @@ function renderizarAdminEmpresas() {
                         >
 
                             Inativas
+
+                        </button>
+
+                        <button
+
+                            class="
+                                filtro-status-btn
+                                ${filtroFinanceiroEmpresa === "pago" ? "active" : ""}
+                            "
+
+                            onclick="
+                                filtrarFinanceiroEmpresa('pago')
+                            "
+
+                        >
+
+                            🟢 Pagas
+
+                        </button>
+
+                        <button
+
+                            class="
+                                filtro-status-btn
+                                ${filtroFinanceiroEmpresa === "avencer" ? "active" : ""}
+                            "
+
+                            onclick="
+                                filtrarFinanceiroEmpresa('avencer')
+                            "
+
+                        >
+
+                            🟡 A vencer
+
+                        </button>
+
+                        <button
+
+                            class="
+                                filtro-status-btn
+                                ${filtroFinanceiroEmpresa === "vencida" ? "active" : ""}
+                            "
+
+                            onclick="
+                                filtrarFinanceiroEmpresa('vencida')
+                            "
+
+                        >
+
+                            🔴 Vencidas
 
                         </button>
 
@@ -315,16 +448,47 @@ function renderizarListaEmpresasAdmin(
 
                         </h3>
 
-                        <div class="empresa-status">
+                        ${(() => {
 
-                            ${empresa.ativo !== false
+                            const statusPagamento =
 
-                                    ? "🟢 Ativa"
+                                obterStatusPagamento(
+                                    empresa
+                                );
 
-                                    : "🔴 Inativa"
-                            }
+                            return `
 
-                        </div>
+                                <div class="empresa-status">
+
+                                    <span>
+
+                                        ${empresa.ativo !== false
+
+                                            ? "🟢 Ativa"
+
+                                            : "🔴 Inativa"}
+
+                                    </span>
+
+                                    <span>
+
+                                        |
+
+                                    </span>
+
+                                    <span>
+
+                                        ${statusPagamento.emoji}
+
+                                        ${statusPagamento.texto}
+
+                                    </span>
+
+                                </div>
+
+                            `;
+
+                        })()}
 
                         <div class="empresa-admin-stats">
 
@@ -835,14 +999,28 @@ async function alterarStatusEmpresa(
 
 }
 
-function filtrarEmpresasStatus(
+function filtrarEmpresasStatus(status) {
 
-    status
+    if (
 
-) {
+        status === "todas"
 
-    filtroStatusEmpresa =
-        status;
+    ) {
+
+        filtroStatusEmpresa =
+            "todas";
+
+        filtroFinanceiroEmpresa =
+            "todas";
+
+    }
+
+    else {
+
+        filtroStatusEmpresa =
+            status;
+
+    }
 
     renderizarAdminEmpresas();
 
@@ -925,5 +1103,15 @@ function atualizarResumoEmpresas(
     }
 
     resumo.textContent = texto;
+
+}
+
+function filtrarFinanceiroEmpresa(status) {
+
+    filtroFinanceiroEmpresa =
+
+        status;
+
+    renderizarAdminEmpresas();
 
 }
