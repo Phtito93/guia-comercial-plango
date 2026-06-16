@@ -202,109 +202,154 @@ function renderizarAdminEmpresas() {
 
                     </h2>
 
-                    <div class="admin-status-filtros">
+                    <div class="admin-filtros-container">
 
-                        <button
+                        <div class="admin-filtro-grupo">
 
-                            class="
-                                filtro-status-btn
-                                ${filtroStatusEmpresa === "todas" ? "active" : ""}
-                            "
+                            <span class="admin-filtro-titulo">
 
-                            onclick="
-                                filtrarEmpresasStatus('todas')
-                            "
+                                STATUS
 
-                        >
+                            </span>
 
-                            Todas
+                            <div class="admin-status-filtros">
 
-                        </button>
+                                <button
 
-                        <button
+                                    class="
+                                        filtro-status-btn
+                                        ${filtroStatusEmpresa === "todas" ? "active" : ""}
+                                    "
 
-                            class="
-                                filtro-status-btn
-                                ${filtroStatusEmpresa === "ativas" ? "active" : ""}
-                            "
+                                    onclick="
+                                        filtrarEmpresasStatus('todas')
+                                    "
 
-                            onclick="
-                                filtrarEmpresasStatus('ativas')
-                            "
+                                >
 
-                        >
+                                    Todas
 
-                            Ativas
+                                </button>
 
-                        </button>
+                                <button
 
-                        <button
+                                    class="
+                                        filtro-status-btn
+                                        ${filtroStatusEmpresa === "ativas" ? "active" : ""}
+                                    "
 
-                            class="
-                                filtro-status-btn
-                                ${filtroStatusEmpresa === "inativas" ? "active" : ""}
-                            "
+                                    onclick="
+                                        filtrarEmpresasStatus('ativas')
+                                    "
 
-                            onclick="
-                                filtrarEmpresasStatus('inativas')
-                            "
+                                >
 
-                        >
+                                    Ativas
 
-                            Inativas
+                                </button>
 
-                        </button>
+                                <button
 
-                        <button
+                                    class="
+                                        filtro-status-btn
+                                        ${filtroStatusEmpresa === "inativas" ? "active" : ""}
+                                    "
 
-                            class="
-                                filtro-status-btn
-                                ${filtroFinanceiroEmpresa === "pago" ? "active" : ""}
-                            "
+                                    onclick="
+                                        filtrarEmpresasStatus('inativas')
+                                    "
 
-                            onclick="
-                                filtrarFinanceiroEmpresa('pago')
-                            "
+                                >
 
-                        >
+                                    Inativas
 
-                            🟢 Pagas
+                                </button>
 
-                        </button>
+                            </div>
 
-                        <button
+                        </div>
 
-                            class="
-                                filtro-status-btn
-                                ${filtroFinanceiroEmpresa === "avencer" ? "active" : ""}
-                            "
+                        <div class="admin-filtro-grupo">
 
-                            onclick="
-                                filtrarFinanceiroEmpresa('avencer')
-                            "
+                            <span class="admin-filtro-titulo">
 
-                        >
+                                MENSALIDADE
 
-                            🟡 A vencer
+                            </span>
 
-                        </button>
+                            <div class="admin-status-filtros">
 
-                        <button
+                                <button
 
-                            class="
-                                filtro-status-btn
-                                ${filtroFinanceiroEmpresa === "vencida" ? "active" : ""}
-                            "
+                                    class="
+                                        filtro-status-btn
+                                        ${filtroFinanceiroEmpresa === "todas" ? "active" : ""}
+                                    "
 
-                            onclick="
-                                filtrarFinanceiroEmpresa('vencida')
-                            "
+                                    onclick="
+                                        filtrarFinanceiroEmpresa('todas')
+                                    "
 
-                        >
+                                >
 
-                            🔴 Vencidas
+                                    Todas
 
-                        </button>
+                                </button>
+
+                                <button
+
+                                    class="
+                                        filtro-status-btn
+                                        ${filtroFinanceiroEmpresa === "pago" ? "active" : ""}
+                                    "
+
+                                    onclick="
+                                        filtrarFinanceiroEmpresa('pago')
+                                    "
+
+                                >
+
+                                    🟢 Pagas
+
+                                </button>
+
+                                <button
+
+                                    class="
+                                        filtro-status-btn
+                                        ${filtroFinanceiroEmpresa === "avencer" ? "active" : ""}
+                                    "
+
+                                    onclick="
+                                        filtrarFinanceiroEmpresa('avencer')
+                                    "
+
+                                >
+
+                                    🟡 A vencer
+
+                                </button>
+
+                                <button
+
+                                    class="
+                                        filtro-status-btn
+                                        ${filtroFinanceiroEmpresa === "vencida" ? "active" : ""}
+                                    "
+
+                                    onclick="
+                                        filtrarFinanceiroEmpresa('vencida')
+                                    "
+
+                                >
+
+                                    🔴 Vencidas
+
+                                </button>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
@@ -456,6 +501,16 @@ function renderizarListaEmpresasAdmin(
                                     empresa
                                 );
 
+                            const vencimentoFormatado =
+
+                                empresa.vencimento
+
+                                    ? formatarData(
+                                        empresa.vencimento
+                                    )
+
+                                    : null;
+
                             return `
 
                                 <div class="empresa-status">
@@ -481,6 +536,32 @@ function renderizarListaEmpresasAdmin(
                                         ${statusPagamento.emoji}
 
                                         ${statusPagamento.texto}
+
+                                        ${
+
+                                            (
+
+                                                statusPagamento.texto === "A vencer"
+
+                                                ||
+
+                                                statusPagamento.texto === "Vencida"
+
+                                            )
+
+                                            &&
+
+                                            vencimentoFormatado
+
+                                                ?
+
+                                                ` - ${vencimentoFormatado}`
+
+                                                :
+
+                                                ""
+
+                                        }
 
                                     </span>
 
@@ -999,28 +1080,14 @@ async function alterarStatusEmpresa(
 
 }
 
-function filtrarEmpresasStatus(status) {
+function filtrarEmpresasStatus(
 
-    if (
+    status
 
-        status === "todas"
+) {
 
-    ) {
-
-        filtroStatusEmpresa =
-            "todas";
-
-        filtroFinanceiroEmpresa =
-            "todas";
-
-    }
-
-    else {
-
-        filtroStatusEmpresa =
-            status;
-
-    }
+    filtroStatusEmpresa =
+        status;
 
     renderizarAdminEmpresas();
 

@@ -1043,6 +1043,46 @@ ADMIN EMPRESAS
 
 }
 
+/*
+=====================================================
+FILTROS ADMIN
+=====================================================
+*/
+
+.admin-filtros-container {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+
+    margin-top: 16px;
+
+}
+
+.admin-filtro-grupo {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+.admin-filtro-titulo {
+
+    font-size: .85rem;
+
+    font-weight: 700;
+
+    opacity: .7;
+
+    letter-spacing: .5px;
+
+}
+
 .empresa-busca {
 
     width: 100%;
