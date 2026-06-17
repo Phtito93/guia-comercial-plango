@@ -160,52 +160,101 @@ EVENTOS - BUSCA
 =====================================================
 */
 
-searchInput.addEventListener("input", () => {
+searchInput.addEventListener(
 
-    estado.busca =
-        normalizarTexto(
+    "input",
+
+    () => {
+
+        estado.busca =
+
+            normalizarTexto(
+
+                searchInput.value
+
+            );
+
+        /*
+        =====================================
+        AUTOCOMPLETE
+        =====================================
+        */
+
+        atualizarSugestoesBusca(
+
             searchInput.value
+
         );
 
-    /*
-    =====================================
-    HOME
-    =====================================
-    */
+        /*
+        =====================================
+        HOME
+        =====================================
+        */
 
-    if (
-        estado.modo === "home"
-        &&
-        estado.busca
-    ) {
+        if (
 
-        estado.modo = "busca";
+            estado.modo === "home"
 
-    }
+            &&
 
-    /*
-    =====================================
-    LIMPOU
-    =====================================
-    */
-
-    if (!estado.busca) {
-
-        navegar("/");
-
-        return;
-
-    }
-
-    paginaAtual = 1;
-
-    navegar(
-        `/buscar/${encodeURIComponent(
             estado.busca
-        )}`
-    );
 
-});
+        ) {
+
+            estado.modo =
+
+                "busca";
+
+        }
+
+        /*
+        =====================================
+        LIMPOU
+        =====================================
+        */
+
+        if (
+
+            !estado.busca
+
+        ) {
+
+            const sugestoes =
+
+                document.getElementById(
+
+                    "searchSuggestions"
+
+                );
+
+            sugestoes?.classList.remove(
+
+                "active"
+
+            );
+
+            navegar("/");
+
+            return;
+
+        }
+
+        paginaAtual = 1;
+
+        navegar(
+
+            `/buscar/${encodeURIComponent(
+
+                estado.busca
+
+            )}`
+
+        );
+
+    }
+
+);
 
 /*
 =====================================================

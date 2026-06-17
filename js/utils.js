@@ -479,3 +479,163 @@ function formatarDataHora(data) {
         .toLocaleString("pt-BR");
 
 }
+
+/*
+=====================================================
+AUTOCOMPLETE
+=====================================================
+*/
+
+function atualizarSugestoesBusca(
+
+    termo
+
+) {
+
+    const container =
+
+        document.getElementById(
+            "searchSuggestions"
+        );
+
+    if (
+
+        !termo ||
+
+        termo.length < 2
+
+    ) {
+
+        container.classList.remove(
+            "active"
+        );
+
+        container.innerHTML = "";
+
+        return;
+
+    }
+
+    const sugestoes =
+
+        empresas
+
+            .filter(
+
+                empresa =>
+
+                    empresa.ativo !== false
+
+            )
+
+            .filter(
+
+                empresa =>
+
+                    empresa.nome
+
+                        .toLowerCase()
+
+                        .includes(
+
+                            termo.toLowerCase()
+
+                        )
+
+            )
+
+            .slice(0, 5);
+
+    if (
+
+        sugestoes.length === 0
+
+    ) {
+
+        container.classList.remove(
+            "active"
+        );
+
+        return;
+
+    }
+
+    container.innerHTML =
+
+        sugestoes.map(
+
+            empresa => `
+
+                <div
+
+                    class="search-suggestion"
+
+                    onclick="
+                        selecionarSugestaoBusca('${empresa.nome}')
+                    "
+
+                >
+
+                    ${empresa.nome}
+
+                </div>
+
+            `
+
+        ).join("");
+
+    container.classList.add(
+        "active"
+    );
+
+}
+
+/*
+=====================================================
+SELECIONAR SUGESTÃO
+=====================================================
+*/
+
+function selecionarSugestaoBusca(
+
+    nome
+
+) {
+
+    searchInput.value =
+
+        nome;
+
+    estado.busca =
+
+        normalizarTexto(
+
+            nome
+
+        );
+
+    document
+
+        .getElementById(
+
+            "searchSuggestions"
+
+        )
+
+        ?.classList.remove(
+
+            "active"
+
+        );
+
+    navegar(
+
+        `/buscar/${encodeURIComponent(
+
+            estado.busca
+
+        )}`
+
+    );
+
+}

@@ -44,6 +44,7 @@ BUSCA E CONTROLES
 
 .search-area {
     padding: 20px 20px 20px;
+    position: relative;
 }
 
 #searchInput {
@@ -62,6 +63,65 @@ BUSCA E CONTROLES
 
 .search-highlight {
     color: var(--primary);
+}
+
+/*
+=====================================================
+AUTOCOMPLETE
+=====================================================
+*/
+
+.search-suggestions {
+
+    position: absolute;
+
+    top: 100%;
+
+    left: 0;
+
+    right: 0;
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 12px;
+
+    margin-top: 4px;
+
+    overflow: hidden;
+
+    z-index: 999;
+
+    display: none;
+
+}
+
+.search-suggestions.active {
+
+    display: block;
+
+}
+
+.search-suggestion {
+
+    padding: 12px 14px;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+.search-suggestion:hover {
+
+    background: rgba(
+        255,
+        255,
+        255,
+        .05
+    );
+
 }
 
 .ordenacao {
