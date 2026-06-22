@@ -39,6 +39,7 @@ NOTICIA DEMONSTRAÇÃO
 .development-notice {
     margin: 24px 0;
     padding: 0 16px;
+    text-align: center;
 }
 
 .development-notice__content {
